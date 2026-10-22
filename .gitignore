@@ -1,0 +1,4 @@
+*.zip
+*.blend1
+# full chat transcripts stay on this PC; the session notes are kept
+chat_history/*.jsonl
