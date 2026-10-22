@@ -2,8 +2,4 @@
 *.blend1
 # full chat transcripts stay on this PC; the session notes are kept
 chat_history/*.jsonl
-# built from the game's own Volvo FH16 (GIANTS data): rebuilt locally by the scripts in source/, not published
-boxTruck.i3d
-boxTruck.i3d.shapes
-boxTruck.xml
 source/__pycache__/
