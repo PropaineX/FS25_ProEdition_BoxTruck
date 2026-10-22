@@ -1,12 +1,17 @@
 -- Box Truck Pro Edition (PropaineX)
 -- The truck's own autoload: pallets standing next to an open curtain side or behind the open rear doors are pulled into
--- the box one after the other. You see each one lift, swing to the opening and slide across the floor to its place.
+-- the box one after the other: each one lifts off, flies in an arc through the open side or the rear doors, spinning
+-- once or twice on the way, and lands on its place (0.5 to 1.0 s each).
 -- Loaded pallets are held with the game's kinematic mount (Mountable:mountKinematic, as the game's AutoLoader uses):
 -- they move with the truck and cannot sink into the floor, slide or jiggle. The tension belts leave them alone.
--- Keys (own actions, can be changed in the controls menu): BOXTRUCK_LOAD (left ctrl + L) starts / stops loading,
+-- Keys (own actions, can be changed in the controls menu): BOXTRUCK_LOAD (left shift + R, the key Universal Autoload
+-- uses on other vehicles; it is off on this truck) starts / stops loading,
 -- BOXTRUCK_RELEASE (left alt + L) lets the load go (the pallets stay where they are and can be taken off again).
 -- Runs on the server; players send their key presses with BoxTruckAutoLoadEvent. The server moves the pallets and the
 -- game sends their positions to the other players.
+-- Universal Autoload (another mod) attaches itself to every vehicle with tension belts and teleports pallets; on this
+-- truck it is switched off with its own flags (as it does for vehicles it cannot use), so only this autoload loads
+-- the box.
 
 BoxTruckAutoLoad = {}
 BoxTruckAutoLoad.MOD_NAME = g_currentModName
@@ -23,8 +28,11 @@ BoxTruckAutoLoad.MAX_HEIGHT = 2.30
 BoxTruckAutoLoad.PICKUP_RANGE = 6.0        -- pallets up to this far from an opening are picked up
 BoxTruckAutoLoad.STEP = 0.05               -- packing grid
 BoxTruckAutoLoad.GAP = 0.02                -- between pallets and walls
-BoxTruckAutoLoad.SPLIT = 0.5               -- part of the move spent getting to the opening (the rest slides it in)
-BoxTruckAutoLoad.LIFT = 0.25               -- extra height of the swing to the opening
+BoxTruckAutoLoad.FLIGHT_MIN = 500          -- ms, short flights (user 2026-10-22: 0.5 to 1.0 s each)
+BoxTruckAutoLoad.FLIGHT_MAX = 1000         -- ms, long flights
+BoxTruckAutoLoad.LIFT = 1.2                -- how high the arc rises above the pallet's start
+BoxTruckAutoLoad.ENTRY_Y = 0.35            -- height above the floor where it passes the opening
+BoxTruckAutoLoad.SPIN_END = 0.75           -- the spin is done by this part of the flight (before it is inside)
 
 -- the openings: animation of BoxTruckBody, side of the box (+x = left)
 BoxTruckAutoLoad.OPENINGS = {
@@ -69,6 +77,7 @@ end
 
 function BoxTruckAutoLoad.registerEventListeners(vehicleType)
     SpecializationUtil.registerEventListener(vehicleType, "onLoad", BoxTruckAutoLoad)
+    SpecializationUtil.registerEventListener(vehicleType, "onPostLoad", BoxTruckAutoLoad)
     SpecializationUtil.registerEventListener(vehicleType, "onDelete", BoxTruckAutoLoad)
     SpecializationUtil.registerEventListener(vehicleType, "onReadStream", BoxTruckAutoLoad)
     SpecializationUtil.registerEventListener(vehicleType, "onWriteStream", BoxTruckAutoLoad)
@@ -115,6 +124,23 @@ function BoxTruckAutoLoad:onLoad(savegame)
                 end
             end)
             spec.pendingLoadTime = 10000    -- give the pallets 10 s to appear after the savegame loaded
+        end
+    end
+end
+
+-- Universal Autoload (if installed) off on this truck: it would teleport pallets into the box and fight this autoload.
+-- Runs on the server and on every player's machine, after all specializations loaded (UAL's onLoad included).
+function BoxTruckAutoLoad:onPostLoad(savegame)
+    -- only its own flags: every UAL function checks them, and with initialised = false its next update on the server
+    -- removes its own event listeners (its own clean-up for vehicles it cannot use). Listeners are not removed from
+    -- here: that would happen while the game walks the onPostLoad list and could make it skip another mod's listener.
+    local ual = self.spec_universalAutoload
+    if ual ~= nil then
+        ual.isAutoloadAvailable = false
+        ual.autoloadDisabled = true
+        ual.initialised = false
+        if UniversalAutoload ~= nil and UniversalAutoload.VEHICLES ~= nil then
+            UniversalAutoload.VEHICLES[self] = nil
         end
     end
 end
@@ -502,64 +528,66 @@ function BoxTruckAutoLoad.startMove(vehicle, pallet, opening, x, z, sizeX, sizeY
         rot = rot + math.pi
     end
 
-    -- just outside the opening, level with the floor, in line with the place
+    -- the flight: up from where it stands, an arc through the air, in through the opening (just above the floor, in
+    -- line with its place) and down onto the place; a cubic curve through those points
     local hw = BoxTruckAutoLoad.HALF_WIDTH
     local entry
     if opening.name == "left" then
-        entry = {hw + sizeX * 0.5 + 0.30, 0.03, z}
+        entry = {hw + sizeX * 0.5 + 0.40, BoxTruckAutoLoad.ENTRY_Y, z}
     elseif opening.name == "right" then
-        entry = {-hw - sizeX * 0.5 - 0.30, 0.03, z}
+        entry = {-hw - sizeX * 0.5 - 0.40, BoxTruckAutoLoad.ENTRY_Y, z}
     else
-        entry = {x, 0.03, BoxTruckAutoLoad.REAR_Z - sizeZ * 0.5 - 0.30}
+        entry = {x, BoxTruckAutoLoad.ENTRY_Y, BoxTruckAutoLoad.REAR_Z - sizeZ * 0.5 - 0.40}
     end
-    local d1 = MathUtil.vector3Length(entry[1] - sx, entry[2] - sy, entry[3] - sz)
-    local d2 = MathUtil.vector3Length(x - entry[1], 0, z - entry[3])
+    local up = {sx, math.max(sy, entry[2]) + BoxTruckAutoLoad.LIFT, sz}
+    local distance = MathUtil.vector3Length(entry[1] - sx, entry[2] - sy, entry[3] - sz)
+        + MathUtil.vector3Length(x - entry[1], 0, z - entry[3])
+    local spins = distance < 5 and 1 or 2
+    local endRot = ry + angleTo(ry, rot)
 
     spec.moving = {
         pallet = pallet,
         carrier = carrier,
-        start = {sx, sy, sz},
+        points = {{sx, sy, sz}, up, entry, {x, 0, z}},
         startRot = {rx, ry, rz},
-        endRot = ry + angleTo(ry, rot),
-        entry = entry,
+        endRot = endRot,
+        spinRot = endRot + 2 * math.pi * spins * (angleTo(ry, rot) >= 0 and 1 or -1),
         target = {x, 0, z},
         sizeX = sizeX,
         sizeZ = sizeZ,
         rot = rot,
         time = 0,
-        duration = math.max(1.0, math.min(2.5, 0.9 + d1 / 5 + d2 / 4)) * 1000
+        duration = math.max(BoxTruckAutoLoad.FLIGHT_MIN, math.min(BoxTruckAutoLoad.FLIGHT_MAX, 500 + distance * 40))
     }
+    Logging.info("Box Truck autoload: %s flies in through the %s side, %.1f m, %d spin(s), %d ms",
+        tostring(pallet:getFullName()), opening.name, distance, spins, spec.moving.duration)
 end
 
--- server: one step of the pull-in
+local function bezier(p, t)
+    local u = 1 - t
+    local a, b, c, d = u * u * u, 3 * u * u * t, 3 * u * t * t, t * t * t
+    return a * p[1][1] + b * p[2][1] + c * p[3][1] + d * p[4][1],
+           a * p[1][2] + b * p[2][2] + c * p[3][2] + d * p[4][2],
+           a * p[1][3] + b * p[2][3] + c * p[3][3] + d * p[4][3]
+end
+
+-- server: one step of the flight
 function BoxTruckAutoLoad.updateMove(vehicle, dt)
     local spec = vehicle[BoxTruckAutoLoad.SPEC_TABLE_NAME]
     local m = spec.moving
     m.time = m.time + dt
     local s = math.min(1, m.time / m.duration)
-    local split = BoxTruckAutoLoad.SPLIT
-    local x, y, z
-    local rx, ry, rz = m.startRot[1], m.startRot[2], m.startRot[3]
-    if s < split then
-        -- lift and swing round to the opening
-        local p = smooth(s / split)
-        x = m.start[1] + (m.entry[1] - m.start[1]) * p
-        y = m.start[2] + (m.entry[2] - m.start[2]) * p + BoxTruckAutoLoad.LIFT * math.sin(math.pi * p)
-        z = m.start[3] + (m.entry[3] - m.start[3]) * p
-        rx, ry, rz = rx * (1 - p), ry + (m.endRot - ry) * p, rz * (1 - p)
-    else
-        -- slide across the floor to the place
-        local p = smooth((s - split) / (1 - split))
-        x = m.entry[1] + (m.target[1] - m.entry[1]) * p
-        y = m.entry[2] + (m.target[2] - m.entry[2]) * p
-        z = m.entry[3] + (m.target[3] - m.entry[3]) * p
-        rx, ry, rz = 0, m.endRot, 0
-    end
+    local x, y, z = bezier(m.points, smooth(s))
+    local spin = smooth(s / BoxTruckAutoLoad.SPIN_END)          -- 1 from SPIN_END on
+    local level = smooth(s / 0.3)                               -- a tilted pallet straightens out first
+    local ry = m.startRot[2] + (m.spinRot - m.startRot[2]) * spin
     setTranslation(m.carrier, x, y, z)
-    setRotation(m.carrier, rx, ry, rz)
+    setRotation(m.carrier, m.startRot[1] * (1 - level), ry, m.startRot[3] * (1 - level))
     m.pallet:raiseActive()
 
     if s >= 1 then
+        setTranslation(m.carrier, m.target[1], m.target[2], m.target[3])
+        setRotation(m.carrier, 0, m.endRot, 0)
         spec.mounted[m.pallet] = {carrier = m.carrier, x = m.target[1], z = m.target[3], sizeX = m.sizeX, sizeZ = m.sizeZ, rot = m.rot}
         spec.moving = nil
         spec.nextDelay = 150

@@ -254,3 +254,21 @@ VS Code Claude panel > past conversations, or in a terminal in this folder: `cla
 - BUILD 8 zipped 2026-10-22: FS25_BoxTruck_ProEdition.zip (still 1.0.0.0), 13 files (boxTruckStickers_diffuse.dds no
   longer used, left out), 27,995,564 B, sha256 939866b472ad... -> Mods in waiting, mods, /testing (replaced build 7,
   temp name + rename, SHA verified). Autoload + curtain slide + rear + front NOT yet tested in game.
+- In-game test of build 8: the pallet teleported - user had pressed Shift+R = UNIVERSALAUTOLOAD_TOGGLE_LOADING; UAL had
+  re-added our truck to its settings when the truck was bought (16:12). Fixes: our script switches UAL off on this truck
+  (its own flags in onPostLoad), new flight (arc through the air, 1-2 spins, 0.5-1.0 s, log line per pallet), load key
+  now Left Shift + R (user: "default to our Shift R", never Ctrl+L), release stays Left Alt + L.
+- BUILD 9 zipped 2026-10-22 (still 1.0.0.0): 27,996,379 B sha256 932f165627a7... -> Mods in waiting, mods, /testing
+  (verified). TestRunner: only polycount 403,227. Not yet tested in game. Not committed to git yet.
+- User: "our autoload works like shit" -> removed it; the truck uses Universal Autoload like every other vehicle (its
+  modSettings entry from the purchase: floor 1.75, length 6.6). Script kept in source/old/BoxTruckAutoLoad.lua;
+  modDesc back to the build-7 text (no own actions/keys/l10n).
+- BUILD 10 zipped 2026-10-22 (still 1.0.0.0): 27,987,506 B sha256 8b1f83b1351c... -> Mods in waiting, mods, /testing.
+- UAL curtain-trailer flag: BoxTruckBody.lua sets spec_universalAutoload.isCurtainTrailer, provides getTipState /
+  getIsUnfolded (our curtains/doors) and sets UAL's tip/load side from the open curtain (server). Build 11 zipped ->
+  Mods in waiting, then (user) mods + /testing (verified).
+- "Not working at all" after build 11: UAL entries for the truck had horizontalLoading (bale mode) on config 1, and
+  our build-11 tipside sync never ran (UAL's global not visible from our mod environment). Build 12: the truck gives UAL
+  the ProfiLiner's settings itself in onPreLoad for ALL configs (found via vehicle.specializations), log line
+  "Box Truck: Universal Autoload set up like the Krone ProfiLiner". 27,989,281 B sha256 2c5ed8b4c6b9... -> Mods in
+  waiting, mods, /testing (verified). Rented trucks can't be customized (Value "-") - not a mod problem.

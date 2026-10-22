@@ -6,6 +6,13 @@
 -- Keys (game actions, can be changed in the controls menu): X (IMPLEMENT_EXTRA2) = rear doors,
 -- Z (IMPLEMENT_EXTRA4) = open/close the selected curtain, U (TOGGLE_TIPSIDE, as on the Krone ProfiLiner) = select
 -- the left or right curtain. (v1 had the left curtain on Y; Y is taken by other actions in the game.)
+-- Universal Autoload (another mod, if installed) loads and unloads the pallets, set up exactly like the game's Krone
+-- ProfiLiner (user 2026-10-22: "give me the ProfiLiner's loading and unloading"). The truck hands UAL the ProfiLiner's
+-- settings itself (isCurtainTrailer, enableRearLoading, enableSideLoading, one loading area = our load space) for all
+-- shop configurations, before UAL sets the truck up: on by default, nothing to pick. As on the ProfiLiner UAL then only
+-- picks pallets up through an open curtain or the open rear doors, unloads to the side whose curtain is open and drops
+-- its own side key (U is our curtain select). It asks getTipState / getIsUnfolded (the game's trailer and foldable
+-- specs on the ProfiLiner): here they report our curtains and doors.
 
 BoxTruckBody = {}
 BoxTruckBody.MOD_NAME = g_currentModName
@@ -36,6 +43,7 @@ function BoxTruckBody.initSpecialization()
 end
 
 function BoxTruckBody.registerEventListeners(vehicleType)
+    SpecializationUtil.registerEventListener(vehicleType, "onPreLoad", BoxTruckBody)
     SpecializationUtil.registerEventListener(vehicleType, "onLoad", BoxTruckBody)
     SpecializationUtil.registerEventListener(vehicleType, "onPostLoad", BoxTruckBody)
     SpecializationUtil.registerEventListener(vehicleType, "onReadStream", BoxTruckBody)
@@ -76,6 +84,17 @@ end
 
 function BoxTruckBody:onPostLoad(savegame)
     local spec = self[BoxTruckBody.SPEC_TABLE_NAME]
+    local ual = self.spec_universalAutoload
+    if ual ~= nil then
+        ual.isCurtainTrailer = true
+        if self.getTipState == nil then
+            self.getTipState = BoxTruckBody.getTipState
+        end
+        if self.getIsUnfolded == nil then
+            self.getIsUnfolded = BoxTruckBody.getIsRearDoorOpen
+        end
+        spec.ualTipside = nil
+    end
     if savegame ~= nil and not savegame.resetVehicles then
         for _, part in ipairs(spec.parts) do
             local time = savegame.xmlFile:getValue(savegame.key .. "." .. BoxTruckBody.SPEC_NAME .. "#" .. part.key, 0)
@@ -166,6 +185,115 @@ end
 function BoxTruckBody:onUpdate(dt, isActiveForInput, isActiveForInputIgnoreSelection, isSelected)
     if isActiveForInputIgnoreSelection then
         BoxTruckBody.updateActionTexts(self)
+    end
+    if self.isServer and self.spec_universalAutoload ~= nil then
+        BoxTruckBody.updateUalTipside(self)
+    end
+end
+
+---------------------------------------------------------------------------------------------------- Universal Autoload
+
+-- the ProfiLiner's UAL settings (its entry: isCurtainTrailer, enableRearLoading, enableSideLoading), with our load
+-- space: floor top 1.75, from the inside of the front sheet (1.50) to the rear (-5.10), between the side walls, up to
+-- the roof bows (the area UAL measured on this truck itself)
+BoxTruckBody.UAL_OPTIONS = {isCurtainTrailer = true, enableRearLoading = true, enableSideLoading = true}
+BoxTruckBody.UAL_LOADING_AREA = {offset = {0, 1.75, -1.801}, width = 2.4548, length = 6.5989, height = 2.3696}
+
+-- UAL's class table. Every mod runs in its own script environment, so its global "UniversalAutoload" is not visible
+-- here; the vehicle's own specialization list has it (UAL adds itself as "<its mod name>.universalAutoload").
+function BoxTruckBody.getUal(vehicle)
+    if vehicle.specializations ~= nil and vehicle.specializationNames ~= nil then
+        for id, specClass in pairs(vehicle.specializations) do
+            local name = vehicle.specializationNames[id]
+            if type(name) == "string" and name:sub(-#".universalAutoload") == ".universalAutoload" then
+                return specClass
+            end
+        end
+    end
+    return nil
+end
+
+function BoxTruckBody:onPreLoad(savegame)
+    local UniversalAutoload = BoxTruckBody.getUal(self)
+    if UniversalAutoload == nil or UniversalAutoload.VEHICLE_CONFIGURATIONS == nil
+        or UniversalAutoload.OPTIONS_DEFAULTS == nil or UniversalAutoload.LOADING_AREA_DEFAULTS == nil then
+        return
+    end
+    -- the name UAL files the truck under: the vehicle xml path below the mods folder ("FS25_BoxTruck_ProEdition/boxTruck.xml")
+    local name = self.configFileName
+    if name ~= nil and g_modsDirectory ~= nil and name:sub(1, #g_modsDirectory) == g_modsDirectory then
+        name = name:sub(#g_modsDirectory + 1)
+    end
+    if name == nil then
+        return
+    end
+    -- every option at UAL's default, then the ProfiLiner's; same for the loading area
+    local config = {selectedConfigs = UniversalAutoload.ALL or "ALL"}
+    for _, v in ipairs(UniversalAutoload.OPTIONS_DEFAULTS) do
+        if v.id ~= nil then
+            config[v.id] = v.default
+        end
+    end
+    for k, v in pairs(BoxTruckBody.UAL_OPTIONS) do
+        config[k] = v
+    end
+    local area = {}
+    for _, v in ipairs(UniversalAutoload.LOADING_AREA_DEFAULTS) do
+        if v.id ~= nil then
+            area[v.id] = v.default
+        end
+    end
+    for k, v in pairs(BoxTruckBody.UAL_LOADING_AREA) do
+        area[k] = type(v) == "table" and {v[1], v[2], v[3]} or v
+    end
+    config.loadArea = {area}
+    -- ours replaces whatever the settings file has for this truck (all configurations)
+    UniversalAutoload.VEHICLE_CONFIGURATIONS[name] = {[config.selectedConfigs] = config}
+    Logging.info("Box Truck: Universal Autoload set up like the Krone ProfiLiner for '%s'", name)
+end
+
+-- a curtain counts as open once it is fully open (as the ProfiLiner's tip state)
+function BoxTruckBody.getIsPartFullyOpen(vehicle, animName)
+    return vehicle:getAnimationExists(animName) and vehicle:getAnimationTime(animName) > 0.99
+        and not vehicle:getIsAnimationPlaying(animName)
+end
+
+function BoxTruckBody:getTipState()
+    local open = BoxTruckBody.getIsPartFullyOpen(self, "boxCurtainLeft") or BoxTruckBody.getIsPartFullyOpen(self, "boxCurtainRight")
+    if open then
+        return Trailer ~= nil and Trailer.TIPSTATE_OPEN or 2
+    end
+    return Trailer ~= nil and Trailer.TIPSTATE_CLOSED or 0
+end
+
+function BoxTruckBody:getIsRearDoorOpen()
+    return BoxTruckBody.getIsPartFullyOpen(self, "boxRearDoors")
+end
+
+-- server: Universal Autoload unloads to the side whose curtain is open, nowhere while both are closed (as it does on the
+-- ProfiLiner); its own functions send the change to the other players
+function BoxTruckBody.updateUalTipside(vehicle)
+    local spec = vehicle[BoxTruckBody.SPEC_TABLE_NAME]
+    local ual = vehicle.spec_universalAutoload
+    local UniversalAutoload = BoxTruckBody.getUal(vehicle)
+    if not ual.isAutoloadAvailable or ual.autoloadDisabled or UniversalAutoload == nil
+        or UniversalAutoload.setCurrentTipside == nil or UniversalAutoload.setCurrentLoadside == nil then
+        return
+    end
+    local side = "none"
+    if BoxTruckBody.getIsPartFullyOpen(vehicle, "boxCurtainLeft") then
+        side = "left"
+    elseif BoxTruckBody.getIsPartFullyOpen(vehicle, "boxCurtainRight") then
+        side = "right"
+    end
+    if side ~= spec.ualTipside or ual.currentTipside ~= side then
+        spec.ualTipside = side
+        if ual.currentTipside ~= side then
+            UniversalAutoload.setCurrentTipside(vehicle, side)
+        end
+        if ual.currentLoadside ~= side then
+            UniversalAutoload.setCurrentLoadside(vehicle, side)
+        end
     end
 end
 
