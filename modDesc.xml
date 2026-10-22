@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<modDesc descVersion="115">
+    <author>PropaineX</author>
+    <version>1.0.0.0</version>
+    <title>
+        <en>Box Truck Pro Edition</en>
+        <de>Kofferaufbau-LKW Pro Edition</de>
+    </title>
+    <description>
+        <en><![CDATA[Volvo FH16 8x4 with a curtain-sider body for hauling pallets.
+
+- Curtain-sider in the style of the Krone ProfiLiner: the curtain gathers at the rear, the side boards fold away
+  and the posts slide back
+- Rear barn doors
+- 9 tension belts across the load floor
+- Load space about 6.8 x 2.48 m, 2.55 m inside height
+- Four engines: FH425 City Hauler, FH515 Regional Hauler, FH585 Long Hauler, FH600 Heavy Hauler
+- Plain white paint option that matches the body
+- Curtain designs: plain white, ProEdition, Krone, Farming Simulator League, GIANTS
+
+Controls (can be changed in the controls menu):
+X = open/close rear doors
+Z = open/close the selected curtain
+U = select left or right curtain
+
+Price: $175,000
+Power: 425 - 600 hp
+Max. speed: 90 km/h]]></en>
+        <de><![CDATA[Volvo FH16 8x4 mit Planenaufbau für den Palettentransport.
+
+- Planenaufbau wie beim Krone ProfiLiner: die Plane rafft sich hinten zusammen, die Seitenbretter klappen weg
+  und die Rungen fahren nach hinten
+- Hecktüren
+- 9 Spanngurte über die Ladefläche
+- Ladefläche ca. 6,8 x 2,48 m, 2,55 m Innenhöhe
+- Vier Motoren: FH425 City Hauler, FH515 Regional Hauler, FH585 Long Hauler, FH600 Heavy Hauler
+- Weiße Lackierung ohne Metallic, passend zum Aufbau
+- Planendesigns: Weiß, ProEdition, Krone, Farming Simulator League, GIANTS
+
+Steuerung (im Steuerungsmenü änderbar):
+X = Hecktüren öffnen/schließen
+Z = gewählte Plane öffnen/schließen
+U = linke oder rechte Plane wählen
+
+Preis: 175.000 €
+Leistung: 425 - 600 PS
+Höchstgeschwindigkeit: 90 km/h]]></de>
+    </description>
+    <iconFilename>icon_BoxTruck.dds</iconFilename>
+    <multiplayer supported="true" />
+
+    <specializations>
+        <specialization name="boxTruckBody" className="BoxTruckBody" filename="scripts/BoxTruckBody.lua" />
+    </specializations>
+
+    <vehicleTypes>
+        <type name="boxTruckPro" parent="tractor" className="Vehicle" filename="$dataS/scripts/vehicles/Vehicle.lua">
+            <specialization name="tensionBelts" />
+            <specialization name="boxTruckBody" />
+        </type>
+    </vehicleTypes>
+
+    <storeItems>
+        <storeItem xmlFilename="boxTruck.xml" />
+    </storeItems>
+
+    <l10n>
+        <text name="action_boxTruckOpenRearDoors"><en>Open rear doors</en><de>Hecktüren öffnen</de></text>
+        <text name="action_boxTruckCloseRearDoors"><en>Close rear doors</en><de>Hecktüren schließen</de></text>
+        <text name="action_boxTruckOpenCurtainLeft"><en>Open left curtain</en><de>Linke Plane öffnen</de></text>
+        <text name="action_boxTruckCloseCurtainLeft"><en>Close left curtain</en><de>Linke Plane schließen</de></text>
+        <text name="action_boxTruckOpenCurtainRight"><en>Open right curtain</en><de>Rechte Plane öffnen</de></text>
+        <text name="action_boxTruckCloseCurtainRight"><en>Close right curtain</en><de>Rechte Plane schließen</de></text>
+        <text name="action_boxTruckSelectCurtainLeft"><en>Select left curtain</en><de>Linke Plane wählen</de></text>
+        <text name="action_boxTruckSelectCurtainRight"><en>Select right curtain</en><de>Rechte Plane wählen</de></text>
+        <text name="configuration_boxCurtainDesign"><en>Curtain design</en><de>Planendesign</de></text>
+        <text name="configuration_boxCurtainFSL"><en>Farming Simulator League</en><de>Farming Simulator League</de></text>
+        <text name="configuration_boxCurtainPlain"><en>Plain white</en><de>Weiß ohne Druck</de></text>
+        <text name="configuration_colorBoxWhite"><en>White (body)</en><de>Weiß (Aufbau)</de></text>
+    </l10n>
+</modDesc>
