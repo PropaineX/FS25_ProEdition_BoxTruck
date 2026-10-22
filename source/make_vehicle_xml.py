@@ -206,9 +206,11 @@ d8 += '    </design8Configurations>\n'
 text = text[:a] + d8 + text[a:]
 
 # ---------------------------------------------------------------- body animations
-# v7: opening works like the Krone ProfiLiner's (its coverAnimation): the closed curtain swaps for the curtain gathered
-# at the rear, the side boards fold away one by one (0.1-1.0 s), then the posts tilt a little and slide to the rear,
-# the rear-middle post first, the front post last, with the ProfiLiner's sounds. Node positions come from the i3d.
+# v8 (user 2026-10-22): the curtain SLIDES to the rear first (CURTAIN_SLIDE s, the closed curtain is scaled towards its
+# rear end, where its group's origin is), then it swaps for the curtain gathered at the rear; after that it works like
+# the Krone ProfiLiner's coverAnimation: the side boards fold away one by one, then the posts tilt a little and slide to
+# the rear, the rear-middle post first, the front post last, with the ProfiLiner's sounds. Node positions from the i3d.
+# Closing plays the same backwards (the curtain stretches out from the rear to the front last).
 def node_trans(name):
     for n in ET.parse(i3d_path).getroot().iter():
         if n.get('name') == name:
@@ -218,33 +220,41 @@ def node_trans(name):
 # roof: closing swung them down through the load and knocked the pallets about (in-game test 2026-10-22).
 SIDE_COL_LIFT = 2.5
 CURTAIN_REAR_Z = -5.21                  # build_body.py CURTAIN_REAR_Z: the posts park just in front of it
+CURTAIN_FRONT_Z = 1.51                  # build_body.py CURTAIN_FRONT_Z (FRONT_Z - 0.12)
+GATHER_LEN = 0.50                       # build_body.py GATHER_LEN: length of the gathered curtain
+CURTAIN_SLIDE = 1.2                     # user: 1 to 1.5 s
 POST_PARK = {1: CURTAIN_REAR_Z + 0.30, 2: CURTAIN_REAR_Z + 0.16}
 BOARDS = 12                             # per side, build_body.py (3 bays x 4)
 DOOR_OPEN_DEG = 100                     # user 2026-10-22: doors stand out behind the truck, not folded to the sides
 fmt = lambda v: ' '.join('%g' % round(x, 4) for x in v)
 def curtain_anim(side, sgn):
     cs = node_trans('colSide%sPivot' % side)
+    T = CURTAIN_SLIDE
+    gathered = GATHER_LEN / (CURTAIN_FRONT_Z - CURTAIN_REAR_Z)
     out = '        <animation name="boxCurtain%s">\n' % side
-    out += '            <part node="curtain%sClosed" startTime="0.0" endTime="0.1" startVisibility="true" endVisibility="false"/>\n' % side
-    out += '            <part node="curtain%sOpen"   startTime="0.0" endTime="0.1" startVisibility="false" endVisibility="true"/>\n' % side
+    out += '            <part node="curtain%sClosed" startTime="0.0" endTime="%g" startScale="1 1 1" endScale="1 1 %g"/>\n' % (
+        side, T, round(gathered, 4))
+    out += '            <part node="curtain%sClosed" startTime="%g" endTime="%g" startVisibility="true" endVisibility="false"/>\n' % (side, T - 0.05, T)
+    out += '            <part node="curtain%sOpen"   startTime="%g" endTime="%g" startVisibility="false" endVisibility="true"/>\n' % (side, T - 0.05, T)
     out += '            <part node="colSide%sPivot" startTime="0.0" endTime="0.1" startTrans="%s" endTrans="%s"/>\n' % (
         side, fmt(cs), fmt([cs[0], cs[1] + SIDE_COL_LIFT, cs[2]]))
     for k in range(BOARDS):
-        t0 = 0.1 + 0.9 * k / BOARDS
+        t0 = T + 0.9 * k / BOARDS
         out += '            <part node="board%s%02d" startTime="%.3f" endTime="%.3f" startVisibility="true" endVisibility="false"/>\n' % (
             side, k + 1, t0, t0 + 0.9 / BOARDS)
     tilt = '0 0 %g' % (0.65 * sgn)
     for k, (t_tilt, t_slide, t_end) in ((2, (1.0, 1.333, 2.333)), (1, (2.333, 2.667, 4.0))):
         p = node_trans('post%s%d' % (side, k))
-        out += '            <part node="post%s%d" startTime="%g" endTime="%g" startRot="0 0 0" endRot="%s"/>\n' % (side, k, t_tilt, t_slide, tilt)
+        out += '            <part node="post%s%d" startTime="%g" endTime="%g" startRot="0 0 0" endRot="%s"/>\n' % (
+            side, k, t_tilt + T, t_slide + T, tilt)
         out += '            <part node="post%s%d" startTime="%g" endTime="%g" startTrans="%s" endTrans="%s"/>\n' % (
-            side, k, t_slide, t_end, fmt(p), fmt([p[0], p[1], POST_PARK[k]]))
+            side, k, t_slide + T, t_end + T, fmt(p), fmt([p[0], p[1], POST_PARK[k]]))
     out += '            <sound template="fabricCover1"    startTime="0.01" direction="0"  volumeScale="5" pitchScale="1"/>\n'
     for t in (0.1, 0.25, 0.4, 0.55, 0.7, 0.85, 0.99):
-        out += '            <sound template="palletsFillWood" startTime="%g" volumeScale="3.5" pitchScale="1"/>\n' % t
-    out += '            <sound template="slideOpen"       startTime="1.2"  direction="1"  volumeScale="5" pitchScale="1"/>\n'
-    out += '            <sound template="slideOpen"       startTime="2.6"  direction="0"  volumeScale="5" pitchScale="0.7"/>\n'
-    out += '            <sound template="slideOpen"       startTime="3.99" direction="-1" volumeScale="6" pitchScale="0.6"/>\n'
+        out += '            <sound template="palletsFillWood" startTime="%g" volumeScale="3.5" pitchScale="1"/>\n' % (t + T)
+    out += '            <sound template="slideOpen"       startTime="%g"  direction="1"  volumeScale="5" pitchScale="1"/>\n' % (1.2 + T)
+    out += '            <sound template="slideOpen"       startTime="%g"  direction="0"  volumeScale="5" pitchScale="0.7"/>\n' % (2.6 + T)
+    out += '            <sound template="slideOpen"       startTime="%g" direction="-1" volumeScale="6" pitchScale="0.6"/>\n' % (3.99 + T)
     out += '        </animation>\n'
     return out
 anims = ('\n        <!-- Box Truck body (played by scripts/BoxTruckBody.lua) -->\n'

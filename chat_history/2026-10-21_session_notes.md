@@ -232,3 +232,25 @@ VS Code Claude panel > past conversations, or in a terminal in this folder: `cla
   345 mappings / 0 broken; TestRunner only polycount 393,651. Previews: bt\look\ge9_sheet.png, v7e_*.png.
 - Still open: pallet sinking/tilting + belts through the load (floor collision measured correct; needs in-game test).
 - Build 7 (box v7) zipped: 26,785,827 B sha256 0d3bd7971774... -> Mods in waiting, mods, /testing (verified), 2026-10-22.
+
+## 2026-10-22 (afternoon): build 8 in the source folder (NOT zipped)
+- User approved the ProfiLiner rear (preview previews\rear_profiliner_v1_preview.png): game's ProfiLiner doors (plain
+  white, 0.875 height), rear frame + latches + sill keepers cut from its body (source\build_rear.py, objcut.py,
+  export_rear.py), lock levers on our doors. Merged (bt\v12merge, merge12.lua) -> mod boxTruck.i3d/.shapes/.xml.
+  345 mappings 0 broken. TestRunner: only polycount (402,099).
+- Curtain now slides back over 1.2 s (scale part on curtainXClosed), then boards/posts as before (make_vehicle_xml.py).
+- Pallet blink/sink = Universal Autoload (its saved loadingArea y 1.50 for our truck; floor is 1.75). User chose our own
+  autoload: scripts\BoxTruckAutoLoad.lua (Ctrl+L load/stop, Alt+L release; pull-in animation ~1-2.5 s per pallet,
+  kinematic mount = no sinking). modDesc: spec, actions, bindings, l10n, description. NOT tested in game yet.
+  DONE (game closed): our truck's entry removed from modSettings\UniversalAutoload.xml; backup
+  UniversalAutoload_backup_2026-10-22.xml next to it.
+- User asked for the ProfiLiner's corrugated FRONT: source\build_front.py + body v9 (white roof cap, header panel,
+  front posts white and behind, colFrontWall moved to the sheet, autoload FRONT_Z 1.48). Preview
+  previews\front_profiliner_v1_preview.png - WAITING for OK before merging. Open: Krone logos on the band (left out).
+- User approved front v2 (previews\front_profiliner_v2_preview.png): band up under the white cap, Krone logos kept
+  (frontLogos decal: OBJ + dumped uv1/uv2), sheet lower half takes the upper half's UVs (no baked coupling shadows),
+  coupling columns removed, top side rails end at FRONT_Z-0.16, our front posts behind. Merged (bt\v15merge,
+  merge15.lua) -> mod files; 345 mappings 0 broken; TestRunner only polycount 403,227.
+- BUILD 8 zipped 2026-10-22: FS25_BoxTruck_ProEdition.zip (still 1.0.0.0), 13 files (boxTruckStickers_diffuse.dds no
+  longer used, left out), 27,995,564 B, sha256 939866b472ad... -> Mods in waiting, mods, /testing (replaced build 7,
+  temp name + rename, SHA verified). Autoload + curtain slide + rear + front NOT yet tested in game.

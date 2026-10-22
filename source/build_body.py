@@ -9,7 +9,7 @@
 #     visuals                       fixed body parts (no collision)
 #     middlePostLeft/Right          slide to the front with the curtain
 #     curtainLeft/Right             origin at the curtain's front edge; scale z -> bunches at the front
-#     rearDoorLeft/Right            origin on the outer hinge line; rotate about y to open (270 deg)
+#     rearDoorLeft/Right            origin on the outer hinge line; rotate about y to open (100 deg)
 #     collisions                    invisible compound children (floor, front wall, roof)
 #       colSideLeftPivot/Right      origin on the top rail; lifted 2.5 m (above the roof) while the curtain is open
 #     tensionBelts                  beltStartNN (local z across the box) -> beltStartNNEnd
@@ -38,7 +38,7 @@ SHIFT_Z = -0.37       # whole box moved back (v1-v3: 0). Cab rear edge measured 
 FRONT_Z = 2.00 + SHIFT_Z  # outside face of the front wall
 REAR_Z = -4.98 + SHIFT_Z  # outside face of the rear doors
 CURTAIN_FRONT_Z = FRONT_Z - 0.12
-DOOR_HINGE_X = 1.29   # barn door hinge line (outside the rear post, so open doors lie along the sides)
+DOOR_HINGE_X = 1.2614 # barn door hinge line = the Krone ProfiLiner's (its doors are used, v8)
 BELT_COUNT = 9
 # v7 (ProfiLiner-style, user 2026-10-22): the curtain gathers at the REAR when it opens; two sliding posts per side
 CURTAIN_REAR_Z = REAR_Z + 0.14                 # rear end of the curtain (inside the rear posts)
@@ -105,6 +105,20 @@ def box(name, parent, x0, x1, y0, y1, z0, z1, material):
         me.materials.append(material)
     ob = bpy.data.objects.new(name, me)
     ob.location = g2b((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2)
+    ob['i3D_collision'] = False
+    return put(ob, parent)
+
+def plan_prism(name, parent, pts_xz, y0, y1, material):
+    """Upright prism: a convex outline in the game's x/z plane from y0 to y1."""
+    me = bpy.data.meshes.new(name)
+    bm = bmesh.new()
+    for x, z in pts_xz:
+        for y in (y0, y1):
+            bm.verts.new(g2b(x, y, z))
+    bmesh.ops.convex_hull(bm, input=bm.verts)
+    bm.to_mesh(me); bm.free()
+    me.materials.append(material)
+    ob = bpy.data.objects.new(name, me)
     ob['i3D_collision'] = False
     return put(ob, parent)
 
@@ -406,23 +420,24 @@ for side, sgn in (('Left', 1), ('Right', -1)):
     pockets.append((*sorted((sgn * 1.285, sgn * 1.292)), BOTTOM_Y + 0.11, BOTTOM_Y + 0.135, REAR_Z + 0.16, FRONT_Z - 0.10))
     merged_boxes('sideRail%sDetails' % side, visuals, pockets, steel)
 
-# ---- front wall: plain outside, ribbed inside with a kick plate ----
-box('frontWall', visuals, -HALF_W + 0.01, HALF_W - 0.01, FLOOR_Y, ROOF_Y - 0.06, FRONT_Z - 0.08, FRONT_Z, door)
-mirrored('frontPost', visuals, 1.19, 1.285, BOTTOM_Y, ROOF_Y, FRONT_Z - 0.12, FRONT_Z + 0.02, alu)
-ribs = []
-x = -1.10
-while x < 1.11:
-    ribs.append((x - 0.02, x + 0.02, FLOOR_Y + 0.90, ROOF_Y - 0.25, FRONT_Z - 0.10, FRONT_Z - 0.08)); x += 0.14
-merged_boxes('frontWallRibs', visuals, ribs, door)
-box('frontKickPlate', visuals, -HALF_W + 0.02, HALF_W - 0.02, FLOOR_Y, FLOOR_Y + 0.90, FRONT_Z - 0.095, FRONT_Z - 0.08, kick)
+# ---- front wall ----
+# v8 (user 2026-10-22): the front is the game's Krone ProfiLiner front (corrugated sheet, grey band, post fronts,
+# sill), fitted by build_front.py and merged in GIANTS Editor; its band ends at y 4.135. Above it our white roof cap
+# with cut front corners, as on the ProfiLiner, over the front edge of the roof.
+mirrored('frontPost', visuals, 1.19, 1.285, BOTTOM_Y, ROOF_Y, FRONT_Z - 0.18, FRONT_Z - 0.11, door)   # behind its posts and logos
+plan_prism('frontRoofCap', visuals, [(-1.295, FRONT_Z - 0.12), (1.295, FRONT_Z - 0.12), (1.295, FRONT_Z - 0.025),
+                                     (1.235, FRONT_Z + 0.035), (-1.235, FRONT_Z + 0.035), (-1.295, FRONT_Z - 0.025)],
+           4.13, ROOF_Y + 0.005, door)
+box('frontHeader', visuals, -1.28, 1.28, 3.90, ROOF_Y - 0.02, FRONT_Z - 0.16, FRONT_Z - 0.13, door)   # behind the band
 
 # ---- roof, top rails, roof bows inside ----
 box('roof', visuals, -HALF_W, HALF_W, ROOF_Y - 0.06, ROOF_Y, REAR_Z + 0.14, FRONT_Z, curtain)
-mirrored('sideRailTop', visuals, 1.225, 1.285, ROOF_Y - 0.18, ROOF_Y, REAR_Z + 0.14, FRONT_Z, alu)
+RAIL_FRONT_Z = FRONT_Z - 0.16   # v8: the top rails end behind the ProfiLiner front band and its Krone logos
+mirrored('sideRailTop', visuals, 1.225, 1.285, ROOF_Y - 0.18, ROOF_Y, REAR_Z + 0.14, RAIL_FRONT_Z, alu)
 for side, sgn in (('Left', 1), ('Right', -1)):  # lip over the curtain and the curtain track
     merged_boxes('sideRailTop%sProfile' % side, visuals,
-                 [(*sorted((sgn * 1.285, sgn * 1.300)), ROOF_Y - 0.16, ROOF_Y - 0.02, REAR_Z + 0.14, FRONT_Z),
-                  (*sorted((sgn * 1.285, sgn * 1.312)), ROOF_Y - 0.21, ROOF_Y - 0.16, REAR_Z + 0.14, FRONT_Z)], alu)  # lip over the cloth
+                 [(*sorted((sgn * 1.285, sgn * 1.300)), ROOF_Y - 0.16, ROOF_Y - 0.02, REAR_Z + 0.14, RAIL_FRONT_Z),
+                  (*sorted((sgn * 1.285, sgn * 1.312)), ROOF_Y - 0.21, ROOF_Y - 0.16, REAR_Z + 0.14, RAIL_FRONT_Z)], alu)  # lip over the cloth
 bows = []
 z = FRONT_Z - 0.45
 while z > REAR_Z + 0.3:
@@ -431,21 +446,11 @@ for xs in (-0.6, 0.0, 0.6):
     bows.append((xs - 0.02, xs + 0.02, ROOF_Y - 0.08, ROOF_Y - 0.06, REAR_Z + 0.20, FRONT_Z - 0.10))
 merged_boxes('roofBows', visuals, bows, alu)
 
-# ---- rear portal: posts, header with hinge blocks, sill with door keepers ----
+# ---- rear portal ----
+# v8 (user 2026-10-22): the rear end is the game's Krone ProfiLiner rear (posts, header with the door latches, sill
+# with the keepers, its doors and lock levers), fitted to this box by build_rear.py and merged in GIANTS Editor.
+# Our rear posts stay behind its posts: they close the gap between the ProfiLiner posts and the curtain.
 mirrored('rearPost', visuals, 1.18, 1.285, BOTTOM_Y, ROOF_Y, REAR_Z, REAR_Z + 0.14, alu)
-box('rearHeader', visuals, -1.285, 1.285, ROOF_Y - 0.22, ROOF_Y, REAR_Z, REAR_Z + 0.14, alu)
-box('rearSill', visuals, -1.285, 1.285, BOTTOM_Y, FLOOR_Y, REAR_Z, REAR_Z + 0.14, alu)
-hdr = []
-for xh in (-1.02, -0.36, 0.36, 1.02):           # lock-rod keepers on the header (rods of both doors)
-    hdr += [(xh - 0.05, xh + 0.05, ROOF_Y - 0.05, ROOF_Y + 0.02, REAR_Z - 0.04, REAR_Z + 0.02),
-            (xh - 0.012, xh + 0.012, ROOF_Y + 0.02, ROOF_Y + 0.06, REAR_Z - 0.03, REAR_Z - 0.006)]
-merged_boxes('rearHeaderKeepers', visuals, hdr, galv)
-sill = []
-for xh in (-1.02, -0.36, 0.36, 1.02):
-    sill.append((xh - 0.06, xh + 0.06, BOTTOM_Y + 0.08, BOTTOM_Y + 0.15, REAR_Z - 0.04, REAR_Z))
-for sx in (-1, 1):
-    sill.append((sx * 1.285 - 0.06, sx * 1.285 + 0.06, BOTTOM_Y + 0.02, BOTTOM_Y + 0.10, REAR_Z - 0.02, REAR_Z + 0.02))
-merged_boxes('rearSillKeepers', visuals, sill, galv)
 
 # ---- under-run protection ----
 # rear under-run bar between the VOLVO mudflap lettering (top ~0.67) and the number plate (bottom ~0.80)
@@ -522,69 +527,17 @@ for side, sgn in (('Left', 1), ('Right', -1)):
         gs.append((*sorted((sgn * (CLOTH_X + 0.15), sgn * (CLOTH_X + 0.155))), BOTTOM_Y + 0.02, BAND_Y + 0.02, zz - 0.02, zz + 0.02))
     merged_boxes('curtain%sGatheredStraps' % side, opened, gs, strap)
 
-# ---- rear barn doors (group origin on the hinge line) ----
+# ---- rear barn doors: only the pivots (on the hinge line) and the collisions; the visible doors are the ProfiLiner's
+# (linked under these groups in GIANTS Editor, scaled to 0.875 height: 1.72 .. 4.10)
 for side, sgn in (('Left', 1), ('Right', -1)):
     g = group('rearDoor' + side, root, sgn * DOOR_HINGE_X, 0, REAR_Z)
-    x_in, x_out = 0.005, 1.175
-    box('door' + side + 'Panel', g, *sorted((sgn * x_in, sgn * x_out)), FLOOR_Y + 0.02, ROOF_Y - 0.23,
-        REAR_Z + 0.02, REAR_Z + 0.06, door)
-    # outside: frame border and rivets
-    fr, rv = [], []
-    y0d, y1d = FLOOR_Y + 0.02, ROOF_Y - 0.23
-    fr += [(*sorted((sgn * x_in, sgn * x_out)), y0d, y0d + 0.05, REAR_Z + 0.015, REAR_Z + 0.02),
-           (*sorted((sgn * x_in, sgn * x_out)), y1d - 0.05, y1d, REAR_Z + 0.015, REAR_Z + 0.02),
-           (*sorted((sgn * x_in, sgn * (x_in + 0.05))), y0d, y1d, REAR_Z + 0.015, REAR_Z + 0.02),
-           (*sorted((sgn * (x_out - 0.05), sgn * x_out)), y0d, y1d, REAR_Z + 0.015, REAR_Z + 0.02)]
-    yy = y0d + 0.15
-    while yy < y1d - 0.1:
-        for xr in (x_in + 0.025, x_out - 0.025):
-            rv.append((sgn * xr - 0.006, sgn * xr + 0.006, yy - 0.006, yy + 0.006, REAR_Z + 0.010, REAR_Z + 0.015))
-        yy += 0.25
-    xx = x_in + 0.15
-    while xx < x_out - 0.1:
-        for yr in (y0d + 0.025, y1d - 0.025):
-            rv.append((sgn * xx - 0.006, sgn * xx + 0.006, yr - 0.006, yr + 0.006, REAR_Z + 0.010, REAR_Z + 0.015))
-        xx += 0.25
-    merged_boxes('door%sFrame' % side, g, fr, alu)
-    merged_boxes('door%sRivets' % side, g, rv, galv)
-    # lock bars with handles and cams
-    lk = []
-    for j, xb in enumerate((0.28, 0.88)):
-        rod('door%sLockBar%d' % (side, j + 1), g, sgn * xb, REAR_Z + 0.002, FLOOR_Y - 0.10, ROOF_Y + 0.03, 0.017, galv)
-        lk += [(*sorted((sgn * (xb - 0.02), sgn * (xb + 0.17))), FLOOR_Y + 0.70, FLOOR_Y + 0.74, REAR_Z - 0.03, REAR_Z - 0.005),
-               (*sorted((sgn * (xb + 0.13), sgn * (xb + 0.19))), FLOOR_Y + 0.66, FLOOR_Y + 0.78, REAR_Z - 0.035, REAR_Z - 0.02)]
-        for yg in (FLOOR_Y + 0.25, (FLOOR_Y + ROOF_Y) / 2, ROOF_Y - 0.45):
-            lk.append((*sorted((sgn * (xb - 0.035), sgn * (xb + 0.035))), yg, yg + 0.05, REAR_Z - 0.005, REAR_Z + 0.015))
-    merged_boxes('door%sLockParts' % side, g, lk, galv)
-    hg = []
-    for yh in (FLOOR_Y + 0.15, FLOOR_Y + 0.85, ROOF_Y - 0.90, ROOF_Y - 0.40):
-        hg += [(*sorted((sgn * 0.98, sgn * 1.29)), yh, yh + 0.07, REAR_Z - 0.012, REAR_Z + 0.02),
-               (*sorted((sgn * 1.275, sgn * 1.30)), yh - 0.02, yh + 0.09, REAR_Z - 0.02, REAR_Z + 0.02)]
-    merged_boxes('door%sHinges' % side, g, hg, steel)
-    # inside: pressed panels (3 rows x 2), the spare lock rod clipped on the left door, stickers on the right door
-    rects = []
-    for r in range(3):
-        ry0 = y0d + 0.12 + r * (y1d - y0d - 0.20) / 3
-        ry1 = ry0 + (y1d - y0d - 0.20) / 3 - 0.10
-        for c in range(2):
-            cx0 = x_in + 0.08 + c * (x_out - x_in - 0.14) / 2
-            cx1 = cx0 + (x_out - x_in - 0.14) / 2 - 0.08
-            rects.append(tuple(sorted((sgn * cx0, sgn * cx1))) + (ry0, ry1))
-    rounded_panels('door%sPressings' % side, g, 1, rects, REAR_Z + 0.06, 0.012, 0.07, door)
-    if sgn > 0:
-        rod_ob = rod('doorLeftSpareRod', g, sgn * 0.45, REAR_Z + 0.085, FLOOR_Y + 0.20, ROOF_Y - 0.60, 0.012, galv)
-        rod_ob.rotation_euler[1] = math.radians(14)
-        merged_boxes('doorLeftRodClips', g, [(sgn * 0.20 - 0.02, sgn * 0.20 + 0.02, FLOOR_Y + 0.30, FLOOR_Y + 0.34, REAR_Z + 0.06, REAR_Z + 0.10),
-                                             (sgn * 0.70 - 0.02, sgn * 0.70 + 0.02, ROOF_Y - 0.72, ROOF_Y - 0.68, REAR_Z + 0.06, REAR_Z + 0.10)], galv)
-    else:
-        decal_inside('doorRightStickers', g, sgn * 0.62, sgn * 0.20, FLOOR_Y + 0.25, FLOOR_Y + 1.09, REAR_Z + 0.0625, stickerMat)
-    col('colDoor' + side, g, *sorted((sgn * x_in, sgn * x_out)), FLOOR_Y + 0.02, ROOF_Y - 0.23,
-        REAR_Z + 0.02, REAR_Z + 0.06)
+    col('colDoor' + side, g, *sorted((sgn * 0.005, sgn * 1.255)), FLOOR_Y - 0.03, ROOF_Y - 0.13,
+        REAR_Z - 0.02, REAR_Z + 0.02)
 
 # ---- collisions ----
 cols = group('collisions', root)
 col('colFloor', cols, -HALF_W, HALF_W, FLOOR_Y - 0.12, FLOOR_Y, REAR_Z + 0.14, FRONT_Z - 0.08)
-col('colFrontWall', cols, -HALF_W, HALF_W, FLOOR_Y, ROOF_Y - 0.06, FRONT_Z - 0.08, FRONT_Z)
+col('colFrontWall', cols, -HALF_W, HALF_W, FLOOR_Y, ROOF_Y - 0.06, FRONT_Z - 0.13, FRONT_Z - 0.03)   # inside of the ProfiLiner sheet
 col('colRoof', cols, -HALF_W, HALF_W, ROOF_Y - 0.10, ROOF_Y, REAR_Z + 0.14, FRONT_Z)
 for side, sgn in (('Left', 1), ('Right', -1)):
     # side wall: lifted straight up above the roof while the curtain is open (moves only in its own plane)

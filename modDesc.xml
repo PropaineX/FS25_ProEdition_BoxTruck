@@ -13,6 +13,7 @@
   and the posts slide back
 - Rear barn doors
 - 9 tension belts across the load floor
+- Autoload: pallets next to an open curtain or behind the open rear doors are pulled in one by one and held in place
 - Load space about 6.8 x 2.48 m, 2.55 m inside height
 - Four engines: FH425 City Hauler, FH515 Regional Hauler, FH585 Long Hauler, FH600 Heavy Hauler
 - Plain white paint option that matches the body
@@ -22,6 +23,8 @@ Controls (can be changed in the controls menu):
 X = open/close rear doors
 Z = open/close the selected curtain
 U = select left or right curtain
+Left Ctrl + L = load pallets / stop loading
+Left Alt + L = release the load
 
 Price: $175,000
 Power: 425 - 600 hp
@@ -32,6 +35,7 @@ Max. speed: 90 km/h]]></en>
   und die Rungen fahren nach hinten
 - Hecktüren
 - 9 Spanngurte über die Ladefläche
+- Autoload: Paletten an einer offenen Plane oder hinter den offenen Hecktüren werden nacheinander hineingezogen und festgehalten
 - Ladefläche ca. 6,8 x 2,48 m, 2,55 m Innenhöhe
 - Vier Motoren: FH425 City Hauler, FH515 Regional Hauler, FH585 Long Hauler, FH600 Heavy Hauler
 - Weiße Lackierung ohne Metallic, passend zum Aufbau
@@ -41,6 +45,8 @@ Steuerung (im Steuerungsmenü änderbar):
 X = Hecktüren öffnen/schließen
 Z = gewählte Plane öffnen/schließen
 U = linke oder rechte Plane wählen
+Linke Strg + L = Paletten laden / Laden stoppen
+Linke Alt + L = Ladung freigeben
 
 Preis: 175.000 €
 Leistung: 425 - 600 PS
@@ -51,14 +57,30 @@ Höchstgeschwindigkeit: 90 km/h]]></de>
 
     <specializations>
         <specialization name="boxTruckBody" className="BoxTruckBody" filename="scripts/BoxTruckBody.lua" />
+        <specialization name="boxTruckAutoLoad" className="BoxTruckAutoLoad" filename="scripts/BoxTruckAutoLoad.lua" />
     </specializations>
 
     <vehicleTypes>
         <type name="boxTruckPro" parent="tractor" className="Vehicle" filename="$dataS/scripts/vehicles/Vehicle.lua">
             <specialization name="tensionBelts" />
             <specialization name="boxTruckBody" />
+            <specialization name="boxTruckAutoLoad" />
         </type>
     </vehicleTypes>
+
+    <actions>
+        <action name="BOXTRUCK_LOAD" category="VEHICLE" axisType="HALF" />
+        <action name="BOXTRUCK_RELEASE" category="VEHICLE" axisType="HALF" />
+    </actions>
+
+    <inputBinding>
+        <actionBinding action="BOXTRUCK_LOAD">
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_lctrl KEY_l" />
+        </actionBinding>
+        <actionBinding action="BOXTRUCK_RELEASE">
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_lalt KEY_l" />
+        </actionBinding>
+    </inputBinding>
 
     <storeItems>
         <storeItem xmlFilename="boxTruck.xml" />
@@ -77,5 +99,13 @@ Höchstgeschwindigkeit: 90 km/h]]></de>
         <text name="configuration_boxCurtainFSL"><en>Farming Simulator League</en><de>Farming Simulator League</de></text>
         <text name="configuration_boxCurtainPlain"><en>Plain white</en><de>Weiß ohne Druck</de></text>
         <text name="configuration_colorBoxWhite"><en>White (body)</en><de>Weiß (Aufbau)</de></text>
+        <text name="input_BOXTRUCK_LOAD"><en>Box truck: load pallets</en><de>Koffer-LKW: Paletten laden</de></text>
+        <text name="input_BOXTRUCK_RELEASE"><en>Box truck: release the load</en><de>Koffer-LKW: Ladung freigeben</de></text>
+        <text name="action_boxTruckLoad"><en>Load pallets</en><de>Paletten laden</de></text>
+        <text name="action_boxTruckStopLoad"><en>Stop loading</en><de>Laden stoppen</de></text>
+        <text name="action_boxTruckRelease"><en>Release the load (%d)</en><de>Ladung freigeben (%d)</de></text>
+        <text name="warning_boxTruckOpenFirst"><en>Open a curtain or the rear doors first</en><de>Zuerst eine Plane oder die Hecktüren öffnen</de></text>
+        <text name="warning_boxTruckNothing"><en>No pallets next to the open side</en><de>Keine Paletten an der offenen Seite</de></text>
+        <text name="warning_boxTruckFull"><en>The box is full</en><de>Der Aufbau ist voll</de></text>
     </l10n>
 </modDesc>
