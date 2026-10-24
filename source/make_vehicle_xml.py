@@ -6,6 +6,8 @@
 # Usage: python -I make_vehicle_xml.py <game fh16.xml> <merged boxTruck.i3d> <out boxTruck.xml>
 import sys, re, os
 import xml.etree.ElementTree as ET
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import board_stow
 
 src_xml, i3d_path, out_path = sys.argv[1:4]
 text = open(src_xml, encoding='utf-8-sig').read()
@@ -238,10 +240,9 @@ def curtain_anim(side, sgn):
     out += '            <part node="curtain%sOpen"   startTime="%g" endTime="%g" startVisibility="false" endVisibility="true"/>\n' % (side, T - 0.05, T)
     out += '            <part node="colSide%sPivot" startTime="0.0" endTime="0.1" startTrans="%s" endTrans="%s"/>\n' % (
         side, fmt(cs), fmt([cs[0], cs[1] + SIDE_COL_LIFT, cs[2]]))
-    for k in range(BOARDS):
-        t0 = T + 0.9 * k / BOARDS
-        out += '            <part node="board%s%02d" startTime="%.3f" endTime="%.3f" startVisibility="true" endVisibility="false"/>\n' % (
-            side, k + 1, t0, t0 + 0.9 / BOARDS)
+    # side boards: stowed in piles under the body instead of vanishing (board_stow.py, user 2026-10-24)
+    stow_lines, landings = board_stow.stow_parts(side, sgn, T)
+    out += ''.join(line + '\n' for line in stow_lines)
     tilt = '0 0 %g' % (0.65 * sgn)
     for k, (t_tilt, t_slide, t_end) in ((2, (1.0, 1.333, 2.333)), (1, (2.333, 2.667, 4.0))):
         p = node_trans('post%s%d' % (side, k))
@@ -250,8 +251,8 @@ def curtain_anim(side, sgn):
         out += '            <part node="post%s%d" startTime="%g" endTime="%g" startTrans="%s" endTrans="%s"/>\n' % (
             side, k, t_slide + T, t_end + T, fmt(p), fmt([p[0], p[1], POST_PARK[k]]))
     out += '            <sound template="fabricCover1"    startTime="0.01" direction="0"  volumeScale="5" pitchScale="1"/>\n'
-    for t in (0.1, 0.25, 0.4, 0.55, 0.7, 0.85, 0.99):
-        out += '            <sound template="palletsFillWood" startTime="%g" volumeScale="3.5" pitchScale="1"/>\n' % (t + T)
+    for t in landings:
+        out += '            <sound template="palletsFillWood" startTime="%.3f" volumeScale="3" pitchScale="1"/>\n' % (t - 0.02)
     out += '            <sound template="slideOpen"       startTime="%g"  direction="1"  volumeScale="5" pitchScale="1"/>\n' % (1.2 + T)
     out += '            <sound template="slideOpen"       startTime="%g"  direction="0"  volumeScale="5" pitchScale="0.7"/>\n' % (2.6 + T)
     out += '            <sound template="slideOpen"       startTime="%g" direction="-1" volumeScale="6" pitchScale="0.6"/>\n' % (3.99 + T)

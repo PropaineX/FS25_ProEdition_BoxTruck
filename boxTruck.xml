@@ -292,6 +292,8 @@
         <design8Configuration name="ProEdition" price="0">
             <objectChange node="curtainLeftProEdition" visibilityActive="true" visibilityInactive="false"/>
             <objectChange node="curtainRightProEdition" visibilityActive="true" visibilityInactive="false"/>
+            <objectChange node="doorLeftProEdition" visibilityActive="true" visibilityInactive="false"/>
+            <objectChange node="doorRightProEdition" visibilityActive="true" visibilityInactive="false"/>
         </design8Configuration>
         <design8Configuration name="Krone" price="0">
             <objectChange node="curtainLeftDesignKrone" visibilityActive="true" visibilityInactive="false"/>
@@ -932,30 +934,83 @@
             <part node="curtainLeftClosed" startTime="1.15" endTime="1.2" startVisibility="true" endVisibility="false"/>
             <part node="curtainLeftOpen"   startTime="1.15" endTime="1.2" startVisibility="false" endVisibility="true"/>
             <part node="colSideLeftPivot" startTime="0.0" endTime="0.1" startTrans="1.25 4.03 0" endTrans="1.25 6.53 0"/>
-            <part node="boardLeft01" startTime="1.200" endTime="1.275" startVisibility="true" endVisibility="false"/>
-            <part node="boardLeft02" startTime="1.275" endTime="1.350" startVisibility="true" endVisibility="false"/>
-            <part node="boardLeft03" startTime="1.350" endTime="1.425" startVisibility="true" endVisibility="false"/>
-            <part node="boardLeft04" startTime="1.425" endTime="1.500" startVisibility="true" endVisibility="false"/>
-            <part node="boardLeft05" startTime="1.500" endTime="1.575" startVisibility="true" endVisibility="false"/>
-            <part node="boardLeft06" startTime="1.575" endTime="1.650" startVisibility="true" endVisibility="false"/>
-            <part node="boardLeft07" startTime="1.650" endTime="1.725" startVisibility="true" endVisibility="false"/>
-            <part node="boardLeft08" startTime="1.725" endTime="1.800" startVisibility="true" endVisibility="false"/>
-            <part node="boardLeft09" startTime="1.800" endTime="1.875" startVisibility="true" endVisibility="false"/>
-            <part node="boardLeft10" startTime="1.875" endTime="1.950" startVisibility="true" endVisibility="false"/>
-            <part node="boardLeft11" startTime="1.950" endTime="2.025" startVisibility="true" endVisibility="false"/>
-            <part node="boardLeft12" startTime="2.025" endTime="2.100" startVisibility="true" endVisibility="false"/>
+            <part node="boardLeft04" startTime="1.200" endTime="1.360" startTrans="1.2125 3.32 0.4" endTrans="1.55 1.4 0.4"/>
+            <part node="boardLeft04" startTime="1.360" endTime="1.440" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardLeft04" startTime="1.360" endTime="1.440" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardLeft04" startTime="1.440" endTime="1.680" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardLeft04" startTime="1.440" endTime="1.680" startTrans="1.55 1.4 0.4" endTrans="0.7614 1.3725 0.92"/>
+            <part node="boardLeft08" startTime="1.320" endTime="1.480" startTrans="1.2125 3.32 -1.85" endTrans="1.55 1.4 -1.85"/>
+            <part node="boardLeft08" startTime="1.480" endTime="1.560" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardLeft08" startTime="1.480" endTime="1.560" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardLeft08" startTime="1.560" endTime="1.800" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardLeft08" startTime="1.560" endTime="1.800" startTrans="1.55 1.4 -1.85" endTrans="0.7614 1.3725 0.76"/>
+            <part node="boardLeft12" startTime="1.440" endTime="1.600" startTrans="1.2125 3.32 -4.105" endTrans="1.55 1.4 -4.105"/>
+            <part node="boardLeft12" startTime="1.600" endTime="1.680" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardLeft12" startTime="1.600" endTime="1.680" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardLeft12" startTime="1.680" endTime="1.920" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardLeft12" startTime="1.680" endTime="1.920" startTrans="1.55 1.4 -4.105" endTrans="0.7614 1.3725 0.6"/>
+            <part node="boardLeft03" startTime="1.560" endTime="1.720" startTrans="1.2125 2.92 0.4" endTrans="1.55 1.4 0.4"/>
+            <part node="boardLeft03" startTime="1.720" endTime="1.800" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardLeft03" startTime="1.720" endTime="1.800" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardLeft03" startTime="1.800" endTime="2.040" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardLeft03" startTime="1.800" endTime="2.040" startTrans="1.55 1.4 0.4" endTrans="0.7614 1.3725 0.44"/>
+            <part node="boardLeft07" startTime="1.680" endTime="1.840" startTrans="1.2125 2.92 -1.85" endTrans="1.55 1.4 -1.85"/>
+            <part node="boardLeft07" startTime="1.840" endTime="1.920" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardLeft07" startTime="1.840" endTime="1.920" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardLeft07" startTime="1.920" endTime="2.160" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardLeft07" startTime="1.920" endTime="2.160" startTrans="1.55 1.4 -1.85" endTrans="0.7614 1.3725 0.28"/>
+            <part node="boardLeft11" startTime="1.800" endTime="1.960" startTrans="1.2125 2.92 -4.105" endTrans="1.55 1.4 -4.105"/>
+            <part node="boardLeft11" startTime="1.960" endTime="2.040" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardLeft11" startTime="1.960" endTime="2.040" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardLeft11" startTime="2.040" endTime="2.280" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardLeft11" startTime="2.040" endTime="2.280" startTrans="1.55 1.4 -4.105" endTrans="0.7614 1.3725 0.12"/>
+            <part node="boardLeft02" startTime="1.920" endTime="2.080" startTrans="1.2125 2.52 0.4" endTrans="1.55 1.4 0.4"/>
+            <part node="boardLeft02" startTime="2.080" endTime="2.160" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardLeft02" startTime="2.080" endTime="2.160" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardLeft02" startTime="2.160" endTime="2.400" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardLeft02" startTime="2.160" endTime="2.400" startTrans="1.55 1.4 0.4" endTrans="0.7614 1.3995 0.92"/>
+            <part node="boardLeft06" startTime="2.040" endTime="2.200" startTrans="1.2125 2.52 -1.85" endTrans="1.55 1.4 -1.85"/>
+            <part node="boardLeft06" startTime="2.200" endTime="2.280" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardLeft06" startTime="2.200" endTime="2.280" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardLeft06" startTime="2.280" endTime="2.520" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardLeft06" startTime="2.280" endTime="2.520" startTrans="1.55 1.4 -1.85" endTrans="0.7614 1.3995 0.76"/>
+            <part node="boardLeft10" startTime="2.160" endTime="2.320" startTrans="1.2125 2.52 -4.105" endTrans="1.55 1.4 -4.105"/>
+            <part node="boardLeft10" startTime="2.320" endTime="2.400" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardLeft10" startTime="2.320" endTime="2.400" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardLeft10" startTime="2.400" endTime="2.640" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardLeft10" startTime="2.400" endTime="2.640" startTrans="1.55 1.4 -4.105" endTrans="0.7614 1.3995 0.6"/>
+            <part node="boardLeft01" startTime="2.280" endTime="2.440" startTrans="1.2125 2.12 0.4" endTrans="1.55 1.4 0.4"/>
+            <part node="boardLeft01" startTime="2.440" endTime="2.520" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardLeft01" startTime="2.440" endTime="2.520" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardLeft01" startTime="2.520" endTime="2.760" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardLeft01" startTime="2.520" endTime="2.760" startTrans="1.55 1.4 0.4" endTrans="0.7614 1.3995 0.44"/>
+            <part node="boardLeft05" startTime="2.400" endTime="2.560" startTrans="1.2125 2.12 -1.85" endTrans="1.55 1.4 -1.85"/>
+            <part node="boardLeft05" startTime="2.560" endTime="2.640" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardLeft05" startTime="2.560" endTime="2.640" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardLeft05" startTime="2.640" endTime="2.880" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardLeft05" startTime="2.640" endTime="2.880" startTrans="1.55 1.4 -1.85" endTrans="0.7614 1.3995 0.28"/>
+            <part node="boardLeft09" startTime="2.520" endTime="2.680" startTrans="1.2125 2.12 -4.105" endTrans="1.55 1.4 -4.105"/>
+            <part node="boardLeft09" startTime="2.680" endTime="2.760" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardLeft09" startTime="2.680" endTime="2.760" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardLeft09" startTime="2.760" endTime="3.000" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardLeft09" startTime="2.760" endTime="3.000" startTrans="1.55 1.4 -4.105" endTrans="0.7614 1.3995 0.12"/>
             <part node="postLeft2" startTime="2.2" endTime="2.533" startRot="0 0 0" endRot="0 0 0.65"/>
             <part node="postLeft2" startTime="2.533" endTime="3.533" startTrans="1.22 1.75 -2.97" endTrans="1.22 1.75 -5.05"/>
             <part node="postLeft1" startTime="3.533" endTime="3.867" startRot="0 0 0" endRot="0 0 0.65"/>
             <part node="postLeft1" startTime="3.867" endTime="5.2" startTrans="1.22 1.75 -0.73" endTrans="1.22 1.75 -4.91"/>
+            <sound template="palletsFillWood" startTime="1.660" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="1.780" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="1.900" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="2.020" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="2.140" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="2.260" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="2.380" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="2.500" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="2.620" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="2.740" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="2.860" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="2.980" volumeScale="3" pitchScale="1"/>
             <sound template="fabricCover1"    startTime="0.01" direction="0"  volumeScale="5" pitchScale="1"/>
-            <sound template="palletsFillWood" startTime="1.3" volumeScale="3.5" pitchScale="1"/>
-            <sound template="palletsFillWood" startTime="1.45" volumeScale="3.5" pitchScale="1"/>
-            <sound template="palletsFillWood" startTime="1.6" volumeScale="3.5" pitchScale="1"/>
-            <sound template="palletsFillWood" startTime="1.75" volumeScale="3.5" pitchScale="1"/>
-            <sound template="palletsFillWood" startTime="1.9" volumeScale="3.5" pitchScale="1"/>
-            <sound template="palletsFillWood" startTime="2.05" volumeScale="3.5" pitchScale="1"/>
-            <sound template="palletsFillWood" startTime="2.19" volumeScale="3.5" pitchScale="1"/>
             <sound template="slideOpen"       startTime="2.4"  direction="1"  volumeScale="5" pitchScale="1"/>
             <sound template="slideOpen"       startTime="3.8"  direction="0"  volumeScale="5" pitchScale="0.7"/>
             <sound template="slideOpen"       startTime="5.19" direction="-1" volumeScale="6" pitchScale="0.6"/>
@@ -965,30 +1020,83 @@
             <part node="curtainRightClosed" startTime="1.15" endTime="1.2" startVisibility="true" endVisibility="false"/>
             <part node="curtainRightOpen"   startTime="1.15" endTime="1.2" startVisibility="false" endVisibility="true"/>
             <part node="colSideRightPivot" startTime="0.0" endTime="0.1" startTrans="-1.25 4.03 0" endTrans="-1.25 6.53 0"/>
-            <part node="boardRight01" startTime="1.200" endTime="1.275" startVisibility="true" endVisibility="false"/>
-            <part node="boardRight02" startTime="1.275" endTime="1.350" startVisibility="true" endVisibility="false"/>
-            <part node="boardRight03" startTime="1.350" endTime="1.425" startVisibility="true" endVisibility="false"/>
-            <part node="boardRight04" startTime="1.425" endTime="1.500" startVisibility="true" endVisibility="false"/>
-            <part node="boardRight05" startTime="1.500" endTime="1.575" startVisibility="true" endVisibility="false"/>
-            <part node="boardRight06" startTime="1.575" endTime="1.650" startVisibility="true" endVisibility="false"/>
-            <part node="boardRight07" startTime="1.650" endTime="1.725" startVisibility="true" endVisibility="false"/>
-            <part node="boardRight08" startTime="1.725" endTime="1.800" startVisibility="true" endVisibility="false"/>
-            <part node="boardRight09" startTime="1.800" endTime="1.875" startVisibility="true" endVisibility="false"/>
-            <part node="boardRight10" startTime="1.875" endTime="1.950" startVisibility="true" endVisibility="false"/>
-            <part node="boardRight11" startTime="1.950" endTime="2.025" startVisibility="true" endVisibility="false"/>
-            <part node="boardRight12" startTime="2.025" endTime="2.100" startVisibility="true" endVisibility="false"/>
+            <part node="boardRight04" startTime="1.200" endTime="1.360" startTrans="-1.2125 3.32 0.4" endTrans="-1.55 1.4 0.4"/>
+            <part node="boardRight04" startTime="1.360" endTime="1.440" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardRight04" startTime="1.360" endTime="1.440" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardRight04" startTime="1.440" endTime="1.680" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardRight04" startTime="1.440" endTime="1.680" startTrans="-1.55 1.4 0.4" endTrans="-0.7614 1.3725 0.92"/>
+            <part node="boardRight08" startTime="1.320" endTime="1.480" startTrans="-1.2125 3.32 -1.85" endTrans="-1.55 1.4 -1.85"/>
+            <part node="boardRight08" startTime="1.480" endTime="1.560" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardRight08" startTime="1.480" endTime="1.560" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardRight08" startTime="1.560" endTime="1.800" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardRight08" startTime="1.560" endTime="1.800" startTrans="-1.55 1.4 -1.85" endTrans="-0.7614 1.3725 0.76"/>
+            <part node="boardRight12" startTime="1.440" endTime="1.600" startTrans="-1.2125 3.32 -4.105" endTrans="-1.55 1.4 -4.105"/>
+            <part node="boardRight12" startTime="1.600" endTime="1.680" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardRight12" startTime="1.600" endTime="1.680" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardRight12" startTime="1.680" endTime="1.920" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardRight12" startTime="1.680" endTime="1.920" startTrans="-1.55 1.4 -4.105" endTrans="-0.7614 1.3725 0.6"/>
+            <part node="boardRight03" startTime="1.560" endTime="1.720" startTrans="-1.2125 2.92 0.4" endTrans="-1.55 1.4 0.4"/>
+            <part node="boardRight03" startTime="1.720" endTime="1.800" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardRight03" startTime="1.720" endTime="1.800" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardRight03" startTime="1.800" endTime="2.040" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardRight03" startTime="1.800" endTime="2.040" startTrans="-1.55 1.4 0.4" endTrans="-0.7614 1.3725 0.44"/>
+            <part node="boardRight07" startTime="1.680" endTime="1.840" startTrans="-1.2125 2.92 -1.85" endTrans="-1.55 1.4 -1.85"/>
+            <part node="boardRight07" startTime="1.840" endTime="1.920" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardRight07" startTime="1.840" endTime="1.920" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardRight07" startTime="1.920" endTime="2.160" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardRight07" startTime="1.920" endTime="2.160" startTrans="-1.55 1.4 -1.85" endTrans="-0.7614 1.3725 0.28"/>
+            <part node="boardRight11" startTime="1.800" endTime="1.960" startTrans="-1.2125 2.92 -4.105" endTrans="-1.55 1.4 -4.105"/>
+            <part node="boardRight11" startTime="1.960" endTime="2.040" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardRight11" startTime="1.960" endTime="2.040" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardRight11" startTime="2.040" endTime="2.280" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardRight11" startTime="2.040" endTime="2.280" startTrans="-1.55 1.4 -4.105" endTrans="-0.7614 1.3725 0.12"/>
+            <part node="boardRight02" startTime="1.920" endTime="2.080" startTrans="-1.2125 2.52 0.4" endTrans="-1.55 1.4 0.4"/>
+            <part node="boardRight02" startTime="2.080" endTime="2.160" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardRight02" startTime="2.080" endTime="2.160" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardRight02" startTime="2.160" endTime="2.400" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardRight02" startTime="2.160" endTime="2.400" startTrans="-1.55 1.4 0.4" endTrans="-0.7614 1.3995 0.92"/>
+            <part node="boardRight06" startTime="2.040" endTime="2.200" startTrans="-1.2125 2.52 -1.85" endTrans="-1.55 1.4 -1.85"/>
+            <part node="boardRight06" startTime="2.200" endTime="2.280" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardRight06" startTime="2.200" endTime="2.280" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardRight06" startTime="2.280" endTime="2.520" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardRight06" startTime="2.280" endTime="2.520" startTrans="-1.55 1.4 -1.85" endTrans="-0.7614 1.3995 0.76"/>
+            <part node="boardRight10" startTime="2.160" endTime="2.320" startTrans="-1.2125 2.52 -4.105" endTrans="-1.55 1.4 -4.105"/>
+            <part node="boardRight10" startTime="2.320" endTime="2.400" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardRight10" startTime="2.320" endTime="2.400" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardRight10" startTime="2.400" endTime="2.640" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardRight10" startTime="2.400" endTime="2.640" startTrans="-1.55 1.4 -4.105" endTrans="-0.7614 1.3995 0.6"/>
+            <part node="boardRight01" startTime="2.280" endTime="2.440" startTrans="-1.2125 2.12 0.4" endTrans="-1.55 1.4 0.4"/>
+            <part node="boardRight01" startTime="2.440" endTime="2.520" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardRight01" startTime="2.440" endTime="2.520" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardRight01" startTime="2.520" endTime="2.760" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardRight01" startTime="2.520" endTime="2.760" startTrans="-1.55 1.4 0.4" endTrans="-0.7614 1.3995 0.44"/>
+            <part node="boardRight05" startTime="2.400" endTime="2.560" startTrans="-1.2125 2.12 -1.85" endTrans="-1.55 1.4 -1.85"/>
+            <part node="boardRight05" startTime="2.560" endTime="2.640" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardRight05" startTime="2.560" endTime="2.640" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardRight05" startTime="2.640" endTime="2.880" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardRight05" startTime="2.640" endTime="2.880" startTrans="-1.55 1.4 -1.85" endTrans="-0.7614 1.3995 0.28"/>
+            <part node="boardRight09" startTime="2.520" endTime="2.680" startTrans="-1.2125 2.12 -4.105" endTrans="-1.55 1.4 -4.105"/>
+            <part node="boardRight09" startTime="2.680" endTime="2.760" startRot="0 0 0" endRot="0 0 90"/>
+            <part node="boardRight09" startTime="2.680" endTime="2.760" startScale="1 1 1" endScale="1 1 0.42"/>
+            <part node="boardRight09" startTime="2.760" endTime="3.000" startRot="0 0 90" endRot="90 0 90"/>
+            <part node="boardRight09" startTime="2.760" endTime="3.000" startTrans="-1.55 1.4 -4.105" endTrans="-0.7614 1.3995 0.12"/>
             <part node="postRight2" startTime="2.2" endTime="2.533" startRot="0 0 0" endRot="0 0 -0.65"/>
             <part node="postRight2" startTime="2.533" endTime="3.533" startTrans="-1.22 1.75 -2.97" endTrans="-1.22 1.75 -5.05"/>
             <part node="postRight1" startTime="3.533" endTime="3.867" startRot="0 0 0" endRot="0 0 -0.65"/>
             <part node="postRight1" startTime="3.867" endTime="5.2" startTrans="-1.22 1.75 -0.73" endTrans="-1.22 1.75 -4.91"/>
+            <sound template="palletsFillWood" startTime="1.660" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="1.780" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="1.900" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="2.020" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="2.140" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="2.260" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="2.380" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="2.500" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="2.620" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="2.740" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="2.860" volumeScale="3" pitchScale="1"/>
+            <sound template="palletsFillWood" startTime="2.980" volumeScale="3" pitchScale="1"/>
             <sound template="fabricCover1"    startTime="0.01" direction="0"  volumeScale="5" pitchScale="1"/>
-            <sound template="palletsFillWood" startTime="1.3" volumeScale="3.5" pitchScale="1"/>
-            <sound template="palletsFillWood" startTime="1.45" volumeScale="3.5" pitchScale="1"/>
-            <sound template="palletsFillWood" startTime="1.6" volumeScale="3.5" pitchScale="1"/>
-            <sound template="palletsFillWood" startTime="1.75" volumeScale="3.5" pitchScale="1"/>
-            <sound template="palletsFillWood" startTime="1.9" volumeScale="3.5" pitchScale="1"/>
-            <sound template="palletsFillWood" startTime="2.05" volumeScale="3.5" pitchScale="1"/>
-            <sound template="palletsFillWood" startTime="2.19" volumeScale="3.5" pitchScale="1"/>
             <sound template="slideOpen"       startTime="2.4"  direction="1"  volumeScale="5" pitchScale="1"/>
             <sound template="slideOpen"       startTime="3.8"  direction="0"  volumeScale="5" pitchScale="0.7"/>
             <sound template="slideOpen"       startTime="5.19" direction="-1" volumeScale="6" pitchScale="0.6"/>
@@ -1495,6 +1603,8 @@
         <i3dMapping id="postRight2" node="0>3|9" />
         <i3dMapping id="rearDoorLeft" node="0>3|10" />
         <i3dMapping id="rearDoorRight" node="0>3|11" />
+        <i3dMapping id="doorLeftProEdition" node="0>3|10|3" />
+        <i3dMapping id="doorRightProEdition" node="0>3|11|3" />
         <i3dMapping id="tensionBelts" node="0>3|12" />
         <i3dMapping id="beltStart01" node="0>3|12|0" />
         <i3dMapping id="beltStart01End" node="0>3|12|0|0" />

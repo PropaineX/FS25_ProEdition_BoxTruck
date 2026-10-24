@@ -272,3 +272,64 @@ VS Code Claude panel > past conversations, or in a terminal in this folder: `cla
   the ProfiLiner's settings itself in onPreLoad for ALL configs (found via vehicle.specializations), log line
   "Box Truck: Universal Autoload set up like the Krone ProfiLiner". 27,989,281 B sha256 2c5ed8b4c6b9... -> Mods in
   waiting, mods, /testing (verified). Rented trucks can't be customized (Value "-") - not a mod problem.
+
+## 2026-10-23: see-through slots at the front corners (inside) closed
+- User's screenshot: two slots you could see out through, inside at the front corners. Cause: the ProfiLiner corner-post
+  fronts (frontFrame, design_color) are one-sided skins facing out; build_front.py cut away the post insides (ZMIN), so
+  between the sheet edge (x 0.99) and our frontPost (x 1.19) nothing faces into the box.
+- Fix (approved from GE before/after, previews\front_gap_fill_v2_GE_preview.png): boxTruck.i3d only, two white panels
+  frontGapFillLeft/Right as children of frontPostLeft/Right, reusing the post's box shape (shapeId 278) scaled:
+  x 0.985..1.20, z 1.50..1.52 (behind colFrontWall's inner face, pallets don't touch), full post height. .shapes unchanged,
+  345 mappings 0 broken. NOT in source\build_body.py: a body rebuild + merge would lose them (add them then).
+- Not zipped, not committed.
+- 2026-10-23 user asked: zipped (1.0.0.0, 28,049,236 B, sha256 840eb635ecdd...) -> Mods in waiting + /testing (verified).
+  Not in mods. Not committed.
+- Then bumped to 1.0.1.0 (user: versions are Claude's call) and replaced in Mods in waiting + /testing: 28,049,220 B
+  sha256 4df3afce3e78... (verified).
+
+## 2026-10-24: right side would not load (1.0.2.0, source only, NOT zipped)
+- User: "I can't load the truck on the right-hand side". Savegame1 had BOTH curtains open (boxTruckBody curtainLeft=1
+  curtainRight=1). updateUalTipside gave UAL "left" whenever the left curtain was open, so UAL's load side was "left"
+  and getPalletIsSelectedLoadside took only pallets at +x of the load volume: right side refused. Also all closed =
+  load side "none" = UAL refuses every load key, so the rear doors alone never loaded either.
+- Checked and NOT the cause: left/right animations are exact mirrors; every body node mirrors its twin; UAL's left =
+  +x of its load volume (built on the vehicle root, not flipped) = our curtainLeft side.
+- Fix (scripts/BoxTruckBody.lua): load side both open = "both", one open = that side, only rear doors open = "both"
+  (UAL keeps its side triggers shut while getTipState says closed), all closed = none. Tip (unload) side = the open
+  curtain; both open = the one opened last. onUpdate keeps the truck active one more frame while a part moves.
+  Headless test (scratchpad boxtruck_side_test.py, lupa): 8/8.
+
+## 2026-10-24: PRO EDITION banner on the rear doors (now 1.1.0.0 with the right-side load fix; source only, NOT zipped)
+- User: the wavy Pro Edition banner on the back doors of the Pro Edition version, centred, high up, splitting when the
+  doors open, and the door seam must stay visible through it. Approved previews\rear_banner_v2_preview.png
+  (rear_banner_v2.py; v1 had no seam gap).
+- Built WITHOUT new geometry: doorLeftProEdition / doorRightProEdition = instances of the ProEdition curtain quad
+  (shapeId 238, whole texture on it) as LAST children of rearDoorLeft/Right (0>3|10|3, 0>3|11|3; no index shifts),
+  rotation 0 90 0, scale 0.353213 (6.07 -> 2.144 m wide, 0.440 m tall), centre body (-0.0018, 3.6512, -5.3645):
+  seam centre between the door faces, top 10 % of the door height below the door top, 1.5 mm off the face.
+  Each has its own material (copy of proEditionDecal) with a texture showing only its half, stopping 1 cm short of the
+  seam: boxTruckProEditionDoorLeft/Right_diffuse.dds (DXT5 2048x512, source\make_door_banner_textures.py).
+  Shown by the shop's curtain design "ProEdition" (design8 objectChange), hidden otherwise. source\add_door_banner.py
+  does the i3d edit (measured numbers in its header). 347 mappings, 0 broken.
+- Measured in GE10 (bt\v17banner\measure*.lua): curtain quad x 1.2975 y 2.3445..3.5915 z 1.185..-4.885; door faces
+  z -5.3630, y 1.7121..4.1114; left face ends x +0.0022, right x -0.0058 (right door steps in to z -5.3544 behind).
+- Checked in GE (bt\v17banner\after_*.png: rear, rear34, open, openSide, seam): reads PRO EDITION from behind, seam
+  line visible between D and I, "PRO ED" swings out with the left door. Backup of the pre-change i3d/xml: session
+  scratchpad boxtruck_backup\. Zip staging must include the two new .dds.
+
+## 2026-10-24: side boards stowed under the body (part of 1.1.0.0; source only, NOT zipped)
+- User: when a curtain opens the boards just vanish; make them go into the gap between the body and the fuel tank /
+  side guard, seen end-on (mock-ups previews\board_stow_v1..v3, GE previews board_stow_ge_v1_*; user: "I like it a lot").
+- boxTruck.xml boxCurtainLeft/Right: the 12 hide parts per side replaced by motion (source\board_stow.py, applied by
+  source\apply_board_stow.py; make_vehicle_xml.py curtain_anim now uses board_stow too). Per board, one every 0.12 s from
+  1.2 s, top row first, front to rear: 0.16 s out+down to (+-1.55, 1.40, its bay z); 0.08 s roll (0 0 0 -> 0 0 90) +
+  shorten (scale z 0.42 = 0.9 m); 0.24 s swing (0 0 90 -> 90 0 90) + slide into its pile. A direct 0 -> 90 0 90 blend
+  tips the long axis 30 deg (through the floor); z-then-x keeps it level (tested in GE, rotpath.lua).
+  Piles: 6 x 2, z 0.92..0.12 (pitch 0.16), ends at x +-1.215, bottom y 1.36 (guard top ~1.35, body underside 1.47).
+  One palletsFillWood knock per landing (was 7 timed for the hiding). Last board lands at 3.0 s; posts still 2.2..5.2.
+- GE (bt\v18boards): boards 0.025 x 0.14 x 2.16 m; rotation "90 0 90" = length -> x, height -> z.
+- Not yet seen in game: the motion itself (GE showed stored / halfway states set by Lua, not the XML animation).
+- 2026-10-24 ZIPPED 1.1.0.0 (user: "zip it up"): 14 files (the 12 of 1.0.1.0 + boxTruckProEditionDoorLeft/Right_diffuse.dds),
+  staged in bt\stage_1100, Library build_zip.py -> Testing_local\FS25_BoxTruck_ProEdition.zip 28,089,910 B sha256
+  aef80319235f...; uploaded to server /testing (new there, host key checked, temp name -> rename, SHA-256 verified).
+  mods still has 1.0.1.0. Committed + pushed to the private GitHub repo.

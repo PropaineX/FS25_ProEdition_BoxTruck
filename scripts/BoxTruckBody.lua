@@ -93,7 +93,8 @@ function BoxTruckBody:onPostLoad(savegame)
         if self.getIsUnfolded == nil then
             self.getIsUnfolded = BoxTruckBody.getIsRearDoorOpen
         end
-        spec.ualTipside = nil
+        -- curtain states seen by updateUalTipside (nil = not looked yet) and the curtain opened last
+        spec.ualLeftOpen, spec.ualRightOpen, spec.ualLastOpened = nil, nil, nil
     end
     if savegame ~= nil and not savegame.resetVehicles then
         for _, part in ipairs(spec.parts) do
@@ -188,6 +189,14 @@ function BoxTruckBody:onUpdate(dt, isActiveForInput, isActiveForInputIgnoreSelec
     end
     if self.isServer and self.spec_universalAutoload ~= nil then
         BoxTruckBody.updateUalTipside(self)
+        -- a curtain or door still moving: stay active one more frame, so the side is set once it has stopped
+        local spec = self[BoxTruckBody.SPEC_TABLE_NAME]
+        for _, part in ipairs(spec.parts) do
+            if self:getIsAnimationPlaying(part.anim) then
+                self:raiseActive()
+                break
+            end
+        end
     end
 end
 
@@ -270,8 +279,12 @@ function BoxTruckBody:getIsRearDoorOpen()
     return BoxTruckBody.getIsPartFullyOpen(self, "boxRearDoors")
 end
 
--- server: Universal Autoload unloads to the side whose curtain is open, nowhere while both are closed (as it does on the
--- ProfiLiner); its own functions send the change to the other players
+-- server: which sides Universal Autoload may use; its own functions send the change to the other players.
+-- Loading (UAL's load side picks the pallets by which side of the truck they stand on): both curtains open = both
+-- sides, one open = that side, only the rear doors open = "both" (UAL's side triggers stay shut while the curtains
+-- are closed, so only the rear one picks up), all closed = none. Until 1.0.2.0 both curtains open meant "left" only:
+-- the right side could not load (user, 2026-10-24).
+-- Unloading (UAL unloads to one side): the open curtain; both open = the one opened last; none = nowhere.
 function BoxTruckBody.updateUalTipside(vehicle)
     local spec = vehicle[BoxTruckBody.SPEC_TABLE_NAME]
     local ual = vehicle.spec_universalAutoload
@@ -280,20 +293,32 @@ function BoxTruckBody.updateUalTipside(vehicle)
         or UniversalAutoload.setCurrentTipside == nil or UniversalAutoload.setCurrentLoadside == nil then
         return
     end
-    local side = "none"
-    if BoxTruckBody.getIsPartFullyOpen(vehicle, "boxCurtainLeft") then
-        side = "left"
-    elseif BoxTruckBody.getIsPartFullyOpen(vehicle, "boxCurtainRight") then
-        side = "right"
+    local leftOpen = BoxTruckBody.getIsPartFullyOpen(vehicle, "boxCurtainLeft")
+    local rightOpen = BoxTruckBody.getIsPartFullyOpen(vehicle, "boxCurtainRight")
+    -- remember the curtain opened last (a saved game with both open starts with the left)
+    if leftOpen and not spec.ualLeftOpen then
+        spec.ualLastOpened = "left"
     end
-    if side ~= spec.ualTipside or ual.currentTipside ~= side then
-        spec.ualTipside = side
-        if ual.currentTipside ~= side then
-            UniversalAutoload.setCurrentTipside(vehicle, side)
-        end
-        if ual.currentLoadside ~= side then
-            UniversalAutoload.setCurrentLoadside(vehicle, side)
-        end
+    if rightOpen and not spec.ualRightOpen then
+        spec.ualLastOpened = (leftOpen and spec.ualLeftOpen == nil) and "left" or "right"
+    end
+    spec.ualLeftOpen, spec.ualRightOpen = leftOpen, rightOpen
+
+    local tipside, loadside = "none", "none"
+    if leftOpen and rightOpen then
+        tipside, loadside = spec.ualLastOpened or "left", "both"
+    elseif leftOpen then
+        tipside, loadside = "left", "left"
+    elseif rightOpen then
+        tipside, loadside = "right", "right"
+    elseif BoxTruckBody.getIsPartFullyOpen(vehicle, "boxRearDoors") then
+        loadside = "both"
+    end
+    if ual.currentTipside ~= tipside then
+        UniversalAutoload.setCurrentTipside(vehicle, tipside)
+    end
+    if ual.currentLoadside ~= loadside then
+        UniversalAutoload.setCurrentLoadside(vehicle, loadside)
     end
 end
 

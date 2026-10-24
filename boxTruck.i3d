@@ -137,6 +137,8 @@
     <File fileId="120" filename="$data/vehicles/volvo/fhElectric/fhElectricHoses_vmask.png"/>
     <File fileId="54" filename="$data/vehicles/volvo/fhElectric/fhElectricInteriorDecal_diffuse.png"/>
     <File fileId="67" filename="$data/vehicles/volvo/fhElectric/fhElectricInteriorDecal_normal.png"/>
+    <File fileId="141" filename="boxTruckProEditionDoorLeft_diffuse.dds"/>
+    <File fileId="142" filename="boxTruckProEditionDoorRight_diffuse.dds"/>
   </Files>
 
 
@@ -1487,6 +1489,22 @@
       <Custommap name="detailDiffuse" fileId="8"/>
       <CustomParameter name="alphaBlendingClipThreshold" value="0"/>
     </Material>
+    <Material name="proEditionDoorLeftDecal" materialId="1954" alphaBlending="true" customShaderId="5" customShaderVariation="vmaskUV2">
+      <Texture fileId="141"/>
+      <Normalmap fileId="31"/>
+      <Glossmap fileId="43"/>
+      <Custommap name="detailSpecular" fileId="65"/>
+      <Custommap name="detailNormal" fileId="7"/>
+      <Custommap name="detailDiffuse" fileId="66"/>
+    </Material>
+    <Material name="proEditionDoorRightDecal" materialId="1955" alphaBlending="true" customShaderId="5" customShaderVariation="vmaskUV2">
+      <Texture fileId="142"/>
+      <Normalmap fileId="31"/>
+      <Glossmap fileId="43"/>
+      <Custommap name="detailSpecular" fileId="65"/>
+      <Custommap name="detailNormal" fileId="7"/>
+      <Custommap name="detailDiffuse" fileId="66"/>
+    </Material>
   </Materials>
 
 
@@ -2347,6 +2365,7 @@
               <Shape name="doorLeft_decals" translation="-0.262448 -1.6859 -0.040514" shapeId="266" clipDistance="30" nodeId="1789" castsShadows="false" receiveShadows="true" decalLayer="1" materialIds="1527"/>
             </TransformGroup>
           </Shape>
+          <Shape name="doorLeftProEdition" translation="-0.609757 2.602907 0.443793" rotation="0 90 0" scale="0.353213 0.353213 0.353213" shapeId="238" clipDistance="150" nodeId="1961" castsShadows="false" receiveShadows="true" decalLayer="2" materialIds="1954" visibility="false"/>
         </TransformGroup>
         <TransformGroup name="rearDoorRight" translation="-1.2614 0 -5.35" nodeId="1438">
           <Shape name="colDoorRight" translation="0.6314 2.91 0" shapeId="267" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" density="0.001" nodeId="1439" castsShadows="false" receiveShadows="false" nonRenderable="true" materialIds="1274"/>
@@ -2363,6 +2382,7 @@
             </TransformGroup>
             <Shape name="doorLeft_decal16" translation="2.5228 0 -2e-06" shapeId="273" clipDistance="30" nodeId="1807" castsShadows="false" receiveShadows="true" decalLayer="1" materialIds="1539"/>
           </Shape>
+          <Shape name="doorRightProEdition" translation="1.913043 2.602907 0.443793" rotation="0 90 0" scale="0.353213 0.353213 0.353213" shapeId="238" clipDistance="150" nodeId="1962" castsShadows="false" receiveShadows="true" decalLayer="2" materialIds="1955" visibility="false"/>
         </TransformGroup>
         <TransformGroup name="tensionBelts" nodeId="1440">
           <TransformGroup name="beltStart01" translation="1.235 1.77 1.18" rotation="-0 -90 0" nodeId="1441">
@@ -2398,8 +2418,12 @@
           <Shape name="floor" translation="0 1.69 -1.83" shapeId="275" nodeId="1461" castsShadows="true" receiveShadows="true" materialIds="1280"/>
           <Shape name="floorStrips" translation="-0.7 1.751 -1.835" shapeId="276" nodeId="1462" castsShadows="true" receiveShadows="true" materialIds="1272"/>
           <Shape name="frontHeader" translation="0 4.055 1.485" shapeId="277" nodeId="1463" castsShadows="true" receiveShadows="true" materialIds="1275"/>
-          <Shape name="frontPostLeft" translation="1.2375 2.85 1.485" shapeId="278" nodeId="1464" castsShadows="true" receiveShadows="true" materialIds="1275"/>
-          <Shape name="frontPostRight" translation="-1.2375 2.85 1.485" shapeId="278" nodeId="1465" castsShadows="true" receiveShadows="true" materialIds="1275"/>
+          <Shape name="frontPostLeft" translation="1.2375 2.85 1.485" shapeId="278" nodeId="1464" castsShadows="true" receiveShadows="true" materialIds="1275">
+            <Shape name="frontGapFillLeft" translation="-0.145 0 0.025" scale="2.263158 1 0.285714" shapeId="278" nodeId="1959" castsShadows="true" receiveShadows="true" materialIds="1275"/>
+          </Shape>
+          <Shape name="frontPostRight" translation="-1.2375 2.85 1.485" shapeId="278" nodeId="1465" castsShadows="true" receiveShadows="true" materialIds="1275">
+            <Shape name="frontGapFillRight" translation="0.145 0 0.025" scale="2.263158 1 0.285714" shapeId="278" nodeId="1960" castsShadows="true" receiveShadows="true" materialIds="1275"/>
+          </Shape>
           <Shape name="frontRoofCap" shapeId="279" nodeId="1466" castsShadows="true" receiveShadows="true" materialIds="1275"/>
           <Shape name="rearPostLeft" translation="1.2325 2.85 -5.28" shapeId="280" nodeId="1467" castsShadows="true" receiveShadows="true" materialIds="1271"/>
           <Shape name="rearPostRight" translation="-1.2325 2.85 -5.28" shapeId="280" nodeId="1468" castsShadows="true" receiveShadows="true" materialIds="1271"/>
