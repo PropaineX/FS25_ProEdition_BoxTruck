@@ -1,0 +1,27 @@
+{
+  "version": "1.2.0.1",
+  "filename": "FS25_BoxTruck_ProEdition.zip",
+  "files": 18,
+  "bytes": 33493934,
+  "sha256": "89006019cc9615030cf499800ee70dd3154dfa05bda7f7e389dc7ca08e045319",
+  "members": [
+    "boxTruck.i3d",
+    "boxTruck.i3d.shapes",
+    "boxTruck.xml",
+    "boxTruckBadges_diffuse.dds",
+    "boxTruckBadges_normal.dds",
+    "boxTruckCurtain_diffuse.dds",
+    "boxTruckCurtain_normal.dds",
+    "boxTruckFabric_detail_diffuse.dds",
+    "boxTruckFabric_detail_normal.dds",
+    "boxTruckFabric_detail_specular.dds",
+    "boxTruckProEditionCurtain_diffuse.dds",
+    "boxTruckProEditionDoorLeft_diffuse.dds",
+    "boxTruckProEditionDoorRight_diffuse.dds",
+    "boxTruckStickers_diffuse.dds",
+    "icon_BoxTruck.dds",
+    "modDesc.xml",
+    "scripts/BoxTruckBody.lua",
+    "store_boxTruck.dds"
+  ]
+}

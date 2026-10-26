@@ -1,0 +1,7 @@
+<!doctype html><meta charset="utf-8"><title>Box body: before and after</title>
+<style>body{margin:0;background:#15191e;color:#eef3f8;font:18px Arial}main{padding:24px}h1{font-size:26px}nav{display:flex;gap:16px;align-items:center;margin:20px 0}button{padding:10px 16px;cursor:pointer}section{display:grid;grid-template-columns:1fr 1fr;gap:16px}figure{margin:0;overflow:auto}figcaption{padding:12px;background:#252d37;font-weight:bold}img{display:block;width:100%;max-width:none}p{color:#c0c9d3}</style>
+<main><h1>Box body: actual before and after</h1><p>Matching camera and editor lighting. Use Close-up to inspect the buckles and seams; zoom to see the original pixels.</p>
+<nav><button onclick="show('full')">Whole truck</button><button onclick="show('detail')">Close-up</button><label>Zoom <input type="range" min="100" max="250" value="100" oninput="document.querySelectorAll('img').forEach(i=>i.style.width=this.value+'%')"></label></nav>
+<section><figure><figcaption>BEFORE</figcaption><img id="before" src="before_full.png"></figure><figure><figcaption>AFTER</figcaption><img id="after" src="after_full.png"></figure></section>
+<p>Upgraded curtain surface, fabric maps, rounded buckle hardware, rail trim, fasteners, and door seals. These are actual GIANTS Editor captures; in-game lighting may differ.</p></main>
+<script>function show(view){for(const side of ['before','after'])document.getElementById(side).src=side+'_'+view+'.png'}</script>

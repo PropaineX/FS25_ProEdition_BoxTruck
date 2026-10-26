@@ -1,0 +1,182 @@
+[
+  {
+    "name": "cloth",
+    "vertices": 4290,
+    "triangles": 8192
+  },
+  {
+    "name": "whiteInnerLining",
+    "vertices": 561,
+    "triangles": 1024
+  },
+  {
+    "name": "ProEdition",
+    "vertices": 6060,
+    "triangles": 2118
+  },
+  {
+    "name": "Krone",
+    "vertices": 5078,
+    "triangles": 1884
+  },
+  {
+    "name": "FSL",
+    "vertices": 7574,
+    "triangles": 2700
+  },
+  {
+    "name": "GIANTS",
+    "vertices": 14800,
+    "triangles": 5132
+  },
+  {
+    "name": "cloth",
+    "vertices": 4290,
+    "triangles": 8192
+  },
+  {
+    "name": "whiteInnerLining",
+    "vertices": 561,
+    "triangles": 1024
+  },
+  {
+    "name": "ProEdition",
+    "vertices": 6060,
+    "triangles": 2118
+  },
+  {
+    "name": "Krone",
+    "vertices": 5078,
+    "triangles": 1884
+  },
+  {
+    "name": "FSL",
+    "vertices": 7574,
+    "triangles": 2700
+  },
+  {
+    "name": "GIANTS",
+    "vertices": 14804,
+    "triangles": 5134
+  },
+  {
+    "name": "cloth",
+    "vertices": 6402,
+    "triangles": 12288
+  },
+  {
+    "name": "whiteInnerLining",
+    "vertices": 561,
+    "triangles": 1024
+  },
+  {
+    "name": "ProEdition",
+    "vertices": 9180,
+    "triangles": 3198
+  },
+  {
+    "name": "Krone",
+    "vertices": 7600,
+    "triangles": 2808
+  },
+  {
+    "name": "FSL",
+    "vertices": 10836,
+    "triangles": 3836
+  },
+  {
+    "name": "GIANTS",
+    "vertices": 22178,
+    "triangles": 7674
+  },
+  {
+    "name": "cloth",
+    "vertices": 6402,
+    "triangles": 12288
+  },
+  {
+    "name": "whiteInnerLining",
+    "vertices": 561,
+    "triangles": 1024
+  },
+  {
+    "name": "ProEdition",
+    "vertices": 9180,
+    "triangles": 3198
+  },
+  {
+    "name": "Krone",
+    "vertices": 7604,
+    "triangles": 2810
+  },
+  {
+    "name": "FSL",
+    "vertices": 10832,
+    "triangles": 3834
+  },
+  {
+    "name": "GIANTS",
+    "vertices": 22174,
+    "triangles": 7672
+  },
+  {
+    "name": "cloth",
+    "vertices": 5346,
+    "triangles": 10240
+  },
+  {
+    "name": "whiteInnerLining",
+    "vertices": 561,
+    "triangles": 1024
+  },
+  {
+    "name": "ProEdition",
+    "vertices": 7720,
+    "triangles": 2692
+  },
+  {
+    "name": "Krone",
+    "vertices": 6448,
+    "triangles": 2384
+  },
+  {
+    "name": "FSL",
+    "vertices": 9314,
+    "triangles": 3304
+  },
+  {
+    "name": "GIANTS",
+    "vertices": 18462,
+    "triangles": 6394
+  },
+  {
+    "name": "cloth",
+    "vertices": 5346,
+    "triangles": 10240
+  },
+  {
+    "name": "whiteInnerLining",
+    "vertices": 561,
+    "triangles": 1024
+  },
+  {
+    "name": "ProEdition",
+    "vertices": 7720,
+    "triangles": 2692
+  },
+  {
+    "name": "Krone",
+    "vertices": 6448,
+    "triangles": 2384
+  },
+  {
+    "name": "FSL",
+    "vertices": 9318,
+    "triangles": 3306
+  },
+  {
+    "name": "GIANTS",
+    "vertices": 18458,
+    "triangles": 6392
+  }
+]

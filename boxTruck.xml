@@ -86,7 +86,7 @@
                 <objectChange node="colPart8x4Part01" compoundChildActive="true" compoundChildInactive="false"/>
                 <objectChange node="colPart8x4Part02" compoundChildActive="true" compoundChildInactive="false"/>
 
-                <objectChange node="fh16_main_component1" massActive="5250" centerOfMassActive="0 1.0 0.6"/>
+                <objectChange node="fh16_main_component1" massActive="5250" centerOfMassActive="0 0.8464 0.6"/>
                 <foliageBendingModifier index="1" minZ="-5.0"/>
                 <aiAgent height="4.3"/>
 

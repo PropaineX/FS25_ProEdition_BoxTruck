@@ -3,3 +3,20 @@
 # full chat transcripts stay on this PC; the session notes are kept
 chat_history/*.jsonl
 source/__pycache__/
+# Local detail-build staging and backups; runtime assets stay in the project root.
+/previews/detail_v1/work/
+/previews/detail_v1/before/
+/previews/detail_v1/textures/
+/previews/detail_v1/preview_*.lua
+/previews/detail_v1/integrate_*.lua
+/previews/detail_v1/editor_*.png
+/previews/detail_v1/debug.png
+/previews/detail_v1/blender_build.log
+/editor.xml
+/.local/
+# Local application logs and extracted game API references.
+/debug.log
+/editor_log.txt
+/previews/gathered_integration/AnimatedVehicle.lua
+/previews/gathered_integration/AnimatedVehicleStartEvent.lua
+/previews/gathered_integration/I3DManager.lua

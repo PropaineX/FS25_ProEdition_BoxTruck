@@ -18,6 +18,41 @@ BoxTruckBody = {}
 BoxTruckBody.MOD_NAME = g_currentModName
 BoxTruckBody.SPEC_NAME = g_currentModName .. ".boxTruckBody"
 BoxTruckBody.SPEC_TABLE_NAME = "spec_" .. BoxTruckBody.SPEC_NAME
+BoxTruckBody.MOD_DIRECTORY = g_currentModDirectory
+
+-- Only the server rolls a shape; clients receive its choice before the animation.
+BoxTruckCurtainVariantEvent = {}
+local BoxTruckCurtainVariantEvent_mt = Class(BoxTruckCurtainVariantEvent, Event)
+InitEventClass(BoxTruckCurtainVariantEvent, "BoxTruckCurtainVariantEvent")
+
+function BoxTruckCurtainVariantEvent.emptyNew()
+    return Event.new(BoxTruckCurtainVariantEvent_mt)
+end
+
+function BoxTruckCurtainVariantEvent.new(vehicle, side, variant)
+    local event = BoxTruckCurtainVariantEvent.emptyNew()
+    event.vehicle, event.side, event.variant = vehicle, side, variant
+    return event
+end
+
+function BoxTruckCurtainVariantEvent:writeStream(streamId, connection)
+    NetworkUtil.writeNodeObject(streamId, self.vehicle)
+    streamWriteUIntN(streamId, self.side - 1, 1)
+    streamWriteUIntN(streamId, self.variant - 1, 2)
+end
+
+function BoxTruckCurtainVariantEvent:readStream(streamId, connection)
+    self.vehicle = NetworkUtil.readNodeObject(streamId)
+    self.side = streamReadUIntN(streamId, 1) + 1
+    self.variant = streamReadUIntN(streamId, 2) + 1
+    self:run(connection)
+end
+
+function BoxTruckCurtainVariantEvent:run(connection)
+    if connection:getIsServer() and self.vehicle ~= nil then
+        BoxTruckBody.setCurtainVariant(self.vehicle, self.side, self.variant)
+    end
+end
 
 -- animation name, input action, save attribute, texts for open/close; both curtains share one action (the selected
 -- side moves)
@@ -40,6 +75,13 @@ function BoxTruckBody.initSpecialization()
     for _, part in ipairs(BoxTruckBody.PARTS) do
         schemaSavegame:register(XMLValueType.FLOAT, "vehicles.vehicle(?)." .. BoxTruckBody.SPEC_NAME .. "#" .. part.key, "Open position 0..1", 0)
     end
+    for _, side in ipairs({"Left", "Right"}) do
+        schemaSavegame:register(XMLValueType.INT, "vehicles.vehicle(?)." .. BoxTruckBody.SPEC_NAME .. "#gathered" .. side, "Gathered curtain shape 1..3", 1)
+    end
+end
+
+function BoxTruckBody.registerOverwrittenFunctions(vehicleType)
+    SpecializationUtil.registerOverwrittenFunction(vehicleType, "playAnimation", BoxTruckBody.playAnimation)
 end
 
 function BoxTruckBody.registerEventListeners(vehicleType)
@@ -50,6 +92,7 @@ function BoxTruckBody.registerEventListeners(vehicleType)
     SpecializationUtil.registerEventListener(vehicleType, "onWriteStream", BoxTruckBody)
     SpecializationUtil.registerEventListener(vehicleType, "onRegisterActionEvents", BoxTruckBody)
     SpecializationUtil.registerEventListener(vehicleType, "onUpdate", BoxTruckBody)
+    SpecializationUtil.registerEventListener(vehicleType, "onDelete", BoxTruckBody)
 end
 
 function BoxTruckBody:onLoad(savegame)
@@ -80,6 +123,83 @@ function BoxTruckBody:onLoad(savegame)
         end
     end
     spec.curtainIndex = 1   -- selected curtain (only on this player's machine)
+    spec.curtainVariants = {1, 1}
+    spec.gatheredNodes = {{}, {}}
+    BoxTruckBody.loadGatheredCurtains(self)
+end
+
+local function findCurtainNode(node, name)
+    if getName(node) == name then return node end
+    for i = 0, getNumOfChildren(node) - 1 do
+        local found = findCurtainNode(getChildAt(node, i), name)
+        if found ~= nil then return found end
+    end
+end
+
+function BoxTruckBody.loadGatheredCurtains(self)
+    local spec = self[BoxTruckBody.SPEC_TABLE_NAME]
+    local root, request = g_i3DManager:loadSharedI3DFile(BoxTruckBody.MOD_DIRECTORY .. "gatheredCurtains.i3d", false, false)
+    spec.gatheredLoadRequest = request
+    if root == nil or root == 0 then
+        Logging.error("Box Truck: could not load gathered curtain variants")
+        return
+    end
+    for sideIndex, side in ipairs({"Left", "Right"}) do
+        local parent = self.i3dMappings["curtain" .. side .. "Open"]
+        assert(parent ~= nil, "Box Truck: missing curtain open pivot")
+        for variant = 1, 3 do
+            local group = findCurtainNode(root, "gathered" .. side .. variant)
+            assert(group ~= nil, "Box Truck: missing gathered curtain variant")
+            link(parent, group)
+            setTranslation(group, 0, 0, 0)
+            spec.gatheredNodes[sideIndex][variant] = group
+            local designName = ({[2] = "ProEdition", [3] = "Krone", [4] = "FSL", [5] = "GIANTS"})[self.configurations.design8 or 1]
+            for _, name in ipairs({"ProEdition", "Krone", "FSL", "GIANTS"}) do
+                setVisibility(findCurtainNode(group, name), name == designName)
+            end
+        end
+        -- Keep original scene nodes and mapping indices intact; hide old visuals.
+        for _, name in ipairs({"curtain" .. side .. "Gathered", "curtain" .. side .. "GatheredStraps"}) do
+            local old = findCurtainNode(parent, name)
+            if old ~= nil then setVisibility(old, false) end
+        end
+        BoxTruckBody.setCurtainVariant(self, sideIndex, 1)
+    end
+    delete(root)
+end
+
+function BoxTruckBody:onDelete()
+    local spec = self[BoxTruckBody.SPEC_TABLE_NAME]
+    if spec.gatheredLoadRequest ~= nil then
+        g_i3DManager:releaseSharedI3DFile(spec.gatheredLoadRequest)
+        spec.gatheredLoadRequest = nil
+    end
+end
+
+function BoxTruckBody.setCurtainVariant(self, side, variant)
+    local spec = self[BoxTruckBody.SPEC_TABLE_NAME]
+    if (side ~= 1 and side ~= 2) or variant < 1 or variant > 3 then return end
+    spec.curtainVariants[side] = variant
+    for index, node in ipairs(spec.gatheredNodes[side]) do
+        setVisibility(node, index == variant)
+    end
+end
+
+function BoxTruckBody.playAnimation(self, superFunc, name, speed, animTime, noEventSend, allowSounds)
+    local spec = self[BoxTruckBody.SPEC_TABLE_NAME]
+    if self.isServer and spec ~= nil and spec.curtains ~= nil then
+        for side, part in ipairs(spec.curtains) do
+            local animation = self.spec_animatedVehicle.animations[name]
+            local actualSpeed = speed or (animation ~= nil and animation.currentSpeed)
+            if part.anim == name and actualSpeed ~= nil and actualSpeed > 0 and not BoxTruckBody.getIsOpen(self, part) then
+                local variant = math.random(1, 3)
+                BoxTruckBody.setCurtainVariant(self, side, variant)
+                g_server:broadcastEvent(BoxTruckCurtainVariantEvent.new(self, side, variant), nil, nil, self)
+                break
+            end
+        end
+    end
+    return superFunc(self, name, speed, animTime, noEventSend, allowSounds)
 end
 
 function BoxTruckBody:onPostLoad(savegame)
@@ -97,6 +217,9 @@ function BoxTruckBody:onPostLoad(savegame)
         spec.ualLeftOpen, spec.ualRightOpen, spec.ualLastOpened = nil, nil, nil
     end
     if savegame ~= nil and not savegame.resetVehicles then
+        for side, name in ipairs({"Left", "Right"}) do
+            BoxTruckBody.setCurtainVariant(self, side, savegame.xmlFile:getValue(savegame.key .. "." .. BoxTruckBody.SPEC_NAME .. "#gathered" .. name, 1))
+        end
         for _, part in ipairs(spec.parts) do
             local time = savegame.xmlFile:getValue(savegame.key .. "." .. BoxTruckBody.SPEC_NAME .. "#" .. part.key, 0)
             self:setAnimationTime(part.anim, time, true, false)
@@ -106,6 +229,9 @@ end
 
 function BoxTruckBody:saveToXMLFile(xmlFile, key, usedModNames)
     local spec = self[BoxTruckBody.SPEC_TABLE_NAME]
+    for side, name in ipairs({"Left", "Right"}) do
+        xmlFile:setValue(key .. "#gathered" .. name, spec.curtainVariants[side])
+    end
     for _, part in ipairs(spec.parts) do
         xmlFile:setValue(key .. "#" .. part.key, BoxTruckBody.getTargetTime(self, part))
     end
@@ -114,6 +240,9 @@ end
 -- players joining a game get the current positions
 function BoxTruckBody:onReadStream(streamId, connection)
     local spec = self[BoxTruckBody.SPEC_TABLE_NAME]
+    for side = 1, 2 do
+        BoxTruckBody.setCurtainVariant(self, side, streamReadUIntN(streamId, 2) + 1)
+    end
     for _, part in ipairs(spec.parts) do
         self:setAnimationTime(part.anim, streamReadFloat32(streamId), true, false)
     end
@@ -121,6 +250,9 @@ end
 
 function BoxTruckBody:onWriteStream(streamId, connection)
     local spec = self[BoxTruckBody.SPEC_TABLE_NAME]
+    for side = 1, 2 do
+        streamWriteUIntN(streamId, spec.curtainVariants[side] - 1, 2)
+    end
     for _, part in ipairs(spec.parts) do
         streamWriteFloat32(streamId, BoxTruckBody.getTargetTime(self, part))
     end

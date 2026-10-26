@@ -1,0 +1,21 @@
+# Gathered curtain shape proposal
+
+User requested a puffier, less uniform open curtain, referencing gathered trailer curtains.
+
+Preview only: `source/preview_gathered_v1.py` builds a source-body study and renders matching before/proposed closeups under `previews/gathered_v1/`. Proposed folds use varying widths, rounded profiles, height-dependent depth and lean, and an uneven hem. Both sides use different deterministic seeds. Old rigid gathered straps are omitted from the proposal pending conforming hardware work.
+
+Opened `comparison.png` in the existing VS Code window. Runtime I3D, shapes, textures and XML remain unchanged. This is an untextured Blender geometry study, not an in-game validation or a final production integration. Await visual feedback before applying.
+
+User rejected v1 as too even. Preserved v1 and created v2 with five varied fold clusters, continuously warped valleys, doubled-back fabric, deeper pockets and uneven hems. User then requested the bottom 8–12 inches wider than the top. V3 adds a 0.254 m (10 inch) forward flare at the lower edge, fading to zero at the upper track. See `source/preview_gathered_v3.py` and `previews/gathered_v3/comparison.png` (v1 versus v3). Render inspected; production assets remain unchanged pending feedback.
+
+V4: user requested a neater top because the sliding rail constrains movement. Upper 14% of height transitions to a level edge with compact, regular 65 mm deep folds at the track. Lower bunching and 10 inch flare preserved. Render inspected and v3/v4 comparison opened in VS Code. Source: `source/preview_gathered_v4.py`; preview: `previews/gathered_v4/comparison.png`. Still preview only.
+
+V5: user clarified that ruffling, puffiness and flare must increase gradually over the full height, starting very small at the rail and ending at the existing bottom shape. Full-height blend `(1-t)**1.15` now reduces depth/irregularity toward an 18 mm top fold. Ten-inch lower flare is preserved independently; bottom vertex positions match v4. Render inspected and v4/v5 comparison opened in VS Code. Source `source/preview_gathered_v5.py`, preview `previews/gathered_v5/comparison.png`. Production assets still unchanged.
+
+V6: user requested the Pro Edition banner on the folded curtain. Preserved v5 geometry and assigned full-panel material UVs, mapping the actual `boxTruckProEditionCurtain_diffuse.dds` artwork onto the folded cloth at its source banner height and panel position. Render uses Eevee lighting and a preview-only PNG conversion. Inspected `previews/gathered_v6/proposed.png` and opened it in the existing VS Code pane. Source `source/preview_gathered_v6.py`. This is a textured shape study; production mesh/UV integration, hardware and in-game checks remain pending.
+
+V7 corrects the user's observation that printing belongs only on the exterior. Right curtain winding is reversed for outward normals, and the preview material uses Backfacing to show plain fabric on the inside. Exterior-facing returns of deep folds may still expose small slivers of print from an interior viewpoint. Render inspected and `previews/gathered_v7/proposed.png` opened in VS Code. Production unchanged.
+
+Three alternatives requested: `source/preview_gathered_variants.py` loads the v7 Blender study and independently varies lower 40% of both curtain meshes with deterministic seeds. Upper 60% is checked unchanged; three distinct mesh hashes recorded in `previews/gathered_variants_v1/validation.json`. Three PNGs and three editable Blender scenes preserved; `three_versions.png` inspected and opened in VS Code. Banner UVs, exterior-only printing, camera and lighting retained. Production assets unchanged.
+
+User clarified these must be three completely different full-height layouts under the same rules, not lower-only variants. `source/preview_gathered_distinct.py` independently rebuilds three configurations: 4 broad folds, 6 mixed folds, 5 asymmetrical folds; distinct widths, depths, lean patterns and seeds. All retain tiny tidy rail folds, gradual full-height release, outside-only banner, and lower widening of 9, 11 and 10 inches respectively. Saved full editable scenes and rendered PNGs in `previews/gathered_distinct_v1/version_1..3/`. Inspected and opened `previews/gathered_distinct_v1/three_versions.png`. Runtime mod unchanged.
