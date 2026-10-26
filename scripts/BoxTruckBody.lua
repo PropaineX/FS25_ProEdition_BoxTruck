@@ -145,8 +145,9 @@ function BoxTruckBody.loadGatheredCurtains(self)
         return
     end
     for sideIndex, side in ipairs({"Left", "Right"}) do
-        local parent = self.i3dMappings["curtain" .. side .. "Open"]
-        assert(parent ~= nil, "Box Truck: missing curtain open pivot")
+        local mapping = self.i3dMappings["curtain" .. side .. "Open"]
+        local parent = mapping ~= nil and mapping.nodeId or nil
+        assert(parent ~= nil and parent ~= 0, "Box Truck: missing curtain open pivot")
         for variant = 1, 3 do
             local group = findCurtainNode(root, "gathered" .. side .. variant)
             assert(group ~= nil, "Box Truck: missing gathered curtain variant")

@@ -22,6 +22,7 @@ function setTranslation() end
 function delete() end
 function node(name) return {name=name,children={}} end
 function link(parent,n)
+    assert(parent.children ~= nil, 'link requires a scene node, not an i3d mapping record')
     if n.parent then
         for i,c in ipairs(n.parent.children) do if c==n then table.remove(n.parent.children,i); break end end
     end
@@ -53,7 +54,7 @@ function vehicle(server,design)
     function v:setAnimationTime(n,t) self.times[n]=t; self.playing[n]=false end
     for _,p in ipairs(BoxTruckBody.PARTS) do v.spec_animatedVehicle.animations[p.anim]={currentSpeed=1} end
     for _,side in ipairs({'Left','Right'}) do
-        local parent=node('curtain'..side..'Open'); v.i3dMappings[parent.name]=parent
+        local parent=node('curtain'..side..'Open'); v.i3dMappings[parent.name]={nodeId=parent}
         link(parent,node('curtain'..side..'Gathered')); link(parent,node('curtain'..side..'GatheredStraps'))
     end
     BoxTruckBody.onLoad(v)
