@@ -2,7 +2,17 @@
 
 Farming Simulator 25 box truck for hauling pallets, by PropaineX.
 
-## Current version: 1.3.0.1
+## Current release: 1.3.0.4
+
+October 27, 2026: the curtain, banner, bottom reinforcement band, straps and buckles now move together continuously between shut and the selected gathered shape. All three shapes on both sides use the same reversible transition, with artwork visible throughout. Random selection, networking, saves and loading controls are preserved.
+
+Lua and asset regressions, hardware attachment checks, all 347 node mappings, and package verification pass. GIANTS Editor previews verify closed, intermediate and gathered positions. Full vehicle gameplay and multiplayer rendering remain untested.
+
+Local testing ZIP: `FarmingSimulator2025/Testing_local/FS25_BoxTruck_ProEdition.zip` ? 21 runtime files, 64,537,218 bytes. SHA-256: `d987e511b2e3b7d352ced84261cc2631b47a262d482497be91c33071009b46ee`. The identical ZIP was delivered to remote `/testing` and passed full SHA-256 readback. Delivery is recorded in `chat_history/2026-10-27_1.3.0.4_testing_release.md`.
+
+Finished animated preview: `previews/curtain_straps_motion_v2/curtain_straps_open_close_loop.gif`. Implementation notes: `chat_history/2026-10-27_curtain_shape_motion.md` and `chat_history/2026-10-27_moving_curtain_straps.md`.
+
+## Previous version: 1.3.0.1
 
 Curtain attachment fix: use the mapping record's `nodeId` when linking runtime gathered curtains. Corrected regression checks pass; actual in-game verification remains pending. The new Testing_local ZIP is 50,453,200 bytes, SHA-256 `50693c7c85c8a57772260fdbdc76975cd180bee3334c2263cbdbf24a18cea6c0`. See `chat_history/2026-10-26_1.3.0.1_testing_release.md`; the 1.3.0.0 delivery details below describe the previous build.
 
@@ -36,4 +46,4 @@ See [implementation notes](chat_history/2026-10-26_random_gathered_curtains.md),
 - `reference_*.md` - measurements taken from other trucks (reference only, nothing copied).
 - `chat_history/` - session notes.
 
-Private repo: the finished mod will contain GIANTS' FH16 files, which can't be published.
+Repository: `PropaineX/FS25_ProEdition_BoxTruck`. The truck uses the GIANTS FH16 base-game chassis and cab.

@@ -5,6 +5,21 @@
     "triangles": 8192
   },
   {
+    "name": "curtainBand",
+    "vertices": 7152,
+    "triangles": 2384
+  },
+  {
+    "name": "curtainStraps",
+    "vertices": 7893,
+    "triangles": 2631
+  },
+  {
+    "name": "curtainBuckles",
+    "vertices": 4278,
+    "triangles": 1426
+  },
+  {
     "name": "whiteInnerLining",
     "vertices": 561,
     "triangles": 1024
@@ -33,6 +48,21 @@
     "name": "cloth",
     "vertices": 4290,
     "triangles": 8192
+  },
+  {
+    "name": "curtainBand",
+    "vertices": 7152,
+    "triangles": 2384
+  },
+  {
+    "name": "curtainStraps",
+    "vertices": 7893,
+    "triangles": 2631
+  },
+  {
+    "name": "curtainBuckles",
+    "vertices": 4278,
+    "triangles": 1426
   },
   {
     "name": "whiteInnerLining",
@@ -65,6 +95,21 @@
     "triangles": 12288
   },
   {
+    "name": "curtainBand",
+    "vertices": 10284,
+    "triangles": 3428
+  },
+  {
+    "name": "curtainStraps",
+    "vertices": 8235,
+    "triangles": 2745
+  },
+  {
+    "name": "curtainBuckles",
+    "vertices": 4713,
+    "triangles": 1571
+  },
+  {
     "name": "whiteInnerLining",
     "vertices": 561,
     "triangles": 1024
@@ -93,6 +138,21 @@
     "name": "cloth",
     "vertices": 6402,
     "triangles": 12288
+  },
+  {
+    "name": "curtainBand",
+    "vertices": 10284,
+    "triangles": 3428
+  },
+  {
+    "name": "curtainStraps",
+    "vertices": 8235,
+    "triangles": 2745
+  },
+  {
+    "name": "curtainBuckles",
+    "vertices": 4713,
+    "triangles": 1571
   },
   {
     "name": "whiteInnerLining",
@@ -125,6 +185,21 @@
     "triangles": 10240
   },
   {
+    "name": "curtainBand",
+    "vertices": 9051,
+    "triangles": 3017
+  },
+  {
+    "name": "curtainStraps",
+    "vertices": 7863,
+    "triangles": 2621
+  },
+  {
+    "name": "curtainBuckles",
+    "vertices": 4620,
+    "triangles": 1540
+  },
+  {
     "name": "whiteInnerLining",
     "vertices": 561,
     "triangles": 1024
@@ -153,6 +228,21 @@
     "name": "cloth",
     "vertices": 5346,
     "triangles": 10240
+  },
+  {
+    "name": "curtainBand",
+    "vertices": 9051,
+    "triangles": 3017
+  },
+  {
+    "name": "curtainStraps",
+    "vertices": 7863,
+    "triangles": 2621
+  },
+  {
+    "name": "curtainBuckles",
+    "vertices": 4620,
+    "triangles": 1540
   },
   {
     "name": "whiteInnerLining",

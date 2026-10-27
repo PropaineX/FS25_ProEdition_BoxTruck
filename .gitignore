@@ -20,3 +20,13 @@ source/__pycache__/
 /previews/gathered_integration/AnimatedVehicle.lua
 /previews/gathered_integration/AnimatedVehicleStartEvent.lua
 /previews/gathered_integration/I3DManager.lua
+
+# Generated editor staging and frame sequences; retain finished review artifacts.
+/previews/curtain_shape_motion/*
+!/previews/curtain_shape_motion/*.gif
+!/previews/curtain_shape_motion/shape_progression.png
+!/previews/curtain_shape_motion/check.lua
+/previews/curtain_straps_motion_v1/
+/previews/curtain_straps_motion_v2/*
+!/previews/curtain_straps_motion_v2/*.gif
+!/previews/curtain_straps_motion_v2/check.lua

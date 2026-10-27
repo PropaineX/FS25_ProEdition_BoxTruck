@@ -125,6 +125,8 @@ function BoxTruckBody:onLoad(savegame)
     spec.curtainIndex = 1   -- selected curtain (only on this player's machine)
     spec.curtainVariants = {1, 1}
     spec.gatheredNodes = {{}, {}}
+    spec.curtainShapeTimes = {}
+    spec.closedCurtainSurfaces = {{}, {}}
     BoxTruckBody.loadGatheredCurtains(self)
 end
 
@@ -148,6 +150,17 @@ function BoxTruckBody.loadGatheredCurtains(self)
         local mapping = self.i3dMappings["curtain" .. side .. "Open"]
         local parent = mapping ~= nil and mapping.nodeId or nil
         assert(parent ~= nil and parent ~= 0, "Box Truck: missing curtain open pivot")
+        setVisibility(parent, true)
+        local closedMapping = self.i3dMappings["curtain" .. side .. "Closed"]
+        if closedMapping ~= nil then
+            for _, suffix in ipairs({"Cloth", "InnerLining", "ProEdition", "DesignKrone", "DesignFSL", "DesignGIANTS", "Band", "Straps", "Buckles"}) do
+                local surface = findCurtainNode(closedMapping.nodeId, "curtain" .. side .. suffix)
+                if surface ~= nil then
+                    table.insert(spec.closedCurtainSurfaces[sideIndex], surface)
+                    setVisibility(surface, false)
+                end
+            end
+        end
         for variant = 1, 3 do
             local group = findCurtainNode(root, "gathered" .. side .. variant)
             assert(group ~= nil, "Box Truck: missing gathered curtain variant")
@@ -167,6 +180,7 @@ function BoxTruckBody.loadGatheredCurtains(self)
         BoxTruckBody.setCurtainVariant(self, sideIndex, 1)
     end
     delete(root)
+    BoxTruckBody.updateCurtainShapes(self, true)
 end
 
 function BoxTruckBody:onDelete()
@@ -183,6 +197,32 @@ function BoxTruckBody.setCurtainVariant(self, side, variant)
     spec.curtainVariants[side] = variant
     for index, node in ipairs(spec.gatheredNodes[side]) do
         setVisibility(node, index == variant)
+    end
+end
+
+-- The cloth slide occupies the first 1.2 seconds of the longer board/post animation.
+-- The same textured vertices move between the shut panel and the selected gathered shape.
+function BoxTruckBody.updateCurtainShapes(self, resetHistory)
+    local spec = self[BoxTruckBody.SPEC_TABLE_NAME]
+    for side, part in ipairs(spec.curtains) do
+        local elapsed = self:getAnimationTime(part.anim) * self:getAnimationDuration(part.anim)
+        local amount = math.max(0, math.min(1, elapsed / 1200))
+        local previous = spec.curtainShapeTimes[side]
+        if previous == nil or resetHistory then previous = amount end
+        -- Write one settled frame as well, to clear the previous-position motion vector.
+        if previous ~= amount or spec.curtainShapeSettled == nil or not spec.curtainShapeSettled[side] or resetHistory then
+            for _, group in ipairs(spec.gatheredNodes[side]) do
+                for i = 0, getNumOfChildren(group) - 1 do
+                    setShaderParameter(getChildAt(group, i), "curtainShape", amount, previous, 0, 0, false)
+                end
+            end
+        end
+        spec.curtainShapeSettled = spec.curtainShapeSettled or {}
+        spec.curtainShapeSettled[side] = previous == amount
+        spec.curtainShapeTimes[side] = amount
+        -- Shop configurations can re-enable original print nodes after onLoad.
+        for _, surface in ipairs(spec.closedCurtainSurfaces[side]) do setVisibility(surface, false) end
+        if self:getIsAnimationPlaying(part.anim) then self:raiseActive() end
     end
 end
 
@@ -226,6 +266,7 @@ function BoxTruckBody:onPostLoad(savegame)
             self:setAnimationTime(part.anim, time, true, false)
         end
     end
+    BoxTruckBody.updateCurtainShapes(self, true)
 end
 
 function BoxTruckBody:saveToXMLFile(xmlFile, key, usedModNames)
@@ -247,6 +288,7 @@ function BoxTruckBody:onReadStream(streamId, connection)
     for _, part in ipairs(spec.parts) do
         self:setAnimationTime(part.anim, streamReadFloat32(streamId), true, false)
     end
+    BoxTruckBody.updateCurtainShapes(self, true)
 end
 
 function BoxTruckBody:onWriteStream(streamId, connection)
@@ -317,6 +359,7 @@ end
 
 -- keep the help texts right, also when another player moves a part
 function BoxTruckBody:onUpdate(dt, isActiveForInput, isActiveForInputIgnoreSelection, isSelected)
+    BoxTruckBody.updateCurtainShapes(self)
     if isActiveForInputIgnoreSelection then
         BoxTruckBody.updateActionTexts(self)
     end

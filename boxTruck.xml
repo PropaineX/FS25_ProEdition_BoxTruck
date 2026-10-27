@@ -932,7 +932,7 @@
         <animation name="boxCurtainLeft">
             <part node="curtainLeftClosed" startTime="0.0" endTime="1.2" startScale="1 1 1" endScale="1 1 0.0744"/>
             <part node="curtainLeftClosed" startTime="1.15" endTime="1.2" startVisibility="true" endVisibility="false"/>
-            <part node="curtainLeftOpen"   startTime="1.15" endTime="1.2" startVisibility="false" endVisibility="true"/>
+
             <part node="colSideLeftPivot" startTime="0.0" endTime="0.1" startTrans="1.25 4.03 0" endTrans="1.25 6.53 0"/>
             <part node="boardLeft04" startTime="1.200" endTime="1.360" startTrans="1.2125 3.32 0.4" endTrans="1.55 1.4 0.4"/>
             <part node="boardLeft04" startTime="1.360" endTime="1.440" startRot="0 0 0" endRot="0 0 90"/>
@@ -1018,7 +1018,7 @@
         <animation name="boxCurtainRight">
             <part node="curtainRightClosed" startTime="0.0" endTime="1.2" startScale="1 1 1" endScale="1 1 0.0744"/>
             <part node="curtainRightClosed" startTime="1.15" endTime="1.2" startVisibility="true" endVisibility="false"/>
-            <part node="curtainRightOpen"   startTime="1.15" endTime="1.2" startVisibility="false" endVisibility="true"/>
+
             <part node="colSideRightPivot" startTime="0.0" endTime="0.1" startTrans="-1.25 4.03 0" endTrans="-1.25 6.53 0"/>
             <part node="boardRight04" startTime="1.200" endTime="1.360" startTrans="-1.2125 3.32 0.4" endTrans="-1.55 1.4 0.4"/>
             <part node="boardRight04" startTime="1.360" endTime="1.440" startRot="0 0 0" endRot="0 0 90"/>

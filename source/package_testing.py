@@ -8,6 +8,7 @@ out=ROOT.parent.parent/'Testing_local'
 out.mkdir(parents=True,exist_ok=True)
 files=[ROOT/n for n in ('modDesc.xml','boxTruck.xml','boxTruck.i3d','boxTruck.i3d.shapes','gatheredCurtains.i3d','gatheredCurtains.i3d.shapes')]
 files+=sorted(ROOT.glob('*.dds'))
+files+=sorted((ROOT/'shaders').glob('*.xml'))
 files+=sorted((ROOT/'scripts').rglob('*.lua'))
 names={p.relative_to(ROOT).as_posix() for p in files}
 for name in ('modDesc.xml','boxTruck.xml','boxTruck.i3d','gatheredCurtains.i3d'):

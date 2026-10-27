@@ -11,17 +11,20 @@
     <File fileId="7" filename="boxTruckFabric_detail_diffuse.dds"/>
     <File fileId="6" filename="boxTruckFabric_detail_normal.dds"/>
     <File fileId="5" filename="boxTruckFabric_detail_specular.dds"/>
-    <File fileId="14" filename="boxTruckProEditionCurtain_diffuse.dds"/>
-    <File fileId="4" filename="$data/shaders/vehicleShader.xml"/>
+    <File fileId="20" filename="boxTruckProEditionCurtain_diffuse.dds"/>
+    <File fileId="4" filename="shaders/curtainShapeShader.xml"/>
     <File fileId="13" filename="$data/shared/default_normal.png"/>
     <File fileId="3" filename="$data/shared/default_vmask.png"/>
-    <File fileId="16" filename="$data/shared/detailLibrary/flat_normal.png"/>
-    <File fileId="17" filename="$data/shared/detailLibrary/nonMetallic/plastic/plasticPainted_diffuse.png"/>
-    <File fileId="15" filename="$data/shared/detailLibrary/nonMetallic/plastic/plasticPainted_specular.png"/>
+    <File fileId="15" filename="$data/shared/detailLibrary/flat_normal.png"/>
+    <File fileId="19" filename="$data/shared/detailLibrary/metallic/metalGalvanized_diffuse.png"/>
+    <File fileId="18" filename="$data/shared/detailLibrary/metallic/metalGalvanized_normal.png"/>
+    <File fileId="17" filename="$data/shared/detailLibrary/metallic/metalGalvanized_specular.png"/>
+    <File fileId="16" filename="$data/shared/detailLibrary/nonMetallic/plastic/plasticPainted_diffuse.png"/>
+    <File fileId="14" filename="$data/shared/detailLibrary/nonMetallic/plastic/plasticPainted_specular.png"/>
     <File fileId="12" filename="$data/shared/white_diffuse.png"/>
-    <File fileId="18" filename="$data/vehicles/krone/profiLiner/profiLinerPaintjob1_diffuse.png"/>
-    <File fileId="19" filename="$data/vehicles/krone/profiLiner/profiLinerPaintjob2_diffuse.png"/>
-    <File fileId="20" filename="$data/vehicles/krone/profiLiner/profiLinerPaintjob3_diffuse.png"/>
+    <File fileId="21" filename="$data/vehicles/krone/profiLiner/profiLinerPaintjob1_diffuse.png"/>
+    <File fileId="22" filename="$data/vehicles/krone/profiLiner/profiLinerPaintjob2_diffuse.png"/>
+    <File fileId="23" filename="$data/vehicles/krone/profiLiner/profiLinerPaintjob3_diffuse.png"/>
   </Files>
 
 
@@ -39,30 +42,38 @@
       <CustomParameter name="clearCoatSmoothness" value="0.25"/>
     </Material>
     <Material name="designFSL" materialId="4" alphaBlending="true" customShaderId="4" customShaderVariation="vmaskUV2">
-      <Texture fileId="19"/>
+      <Texture fileId="22"/>
       <Normalmap fileId="13"/>
       <Glossmap fileId="3"/>
-      <Custommap name="detailSpecular" fileId="15"/>
-      <Custommap name="detailNormal" fileId="16"/>
-      <Custommap name="detailDiffuse" fileId="17"/>
+      <Custommap name="detailSpecular" fileId="14"/>
+      <Custommap name="detailNormal" fileId="15"/>
+      <Custommap name="detailDiffuse" fileId="16"/>
     </Material>
     <Material name="designGIANTS" materialId="5" alphaBlending="true" customShaderId="4" customShaderVariation="vmaskUV2">
-      <Texture fileId="20"/>
+      <Texture fileId="23"/>
       <Normalmap fileId="13"/>
       <Glossmap fileId="3"/>
-      <Custommap name="detailSpecular" fileId="15"/>
-      <Custommap name="detailNormal" fileId="16"/>
-      <Custommap name="detailDiffuse" fileId="17"/>
+      <Custommap name="detailSpecular" fileId="14"/>
+      <Custommap name="detailNormal" fileId="15"/>
+      <Custommap name="detailDiffuse" fileId="16"/>
     </Material>
     <Material name="designKrone" materialId="3" alphaBlending="true" customShaderId="4" customShaderVariation="vmaskUV2">
-      <Texture fileId="18"/>
+      <Texture fileId="21"/>
       <Normalmap fileId="13"/>
       <Glossmap fileId="3"/>
-      <Custommap name="detailSpecular" fileId="15"/>
-      <Custommap name="detailNormal" fileId="16"/>
-      <Custommap name="detailDiffuse" fileId="17"/>
+      <Custommap name="detailSpecular" fileId="14"/>
+      <Custommap name="detailNormal" fileId="15"/>
+      <Custommap name="detailDiffuse" fileId="16"/>
     </Material>
-    <Material name="gatheredWhiteLining" materialId="6" customShaderId="4">
+    <Material name="galvanized" materialId="7" customShaderId="4">
+      <Texture fileId="12"/>
+      <Normalmap fileId="13"/>
+      <Glossmap fileId="3"/>
+      <Custommap name="detailSpecular" fileId="17"/>
+      <Custommap name="detailNormal" fileId="18"/>
+      <Custommap name="detailDiffuse" fileId="19"/>
+    </Material>
+    <Material name="gatheredWhiteLining" materialId="8" customShaderId="4">
       <Texture fileId="12"/>
       <Normalmap fileId="13"/>
       <Glossmap fileId="3"/>
@@ -74,12 +85,21 @@
       <CustomParameter name="clearCoatSmoothness" value="0.25"/>
     </Material>
     <Material name="proEditionDecal" materialId="2" alphaBlending="true" customShaderId="4" customShaderVariation="vmaskUV2">
-      <Texture fileId="14"/>
+      <Texture fileId="20"/>
       <Normalmap fileId="13"/>
       <Glossmap fileId="3"/>
-      <Custommap name="detailSpecular" fileId="15"/>
-      <Custommap name="detailNormal" fileId="16"/>
-      <Custommap name="detailDiffuse" fileId="17"/>
+      <Custommap name="detailSpecular" fileId="14"/>
+      <Custommap name="detailNormal" fileId="15"/>
+      <Custommap name="detailDiffuse" fileId="16"/>
+    </Material>
+    <Material name="strap" materialId="6" customShaderId="4">
+      <Texture fileId="12"/>
+      <Normalmap fileId="13"/>
+      <Glossmap fileId="3"/>
+      <Custommap name="detailSpecular" fileId="14"/>
+      <Custommap name="detailNormal" fileId="15"/>
+      <Custommap name="detailDiffuse" fileId="16"/>
+      <CustomParameter name="colorScale" value="0.015 0.015 0.015"/>
     </Material>
   </Materials>
 
@@ -88,53 +108,71 @@
   </Shapes>
 
   <Scene>
-    <TransformGroup name="gatheredLeft1" nodeId="44">
-      <Shape name="cloth" shapeId="1" clipDistance="100" nodeId="45" castsShadows="true" receiveShadows="true" materialIds="1"/>
-      <Shape name="whiteInnerLining" shapeId="2" clipDistance="100" nodeId="46" castsShadows="true" receiveShadows="true" materialIds="6"/>
-      <Shape name="ProEdition" shapeId="3" clipDistance="100" nodeId="47" castsShadows="false" receiveShadows="true" materialIds="2"/>
-      <Shape name="Krone" shapeId="4" clipDistance="100" nodeId="48" castsShadows="false" receiveShadows="true" materialIds="3"/>
-      <Shape name="FSL" shapeId="5" clipDistance="100" nodeId="49" castsShadows="false" receiveShadows="true" materialIds="4"/>
-      <Shape name="GIANTS" shapeId="6" clipDistance="100" nodeId="50" castsShadows="false" receiveShadows="true" materialIds="5"/>
+    <TransformGroup name="gatheredLeft1" nodeId="64">
+      <Shape name="cloth" shapeId="1" clipDistance="100" nodeId="65" castsShadows="true" receiveShadows="true" materialIds="1"/>
+      <Shape name="curtainBand" shapeId="2" clipDistance="100" nodeId="66" castsShadows="true" receiveShadows="true" materialIds="6"/>
+      <Shape name="curtainStraps" shapeId="3" clipDistance="100" nodeId="67" castsShadows="true" receiveShadows="true" materialIds="6"/>
+      <Shape name="curtainBuckles" shapeId="4" clipDistance="100" nodeId="68" castsShadows="true" receiveShadows="true" materialIds="7"/>
+      <Shape name="whiteInnerLining" shapeId="5" clipDistance="100" nodeId="69" castsShadows="true" receiveShadows="true" materialIds="8"/>
+      <Shape name="ProEdition" shapeId="6" clipDistance="100" nodeId="70" castsShadows="false" receiveShadows="true" materialIds="2"/>
+      <Shape name="Krone" shapeId="7" clipDistance="100" nodeId="71" castsShadows="false" receiveShadows="true" materialIds="3"/>
+      <Shape name="FSL" shapeId="8" clipDistance="100" nodeId="72" castsShadows="false" receiveShadows="true" materialIds="4"/>
+      <Shape name="GIANTS" shapeId="9" clipDistance="100" nodeId="73" castsShadows="false" receiveShadows="true" materialIds="5"/>
     </TransformGroup>
-    <TransformGroup name="gatheredRight1" nodeId="51">
-      <Shape name="cloth" shapeId="7" clipDistance="100" nodeId="52" castsShadows="true" receiveShadows="true" materialIds="1"/>
-      <Shape name="whiteInnerLining" shapeId="8" clipDistance="100" nodeId="53" castsShadows="true" receiveShadows="true" materialIds="6"/>
-      <Shape name="ProEdition" shapeId="9" clipDistance="100" nodeId="54" castsShadows="false" receiveShadows="true" materialIds="2"/>
-      <Shape name="Krone" shapeId="10" clipDistance="100" nodeId="55" castsShadows="false" receiveShadows="true" materialIds="3"/>
-      <Shape name="FSL" shapeId="11" clipDistance="100" nodeId="56" castsShadows="false" receiveShadows="true" materialIds="4"/>
-      <Shape name="GIANTS" shapeId="12" clipDistance="100" nodeId="57" castsShadows="false" receiveShadows="true" materialIds="5"/>
+    <TransformGroup name="gatheredRight1" nodeId="74">
+      <Shape name="cloth" shapeId="10" clipDistance="100" nodeId="75" castsShadows="true" receiveShadows="true" materialIds="1"/>
+      <Shape name="curtainBand" shapeId="11" clipDistance="100" nodeId="76" castsShadows="true" receiveShadows="true" materialIds="6"/>
+      <Shape name="curtainStraps" shapeId="12" clipDistance="100" nodeId="77" castsShadows="true" receiveShadows="true" materialIds="6"/>
+      <Shape name="curtainBuckles" shapeId="13" clipDistance="100" nodeId="78" castsShadows="true" receiveShadows="true" materialIds="7"/>
+      <Shape name="whiteInnerLining" shapeId="14" clipDistance="100" nodeId="79" castsShadows="true" receiveShadows="true" materialIds="8"/>
+      <Shape name="ProEdition" shapeId="15" clipDistance="100" nodeId="80" castsShadows="false" receiveShadows="true" materialIds="2"/>
+      <Shape name="Krone" shapeId="16" clipDistance="100" nodeId="81" castsShadows="false" receiveShadows="true" materialIds="3"/>
+      <Shape name="FSL" shapeId="17" clipDistance="100" nodeId="82" castsShadows="false" receiveShadows="true" materialIds="4"/>
+      <Shape name="GIANTS" shapeId="18" clipDistance="100" nodeId="83" castsShadows="false" receiveShadows="true" materialIds="5"/>
     </TransformGroup>
-    <TransformGroup name="gatheredLeft2" nodeId="58">
-      <Shape name="cloth" shapeId="13" clipDistance="100" nodeId="59" castsShadows="true" receiveShadows="true" materialIds="1"/>
-      <Shape name="whiteInnerLining" shapeId="14" clipDistance="100" nodeId="60" castsShadows="true" receiveShadows="true" materialIds="6"/>
-      <Shape name="ProEdition" shapeId="15" clipDistance="100" nodeId="61" castsShadows="false" receiveShadows="true" materialIds="2"/>
-      <Shape name="Krone" shapeId="16" clipDistance="100" nodeId="62" castsShadows="false" receiveShadows="true" materialIds="3"/>
-      <Shape name="FSL" shapeId="17" clipDistance="100" nodeId="63" castsShadows="false" receiveShadows="true" materialIds="4"/>
-      <Shape name="GIANTS" shapeId="18" clipDistance="100" nodeId="64" castsShadows="false" receiveShadows="true" materialIds="5"/>
+    <TransformGroup name="gatheredLeft2" nodeId="84">
+      <Shape name="cloth" shapeId="19" clipDistance="100" nodeId="85" castsShadows="true" receiveShadows="true" materialIds="1"/>
+      <Shape name="curtainBand" shapeId="20" clipDistance="100" nodeId="86" castsShadows="true" receiveShadows="true" materialIds="6"/>
+      <Shape name="curtainStraps" shapeId="21" clipDistance="100" nodeId="87" castsShadows="true" receiveShadows="true" materialIds="6"/>
+      <Shape name="curtainBuckles" shapeId="22" clipDistance="100" nodeId="88" castsShadows="true" receiveShadows="true" materialIds="7"/>
+      <Shape name="whiteInnerLining" shapeId="23" clipDistance="100" nodeId="89" castsShadows="true" receiveShadows="true" materialIds="8"/>
+      <Shape name="ProEdition" shapeId="24" clipDistance="100" nodeId="90" castsShadows="false" receiveShadows="true" materialIds="2"/>
+      <Shape name="Krone" shapeId="25" clipDistance="100" nodeId="91" castsShadows="false" receiveShadows="true" materialIds="3"/>
+      <Shape name="FSL" shapeId="26" clipDistance="100" nodeId="92" castsShadows="false" receiveShadows="true" materialIds="4"/>
+      <Shape name="GIANTS" shapeId="27" clipDistance="100" nodeId="93" castsShadows="false" receiveShadows="true" materialIds="5"/>
     </TransformGroup>
-    <TransformGroup name="gatheredRight2" nodeId="65">
-      <Shape name="cloth" shapeId="19" clipDistance="100" nodeId="66" castsShadows="true" receiveShadows="true" materialIds="1"/>
-      <Shape name="whiteInnerLining" shapeId="20" clipDistance="100" nodeId="67" castsShadows="true" receiveShadows="true" materialIds="6"/>
-      <Shape name="ProEdition" shapeId="21" clipDistance="100" nodeId="68" castsShadows="false" receiveShadows="true" materialIds="2"/>
-      <Shape name="Krone" shapeId="22" clipDistance="100" nodeId="69" castsShadows="false" receiveShadows="true" materialIds="3"/>
-      <Shape name="FSL" shapeId="23" clipDistance="100" nodeId="70" castsShadows="false" receiveShadows="true" materialIds="4"/>
-      <Shape name="GIANTS" shapeId="24" clipDistance="100" nodeId="71" castsShadows="false" receiveShadows="true" materialIds="5"/>
+    <TransformGroup name="gatheredRight2" nodeId="94">
+      <Shape name="cloth" shapeId="28" clipDistance="100" nodeId="95" castsShadows="true" receiveShadows="true" materialIds="1"/>
+      <Shape name="curtainBand" shapeId="29" clipDistance="100" nodeId="96" castsShadows="true" receiveShadows="true" materialIds="6"/>
+      <Shape name="curtainStraps" shapeId="30" clipDistance="100" nodeId="97" castsShadows="true" receiveShadows="true" materialIds="6"/>
+      <Shape name="curtainBuckles" shapeId="31" clipDistance="100" nodeId="98" castsShadows="true" receiveShadows="true" materialIds="7"/>
+      <Shape name="whiteInnerLining" shapeId="32" clipDistance="100" nodeId="99" castsShadows="true" receiveShadows="true" materialIds="8"/>
+      <Shape name="ProEdition" shapeId="33" clipDistance="100" nodeId="100" castsShadows="false" receiveShadows="true" materialIds="2"/>
+      <Shape name="Krone" shapeId="34" clipDistance="100" nodeId="101" castsShadows="false" receiveShadows="true" materialIds="3"/>
+      <Shape name="FSL" shapeId="35" clipDistance="100" nodeId="102" castsShadows="false" receiveShadows="true" materialIds="4"/>
+      <Shape name="GIANTS" shapeId="36" clipDistance="100" nodeId="103" castsShadows="false" receiveShadows="true" materialIds="5"/>
     </TransformGroup>
-    <TransformGroup name="gatheredLeft3" nodeId="72">
-      <Shape name="cloth" shapeId="25" clipDistance="100" nodeId="73" castsShadows="true" receiveShadows="true" materialIds="1"/>
-      <Shape name="whiteInnerLining" shapeId="26" clipDistance="100" nodeId="74" castsShadows="true" receiveShadows="true" materialIds="6"/>
-      <Shape name="ProEdition" shapeId="27" clipDistance="100" nodeId="75" castsShadows="false" receiveShadows="true" materialIds="2"/>
-      <Shape name="Krone" shapeId="28" clipDistance="100" nodeId="76" castsShadows="false" receiveShadows="true" materialIds="3"/>
-      <Shape name="FSL" shapeId="29" clipDistance="100" nodeId="77" castsShadows="false" receiveShadows="true" materialIds="4"/>
-      <Shape name="GIANTS" shapeId="30" clipDistance="100" nodeId="78" castsShadows="false" receiveShadows="true" materialIds="5"/>
+    <TransformGroup name="gatheredLeft3" nodeId="104">
+      <Shape name="cloth" shapeId="37" clipDistance="100" nodeId="105" castsShadows="true" receiveShadows="true" materialIds="1"/>
+      <Shape name="curtainBand" shapeId="38" clipDistance="100" nodeId="106" castsShadows="true" receiveShadows="true" materialIds="6"/>
+      <Shape name="curtainStraps" shapeId="39" clipDistance="100" nodeId="107" castsShadows="true" receiveShadows="true" materialIds="6"/>
+      <Shape name="curtainBuckles" shapeId="40" clipDistance="100" nodeId="108" castsShadows="true" receiveShadows="true" materialIds="7"/>
+      <Shape name="whiteInnerLining" shapeId="41" clipDistance="100" nodeId="109" castsShadows="true" receiveShadows="true" materialIds="8"/>
+      <Shape name="ProEdition" shapeId="42" clipDistance="100" nodeId="110" castsShadows="false" receiveShadows="true" materialIds="2"/>
+      <Shape name="Krone" shapeId="43" clipDistance="100" nodeId="111" castsShadows="false" receiveShadows="true" materialIds="3"/>
+      <Shape name="FSL" shapeId="44" clipDistance="100" nodeId="112" castsShadows="false" receiveShadows="true" materialIds="4"/>
+      <Shape name="GIANTS" shapeId="45" clipDistance="100" nodeId="113" castsShadows="false" receiveShadows="true" materialIds="5"/>
     </TransformGroup>
-    <TransformGroup name="gatheredRight3" nodeId="79">
-      <Shape name="cloth" shapeId="31" clipDistance="100" nodeId="80" castsShadows="true" receiveShadows="true" materialIds="1"/>
-      <Shape name="whiteInnerLining" shapeId="32" clipDistance="100" nodeId="81" castsShadows="true" receiveShadows="true" materialIds="6"/>
-      <Shape name="ProEdition" shapeId="33" clipDistance="100" nodeId="82" castsShadows="false" receiveShadows="true" materialIds="2"/>
-      <Shape name="Krone" shapeId="34" clipDistance="100" nodeId="83" castsShadows="false" receiveShadows="true" materialIds="3"/>
-      <Shape name="FSL" shapeId="35" clipDistance="100" nodeId="84" castsShadows="false" receiveShadows="true" materialIds="4"/>
-      <Shape name="GIANTS" shapeId="36" clipDistance="100" nodeId="85" castsShadows="false" receiveShadows="true" materialIds="5"/>
+    <TransformGroup name="gatheredRight3" nodeId="114">
+      <Shape name="cloth" shapeId="46" clipDistance="100" nodeId="115" castsShadows="true" receiveShadows="true" materialIds="1"/>
+      <Shape name="curtainBand" shapeId="47" clipDistance="100" nodeId="116" castsShadows="true" receiveShadows="true" materialIds="6"/>
+      <Shape name="curtainStraps" shapeId="48" clipDistance="100" nodeId="117" castsShadows="true" receiveShadows="true" materialIds="6"/>
+      <Shape name="curtainBuckles" shapeId="49" clipDistance="100" nodeId="118" castsShadows="true" receiveShadows="true" materialIds="7"/>
+      <Shape name="whiteInnerLining" shapeId="50" clipDistance="100" nodeId="119" castsShadows="true" receiveShadows="true" materialIds="8"/>
+      <Shape name="ProEdition" shapeId="51" clipDistance="100" nodeId="120" castsShadows="false" receiveShadows="true" materialIds="2"/>
+      <Shape name="Krone" shapeId="52" clipDistance="100" nodeId="121" castsShadows="false" receiveShadows="true" materialIds="3"/>
+      <Shape name="FSL" shapeId="53" clipDistance="100" nodeId="122" castsShadows="false" receiveShadows="true" materialIds="4"/>
+      <Shape name="GIANTS" shapeId="54" clipDistance="100" nodeId="123" castsShadows="false" receiveShadows="true" materialIds="5"/>
     </TransformGroup>
   </Scene>
 

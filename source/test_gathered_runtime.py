@@ -19,8 +19,9 @@ function getNumOfChildren(n) return #n.children end
 function getChildAt(n,i) return n.children[i+1] end
 function setVisibility(n,v) assert(n); n.visible=v end
 function setTranslation() end
+function setShaderParameter(n,name,x,y,z,w,shared) assert(name=="curtainShape" and shared==false); n.shape={x,y} end
 function delete() end
-function node(name) return {name=name,children={}} end
+function node(name) return {name=name,children={},visible=true} end
 function link(parent,n)
     assert(parent.children ~= nil, 'link requires a scene node, not an i3d mapping record')
     if n.parent then
@@ -32,7 +33,7 @@ g_i3DManager={loadSharedI3DFile=function()
     local root=node('asset')
     for _,side in ipairs({'Left','Right'}) do for v=1,3 do
         local group=node('gathered'..side..v); link(root,group)
-        for _,name in ipairs({'cloth','whiteInnerLining','ProEdition','Krone','FSL','GIANTS'}) do link(group,node(name)) end
+        for _,name in ipairs({'cloth','whiteInnerLining','ProEdition','Krone','FSL','GIANTS','curtainBand','curtainStraps','curtainBuckles'}) do link(group,node(name)) end
     end end
     return root,73
 end,releaseSharedI3DFile=function(self,id) assert(id==73); self.released=true end}
@@ -48,6 +49,8 @@ lua.execute(r'''
 function vehicle(server,design)
     local v={isServer=server,configurations={design8=design or 2},i3dMappings={},spec_animatedVehicle={animations={}},times={},playing={}}
     v[BoxTruckBody.SPEC_TABLE_NAME]={}
+    function v:getAnimationDuration() return 4800 end
+    function v:raiseActive() end
     function v:getAnimationExists() return true end
     function v:getAnimationTime(n) return self.times[n] or 0 end
     function v:getIsAnimationPlaying(n) return self.playing[n] or false end
@@ -55,6 +58,10 @@ function vehicle(server,design)
     for _,p in ipairs(BoxTruckBody.PARTS) do v.spec_animatedVehicle.animations[p.anim]={currentSpeed=1} end
     for _,side in ipairs({'Left','Right'}) do
         local parent=node('curtain'..side..'Open'); v.i3dMappings[parent.name]={nodeId=parent}
+        local closed=node('curtain'..side..'Closed'); v.i3dMappings[closed.name]={nodeId=closed}
+        for _,suffix in ipairs({'Cloth','InnerLining','ProEdition','DesignKrone','DesignFSL','DesignGIANTS','Band','Straps','Buckles'}) do
+            link(closed,node('curtain'..side..suffix))
+        end
         link(parent,node('curtain'..side..'Gathered')); link(parent,node('curtain'..side..'GatheredStraps'))
     end
     BoxTruckBody.onLoad(v)
@@ -119,15 +126,37 @@ for design=1,5 do
     local v=vehicle(false,design)
     for _,side in ipairs(v[BoxTruckBody.SPEC_TABLE_NAME].gatheredNodes) do for _,group in ipairs(side) do
         local visible=0
-        for _,n in ipairs(group.children) do if n.name~='cloth' and n.name~='whiteInnerLining' and n.visible then visible=visible+1 end end
+        for _,n in ipairs(group.children) do if n.name~='cloth' and n.name~='whiteInnerLining' and n.name:sub(1,7)~='curtain' and n.visible then visible=visible+1 end end
         assert(visible==(design==1 and 0 or 1))
     end end
+end
+-- Geometry follows the entire 1.2-second curtain slide, then remains gathered
+-- while boards finish. Reverse and late-join initialization use the same position.
+for _,v in ipairs({server,client,restored,legacy}) do
+    for side,part in ipairs(v[BoxTruckBody.SPEC_TABLE_NAME].curtains) do
+        for _,elapsed in ipairs({0,1,300,600,900,1199,1200,2400,1200,900,600,300,0}) do
+            v.times[part.anim]=elapsed/4800
+            BoxTruckBody.updateCurtainShapes(v)
+            for _,surface in ipairs(v[BoxTruckBody.SPEC_TABLE_NAME].closedCurtainSurfaces[side]) do
+                assert(surface.visible==false,'original surfaces must stay hidden, including straps')
+            end
+            for _,group in ipairs(v[BoxTruckBody.SPEC_TABLE_NAME].gatheredNodes[side]) do
+                for _,mesh in ipairs(group.children) do
+                    assert(math.abs(mesh.shape[1]-math.min(1,elapsed/1200))<1e-9)
+                end
+            end
+        end
+        v.times[part.anim]=.125
+        BoxTruckBody.updateCurtainShapes(v,true)
+        local mesh=v[BoxTruckBody.SPEC_TABLE_NAME].gatheredNodes[side][1].children[1]
+        assert(mesh.shape[1]==.5 and mesh.shape[2]==.5)
+    end
 end
 BoxTruckBody.onDelete(server); assert(g_i3DManager.released)
 ''')
 asset=ET.parse(ROOT/'gatheredCurtains.i3d').getroot()
 groups=list(asset.find('Scene')); assert len(groups)==6
-assert all(len(g)==6 for g in groups)
+assert all(len(g)==9 for g in groups)
 materials={m.get('materialId'):m for m in asset.find('Materials')}
 files={f.get('fileId'):f.get('filename') for f in asset.find('Files')}
 for g in groups:
@@ -141,6 +170,23 @@ assert (ROOT/'gatheredCurtains.i3d.shapes').stat().st_size>0
 geometry=ET.parse(ROOT/'previews/gathered_integration/gatheredCurtains_ascii.i3d').getroot()
 for mesh in geometry.find('Shapes'):
     vv=mesh.find('Vertices'); tt=mesh.find('Triangles')
+    assert vv.get('uv2')=='true' and vv.get('uv3')=='true'
+    for v in vv:
+        rest=list(map(float,v.get('p').split()))
+        xy=list(map(float,v.get('t2').split()))
+        zn=list(map(float,v.get('t3').split()))
+        assert len(xy)==2 and len(zn)==2 and abs(zn[1])==1
+        assert 1.2<xy[1]<4.1 and -.1<=zn[0]<1.1
+        assert 1.4<=rest[1]<=4.07 and -.001<=rest[2]<=6.721
+        # Every intermediate vertex is a continuous affine combination of the
+        # same rest and gathered vertex; UV0/UV1 remain unchanged.
+        target=[xy[0],xy[1],zn[0]]
+        previous=rest
+        for t in (0,.001,.25,.5,.75,.999,1):
+            pos=[a+(b-a)*t for a,b in zip(rest,target)]
+            assert all(min(a,b)-1e-6<=v<=max(a,b)+1e-6 for v,a,b in zip(pos,rest,target))
+            previous=pos
+
     assert int(vv.get('count'))==len(vv)
     assert int(tt.get('count'))==len(tt)
     assert all(0<=int(i)<len(vv) for t in tt for i in t.get('vi').split())
@@ -151,4 +197,16 @@ for side in ('Left','Right'):
     material=base_mats[inner.get('materialIds')]
     assert material.get('name')=='boxTruckWhiteInnerLining'
     assert material.find('Texture').get('fileId')=='2'
-print('PASS: random openings, no mid-opening/closing rerolls, independent sides, client authority, event roundtrip, late join, save/restore, legacy saves, all designs, asset indices, and white lining texture.')
+print('PASS: continuous shape geometry and timing, reverse motion, fixed artwork UVs, random openings, no mid-opening/closing rerolls, independent sides, client authority, event roundtrip, late join, save/restore, legacy saves, all designs, asset indices, and white lining texture.')
+
+shader=ET.parse(ROOT/'shaders/curtainShapeShader.xml').getroot()
+stock=ET.parse('G:/SteamLibrary/steamapps/common/Farming Simulator 25/data/shaders/vehicleShader.xml').getroot()
+for hook in ('ALPHA_FS','POST_DIFFUSE_COLOR_FS','POST_GLOSS_COLOR_FS'):
+    assert shader.find(".//CodeInjection[@position='"+hook+"']").text==stock.find(".//CodeInjection[@position='"+hook+"']").text
+for m in asset.find('Materials'):
+    assert files[m.get("customShaderId")]=="shaders/curtainShapeShader.xml"
+vehicle=ET.parse(ROOT/'boxTruck.xml').getroot()
+for side in ('Left','Right'):
+    anim=vehicle.find("animations/animation[@name='boxCurtain"+side+"']")
+    assert not any(p.get('node')=='curtain'+side+'Open' for p in anim)
+print('PASS: shader retains stock artwork and opacity; no end-of-slide mesh visibility swap.')
