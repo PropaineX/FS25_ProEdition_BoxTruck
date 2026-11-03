@@ -238,8 +238,9 @@ def curtain_anim(side, sgn):
         side, T, round(gathered, 4))
     out += '            <part node="curtain%sClosed" startTime="%g" endTime="%g" startVisibility="true" endVisibility="false"/>\n' % (side, T - 0.05, T)
     out += '            <part node="curtain%sOpen"   startTime="%g" endTime="%g" startVisibility="false" endVisibility="true"/>\n' % (side, T - 0.05, T)
-    out += '            <part node="colSide%sPivot" startTime="0.0" endTime="0.1" startTrans="%s" endTrans="%s"/>\n' % (
-        side, fmt(cs), fmt([cs[0], cs[1] + SIDE_COL_LIFT, cs[2]]))
+    # side wall folds inward flat under the roof (lifting it above the roof made an invisible wall under low buildings)
+    out += '            <part node="colSide%sPivot" startTime="0.0" endTime="0.1" startRot="0 0 0" endRot="0 0 %g"/>\n' % (
+        side, -90 * sgn)
     # side boards: stowed in piles under the body instead of vanishing (board_stow.py, user 2026-10-24)
     stow_lines, landings = board_stow.stow_parts(side, sgn, T)
     out += ''.join(line + '\n' for line in stow_lines)

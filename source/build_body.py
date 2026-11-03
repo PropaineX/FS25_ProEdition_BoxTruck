@@ -11,7 +11,7 @@
 #     curtainLeft/Right             origin at the curtain's front edge; scale z -> bunches at the front
 #     rearDoorLeft/Right            origin on the outer hinge line; rotate about y to open (100 deg)
 #     collisions                    invisible compound children (floor, front wall, roof)
-#       colSideLeftPivot/Right      origin on the top rail; lifted 2.5 m (above the roof) while the curtain is open
+#       colSideLeftPivot/Right      origin on the top rail; folds inward flat under the roof while the curtain is open
 #     tensionBelts                  beltStartNN (local z across the box) -> beltStartNNEnd
 #     beltActivationTrigger
 import bpy, bmesh, sys, os, math
@@ -540,7 +540,7 @@ col('colFloor', cols, -HALF_W, HALF_W, FLOOR_Y - 0.12, FLOOR_Y, REAR_Z + 0.14, F
 col('colFrontWall', cols, -HALF_W, HALF_W, FLOOR_Y, ROOF_Y - 0.06, FRONT_Z - 0.13, FRONT_Z - 0.03)   # inside of the ProfiLiner sheet
 col('colRoof', cols, -HALF_W, HALF_W, ROOF_Y - 0.10, ROOF_Y, REAR_Z + 0.14, FRONT_Z)
 for side, sgn in (('Left', 1), ('Right', -1)):
-    # side wall: lifted straight up above the roof while the curtain is open (moves only in its own plane)
+    # side wall: folds inward on its top-rail pivot, flat under the roof, while the curtain is open
     pivot = group('colSide%sPivot' % side, cols, sgn * 1.25, ROOF_Y - 0.20, 0)
     col('colSide' + side, pivot, *sorted((sgn * 1.23, sgn * 1.27)), FLOOR_Y, ROOF_Y - 0.20, REAR_Z + 0.14, FRONT_Z - 0.08)
     # the posts keep their own collision and slide back with them
