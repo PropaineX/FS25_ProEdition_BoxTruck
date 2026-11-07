@@ -1,0 +1,10 @@
+{
+  "height_m": 0.3,
+  "width_m": 2.37,
+  "side_board_height_m": 0.6,
+  "material": "diamond-pattern stainless steel",
+  "raised_diamonds": 234,
+  "both_configurations": true,
+  "proposal_only": true,
+  "runtime_changed": false
+}

@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<i3D xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="reflectiveBands" version="1.6" xsi:noNamespaceSchemaLocation="http://i3d.giants.ch/schema/i3d-1.6.xsd">
+  <Asset>
+    <Export program="i3dConverter" version="1.0" />
+  </Asset>
+
+  <Files>
+  </Files>
+
+
+  <Materials>
+    <Material name="Safety tape red preview" materialId="2" diffuseColor="0.8 0.0117647 0.0196078 1" emissiveColor="0 0 0 1" specularColor="0.8 1 0.301961">
+    </Material>
+    <Material name="Safety tape white preview" materialId="1" diffuseColor="0.94902 0.94902 0.921569 1" emissiveColor="0 0 0 1" specularColor="0.8 1 0.301961">
+    </Material>
+  </Materials>
+
+
+  <Shapes externalShapesFile="reflectiveBands.i3d.shapes">
+  </Shapes>
+
+  <Scene>
+    <Shape name="Reflective safety band left" shapeId="1" nodeId="6" castsShadows="true" receiveShadows="true" materialIds="1,2" />
+    <Shape name="Reflective safety band right" shapeId="2" nodeId="7" castsShadows="true" receiveShadows="true" materialIds="1,2" />
+  </Scene>
+
+</i3D>

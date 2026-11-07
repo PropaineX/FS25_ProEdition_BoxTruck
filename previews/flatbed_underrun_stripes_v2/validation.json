@@ -1,0 +1,10 @@
+{
+  "proposal_only": true,
+  "bands": 2,
+  "band_width_m": 0.48,
+  "end_margin_m": 0.04,
+  "tube_diameter_m": 0.13,
+  "stripe_width_m": 0.065,
+  "retroreflection": "UNTESTED; visual mockup materials only",
+  "runtime_changes": false
+}

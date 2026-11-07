@@ -1,0 +1,315 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<i3D xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="flatbedBody" version="1.6" xsi:noNamespaceSchemaLocation="http://i3d.giants.ch/schema/i3d-1.6.xsd">
+  <Asset>
+    <Export program="i3dConverter" version="1.0" />
+  </Asset>
+
+  <Files>
+  <File fileId="1" filename="$data/shaders/vehicleShader.xml" /><File fileId="2" filename="$data/shared/detailLibrary/nonMetallic/metal/metalPainted_diffuse.png" /><File fileId="3" filename="$data/shared/detailLibrary/flat_normal.png" /><File fileId="4" filename="$data/shared/detailLibrary/nonMetallic/metal/metalPainted_specular.png" /><File fileId="5" filename="$data/shared/white_diffuse.png" /><File fileId="6" filename="$data/shared/default_normal.png" /><File fileId="7" filename="$data/shared/default_vmask.png" /><File fileId="8" filename="$data/shared/detailLibrary/metallic/silverCircularBrushed_diffuse.png" /><File fileId="9" filename="$data/shared/detailLibrary/metallic/silverCircularBrushed_normal.png" /><File fileId="10" filename="$data/shared/detailLibrary/metallic/silverCircularBrushed_specular.png" /><File fileId="11" filename="$data/shared/detailLibrary/nonMetallic/wood/wood2_diffuse.png" /><File fileId="12" filename="$data/shared/detailLibrary/nonMetallic/wood/wood2_normal.png" /><File fileId="13" filename="$data/shared/detailLibrary/nonMetallic/wood/wood2_specular.png" /><File fileId="14" filename="C:/Users/groov/OneDrive/Documents/My Games/FarmingSimulator2025/MOD PROJECTS/FS25_BoxTruck_ProEdition/flatbedDeckWeathered_diffuse.dds" /><File fileId="15" filename="C:/Users/groov/OneDrive/Documents/My Games/FarmingSimulator2025/MOD PROJECTS/FS25_BoxTruck_ProEdition/flatbedDeckWeathered_normal.dds" /></Files>
+
+
+  <Materials>
+    <Material name="default" materialId="10" customShaderId="1">
+    <CustomParameter name="colorScale" value="0.501961 0.501961 0.501961" /><Custommap name="detailDiffuse" fileId="2" /><Custommap name="detailNormal" fileId="3" /><Custommap name="detailSpecular" fileId="4" /><Texture fileId="5" /><Normalmap fileId="6" /><Glossmap fileId="7" /></Material>
+    <Material name="Flatbed aluminum" materialId="3" customShaderId="1">
+    <CustomParameter name="colorScale" value="0.6 0.65098 0.701961" /><CustomParameter name="smoothnessScale" value="0.65" /><Custommap name="detailDiffuse" fileId="8" /><Custommap name="detailNormal" fileId="9" /><Custommap name="detailSpecular" fileId="10" /><Texture fileId="5" /><Normalmap fileId="6" /><Glossmap fileId="7" /></Material>
+    <Material name="Flatbed dark steel" materialId="2" customShaderId="1">
+    <CustomParameter name="colorScale" value="0.054902 0.0666667 0.0745098" /><Custommap name="detailDiffuse" fileId="2" /><Custommap name="detailNormal" fileId="3" /><Custommap name="detailSpecular" fileId="4" /><Texture fileId="5" /><Normalmap fileId="6" /><Glossmap fileId="7" /></Material>
+    <Material name="Flatbed load floor" materialId="4" customShaderId="1">
+    <CustomParameter name="colorScale" value="0.8 0.8 0.8" /><Custommap name="detailDiffuse" fileId="11" /><Custommap name="detailNormal" fileId="12" /><Custommap name="detailSpecular" fileId="13" /><Texture fileId="14" /><Normalmap fileId="15" /><Glossmap fileId="7" /><CustomParameter name="porosity" value="1.0" /></Material>
+    <Material name="flatbedLamp_Amber_side_marker" materialId="1" customShaderId="1" customShaderVariation="staticLight_vertex">
+    <CustomParameter name="colorScale" value="1 0.278431 0.0117647" /><CustomParameter name="lightIds0" value="0 0 0 0" /><Custommap name="detailDiffuse" fileId="2" /><Custommap name="detailNormal" fileId="3" /><Custommap name="detailSpecular" fileId="4" /><Texture fileId="5" /><Normalmap fileId="6" /><Glossmap fileId="7" /></Material>
+    <Material name="flatbedLamp_flatbedReverseLens" materialId="9" customShaderId="1" customShaderVariation="staticLight_vertex">
+    <CustomParameter name="colorScale" value="1 1 1" /><CustomParameter name="lightIds0" value="0 0 0 0" /><Custommap name="detailDiffuse" fileId="2" /><Custommap name="detailNormal" fileId="3" /><Custommap name="detailSpecular" fileId="4" /><Texture fileId="5" /><Normalmap fileId="6" /><Glossmap fileId="7" /></Material>
+    <Material name="flatbedLamp_Rear_lamp_red" materialId="6" customShaderId="1" customShaderVariation="staticLight_vertex">
+    <CustomParameter name="colorScale" value="1 0.0156863 0.0156863" /><CustomParameter name="lightIds0" value="0 0 0 0" /><Custommap name="detailDiffuse" fileId="2" /><Custommap name="detailNormal" fileId="3" /><Custommap name="detailSpecular" fileId="4" /><Texture fileId="5" /><Normalmap fileId="6" /><Glossmap fileId="7" /></Material>
+    <Material name="Headboard paint" materialId="5" customShaderId="1">
+    <CustomParameter name="colorScale" value="0.780392 0.811765 0.831373" /><Custommap name="detailDiffuse" fileId="2" /><Custommap name="detailNormal" fileId="3" /><Custommap name="detailSpecular" fileId="4" /><Texture fileId="5" /><Normalmap fileId="6" /><Glossmap fileId="7" /></Material>
+    <Material name="Polished raised diamond tread" materialId="11" customShaderId="1">
+    <CustomParameter name="colorScale" value="0.941177 0.960784 0.980392" /><CustomParameter name="smoothnessScale" value="0.65" /><Custommap name="detailDiffuse" fileId="8" /><Custommap name="detailNormal" fileId="9" /><Custommap name="detailSpecular" fileId="10" /><Texture fileId="5" /><Normalmap fileId="6" /><Glossmap fileId="7" /></Material>
+    <Material name="Safety tape red preview" materialId="8" customShaderId="1" customShaderVariation="reflector">
+    <CustomParameter name="colorScale" value="0.8 0.0117647 0.0196078" /><Custommap name="detailDiffuse" fileId="2" /><Custommap name="detailNormal" fileId="3" /><Custommap name="detailSpecular" fileId="4" /><Texture fileId="5" /><Normalmap fileId="6" /><Glossmap fileId="7" /></Material>
+    <Material name="Safety tape white preview" materialId="7" customShaderId="1" customShaderVariation="reflector">
+    <CustomParameter name="colorScale" value="0.94902 0.94902 0.921569" /><Custommap name="detailDiffuse" fileId="2" /><Custommap name="detailNormal" fileId="3" /><Custommap name="detailSpecular" fileId="4" /><Texture fileId="5" /><Normalmap fileId="6" /><Glossmap fileId="7" /></Material>
+    <Material name="Tailgate latch steel" materialId="13" customShaderId="1">
+    <CustomParameter name="colorScale" value="0.129412 0.14902 0.168627" /><Custommap name="detailDiffuse" fileId="2" /><Custommap name="detailNormal" fileId="3" /><Custommap name="detailSpecular" fileId="4" /><Texture fileId="5" /><Normalmap fileId="6" /><Glossmap fileId="7" /></Material>
+    <Material name="Tailgate stainless steel" materialId="12" customShaderId="1">
+    <CustomParameter name="colorScale" value="0.721569 0.74902 0.780392" /><CustomParameter name="smoothnessScale" value="0.65" /><Custommap name="detailDiffuse" fileId="8" /><Custommap name="detailNormal" fileId="9" /><Custommap name="detailSpecular" fileId="10" /><Texture fileId="5" /><Normalmap fileId="6" /><Glossmap fileId="7" /></Material>
+  </Materials>
+
+
+  <Shapes externalShapesFile="flatbedBody.i3d.shapes">
+  </Shapes>
+
+  <Scene>
+    <TransformGroup name="flatbedBody" nodeId="208">
+      <TransformGroup name="Flatbed_FIXED" nodeId="209">
+        <Shape name="Amber side marker" translation="-1.28 1.51 -4.8" shapeId="1" nodeId="210" castsShadows="true" receiveShadows="true" materialIds="1" />
+        <Shape name="Amber side marker.001" translation="-1.28 1.51 -3" shapeId="1" nodeId="211" castsShadows="true" receiveShadows="true" materialIds="1" />
+        <Shape name="Amber side marker.002" translation="-1.28 1.51 -1.2" shapeId="1" nodeId="212" castsShadows="true" receiveShadows="true" materialIds="1" />
+        <Shape name="Amber side marker.003" translation="-1.28 1.51 0.65" shapeId="1" nodeId="213" castsShadows="true" receiveShadows="true" materialIds="1" />
+        <Shape name="Amber side marker.004" translation="1.28 1.51 -4.8" shapeId="1" nodeId="214" castsShadows="true" receiveShadows="true" materialIds="1" />
+        <Shape name="Amber side marker.005" translation="1.28 1.51 -3" shapeId="1" nodeId="215" castsShadows="true" receiveShadows="true" materialIds="1" />
+        <Shape name="Amber side marker.006" translation="1.28 1.51 -1.2" shapeId="1" nodeId="216" castsShadows="true" receiveShadows="true" materialIds="1" />
+        <Shape name="Amber side marker.007" translation="1.28 1.51 0.65" shapeId="1" nodeId="217" castsShadows="true" receiveShadows="true" materialIds="1" />
+        <Shape name="Deck crossmember" translation="0 1.43 -5.1" shapeId="2" nodeId="218" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Deck crossmember.001" translation="0 1.43 -4.52" shapeId="2" nodeId="219" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Deck crossmember.002" translation="0 1.43 -3.94" shapeId="2" nodeId="220" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Deck crossmember.003" translation="0 1.43 -3.36" shapeId="2" nodeId="221" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Deck crossmember.004" translation="0 1.43 -2.78" shapeId="2" nodeId="222" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Deck crossmember.005" translation="0 1.43 -2.2" shapeId="2" nodeId="223" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Deck crossmember.006" translation="0 1.43 -1.62" shapeId="2" nodeId="224" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Deck crossmember.007" translation="0 1.43 -1.04" shapeId="2" nodeId="225" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Deck crossmember.008" translation="0 1.43 -0.46" shapeId="2" nodeId="226" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Deck crossmember.009" translation="0 1.43 0.12" shapeId="2" nodeId="227" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Deck crossmember.010" translation="0 1.43 0.7" shapeId="2" nodeId="228" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Deck crossmember.011" translation="0 1.43 1.28" shapeId="2" nodeId="229" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Deck edge aluminum rail" translation="-1.24 1.575 -1.925" shapeId="3" nodeId="230" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Deck edge aluminum rail.001" translation="1.24 1.575 -1.925" shapeId="3" nodeId="231" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Deck plank 00" translation="-1.13233 1.62 -1.925" shapeId="4" nodeId="232" castsShadows="true" receiveShadows="true" materialIds="4" />
+        <Shape name="Deck plank 01" translation="-0.971 1.62 -1.925" shapeId="5" nodeId="233" castsShadows="true" receiveShadows="true" materialIds="4" />
+        <Shape name="Deck plank 02" translation="-0.809667 1.62 -1.925" shapeId="6" nodeId="234" castsShadows="true" receiveShadows="true" materialIds="4" />
+        <Shape name="Deck plank 03" translation="-0.648333 1.62 -1.925" shapeId="7" nodeId="235" castsShadows="true" receiveShadows="true" materialIds="4" />
+        <Shape name="Deck plank 04" translation="-0.487 1.62 -1.925" shapeId="8" nodeId="236" castsShadows="true" receiveShadows="true" materialIds="4" />
+        <Shape name="Deck plank 05" translation="-0.325667 1.62 -1.925" shapeId="9" nodeId="237" castsShadows="true" receiveShadows="true" materialIds="4" />
+        <Shape name="Deck plank 06" translation="-0.164333 1.62 -1.925" shapeId="10" nodeId="238" castsShadows="true" receiveShadows="true" materialIds="4" />
+        <Shape name="Deck plank 07" translation="-0.003 1.62 -1.925" shapeId="11" nodeId="239" castsShadows="true" receiveShadows="true" materialIds="4" />
+        <Shape name="Deck plank 08" translation="0.158333 1.62 -1.925" shapeId="12" nodeId="240" castsShadows="true" receiveShadows="true" materialIds="4" />
+        <Shape name="Deck plank 09" translation="0.319667 1.62 -1.925" shapeId="13" nodeId="241" castsShadows="true" receiveShadows="true" materialIds="4" />
+        <Shape name="Deck plank 10" translation="0.481 1.62 -1.925" shapeId="14" nodeId="242" castsShadows="true" receiveShadows="true" materialIds="4" />
+        <Shape name="Deck plank 11" translation="0.642333 1.62 -1.925" shapeId="15" nodeId="243" castsShadows="true" receiveShadows="true" materialIds="4" />
+        <Shape name="Deck plank 12" translation="0.803667 1.62 -1.925" shapeId="16" nodeId="244" castsShadows="true" receiveShadows="true" materialIds="4" />
+        <Shape name="Deck plank 13" translation="0.965 1.62 -1.925" shapeId="17" nodeId="245" castsShadows="true" receiveShadows="true" materialIds="4" />
+        <Shape name="Deck plank 14" translation="1.12633 1.62 -1.925" shapeId="18" nodeId="246" castsShadows="true" receiveShadows="true" materialIds="4" />
+        <Shape name="Headboard horizontal rail" translation="0 2.4575 1.515" shapeId="19" nodeId="247" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Headboard horizontal rail.001" translation="0 2.7775 1.515" shapeId="19" nodeId="248" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Headboard horizontal rail.002" translation="0 3.0975 1.515" shapeId="19" nodeId="249" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Headboard horizontal rail.003" translation="0 3.4175 1.515" shapeId="19" nodeId="250" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Headboard lower protection" translation="0 2.005 1.515" shapeId="20" nodeId="251" castsShadows="true" receiveShadows="true" materialIds="5" />
+        <Shape name="Headboard top" translation="0 3.694 1.52" shapeId="21" nodeId="252" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Headboard upright" translation="-1.24 2.679 1.52" shapeId="22" nodeId="253" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Headboard upright.001" translation="1.24 2.679 1.52" shapeId="22" nodeId="254" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Headboard vertical bar" translation="-0.6 3.01 1.515" shapeId="23" nodeId="255" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Headboard vertical bar.001" translation="0 3.01 1.515" shapeId="23" nodeId="256" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Headboard vertical bar.002" translation="0.6 3.01 1.515" shapeId="23" nodeId="257" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Rear lamp amber" translation="-0.6975 0.985 -5.385" shapeId="24" nodeId="258" castsShadows="true" receiveShadows="true" materialIds="1" />
+        <Shape name="Rear lamp amber.001" translation="1.0025 0.985 -5.385" shapeId="24" nodeId="259" castsShadows="true" receiveShadows="true" materialIds="1" />
+        <Shape name="Rear lamp red" translation="-0.94 0.985 -5.385" shapeId="25" nodeId="260" castsShadows="true" receiveShadows="true" materialIds="6" />
+        <Shape name="Rear lamp red.001" translation="0.76 0.985 -5.385" shapeId="25" nodeId="261" castsShadows="true" receiveShadows="true" materialIds="6" />
+        <Shape name="Rear light bar" translation="0 0.985 -5.305" shapeId="26" nodeId="262" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Rear underrun bracket" translation="-0.85 1.065 -5.19" shapeId="27" nodeId="263" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Rear underrun bracket.001" translation="0.85 1.065 -5.19" shapeId="27" nodeId="264" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Rear underrun round tube" translation="0 0.615 -5.255" shapeId="28" nodeId="265" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Reflective safety band left" shapeId="29" nodeId="266" castsShadows="true" receiveShadows="true" materialIds="7,8" />
+        <Shape name="Reflective safety band right" shapeId="30" nodeId="267" castsShadows="true" receiveShadows="true" materialIds="7,8" />
+        <Shape name="Structural deck" translation="0 1.56 -1.925" shapeId="31" nodeId="268" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Subframe rail" translation="-0.42 1.34 -1.86" shapeId="32" nodeId="269" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Subframe rail.001" translation="0.42 1.34 -1.86" shapeId="32" nodeId="270" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="flatbedReverseLens" translation="-0.345 0.985 -5.387" shapeId="33" nodeId="271" castsShadows="true" receiveShadows="true" materialIds="9" />
+      </TransformGroup>
+      <TransformGroup name="OPTION_BOARDS" nodeId="272">
+        <Shape name="Board fixed post" translation="-1.235 1.92 -5.35" shapeId="34" nodeId="273" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board fixed post.001" translation="-1.235 1.92 -3.06667" shapeId="34" nodeId="274" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board fixed post.002" translation="-1.235 1.92 -0.783333" shapeId="34" nodeId="275" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board fixed post.003" translation="-1.235 1.92 1.5" shapeId="34" nodeId="276" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board fixed post.004" translation="1.235 1.92 -5.35" shapeId="34" nodeId="277" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board fixed post.005" translation="1.235 1.92 -3.06667" shapeId="34" nodeId="278" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board fixed post.006" translation="1.235 1.92 -0.783333" shapeId="34" nodeId="279" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board fixed post.007" translation="1.235 1.92 1.5" shapeId="34" nodeId="280" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <TransformGroup name="flatbedBoardLeft1" translation="-1.275 1.64 -4.20833" nodeId="281">
+          <Shape name="Board extrusion" translation="-0.005 0.0465 0" shapeId="35" nodeId="282" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.001" translation="-0.005 0.1865 0" shapeId="35" nodeId="283" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.002" translation="-0.005 0.3265 0" shapeId="35" nodeId="284" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.003" translation="-0.005 0.4665 0" shapeId="35" nodeId="285" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.004" translation="-0.005 0.5565 0" shapeId="35" nodeId="286" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board hinge barrel" translation="-0.00999999 0 -0.956666" shapeId="36" nodeId="287" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board hinge barrel.001" translation="-0.00999999 0 0.956667" shapeId="36" nodeId="288" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board latch" translation="-0.00999999 0.46 -0.956666" shapeId="37" nodeId="289" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board latch.001" translation="-0.00999999 0.46 0.956667" shapeId="37" nodeId="290" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Drop side panel" translation="0.025 0.295 0" shapeId="38" nodeId="291" castsShadows="true" receiveShadows="true" materialIds="3" />
+          <Shape name="flatbedColBoardLeft1" translation="0.025 0.295 0" shapeId="39" nodeId="292" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+        <TransformGroup name="flatbedBoardLeft2" translation="-1.275 1.64 -1.925" nodeId="293">
+          <Shape name="Board extrusion.005" translation="-0.005 0.0465 0" shapeId="35" nodeId="294" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.006" translation="-0.005 0.1865 0" shapeId="35" nodeId="295" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.007" translation="-0.005 0.3265 0" shapeId="35" nodeId="296" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.008" translation="-0.005 0.4665 0" shapeId="35" nodeId="297" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.009" translation="-0.005 0.5565 0" shapeId="35" nodeId="298" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board hinge barrel.002" translation="-0.00999999 0 -0.956667" shapeId="36" nodeId="299" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board hinge barrel.003" translation="-0.00999999 0 0.956667" shapeId="36" nodeId="300" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board latch.002" translation="-0.00999999 0.46 -0.956667" shapeId="37" nodeId="301" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board latch.003" translation="-0.00999999 0.46 0.956667" shapeId="37" nodeId="302" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Drop side panel.001" translation="0.025 0.295 0" shapeId="38" nodeId="303" castsShadows="true" receiveShadows="true" materialIds="3" />
+          <Shape name="flatbedColBoardLeft2" translation="0.025 0.295 0" shapeId="39" nodeId="304" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+        <TransformGroup name="flatbedBoardLeft3" translation="-1.275 1.64 0.358333" nodeId="305">
+          <Shape name="Board extrusion.010" translation="-0.005 0.0465 0" shapeId="35" nodeId="306" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.011" translation="-0.005 0.1865 0" shapeId="35" nodeId="307" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.012" translation="-0.005 0.3265 0" shapeId="35" nodeId="308" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.013" translation="-0.005 0.4665 0" shapeId="35" nodeId="309" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.014" translation="-0.005 0.5565 0" shapeId="35" nodeId="310" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board hinge barrel.004" translation="-0.00999999 0 -0.956667" shapeId="36" nodeId="311" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board hinge barrel.005" translation="-0.00999999 0 0.956667" shapeId="36" nodeId="312" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board latch.004" translation="-0.00999999 0.46 -0.956667" shapeId="37" nodeId="313" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board latch.005" translation="-0.00999999 0.46 0.956667" shapeId="37" nodeId="314" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Drop side panel.002" translation="0.025 0.295 0" shapeId="38" nodeId="315" castsShadows="true" receiveShadows="true" materialIds="3" />
+          <Shape name="flatbedColBoardLeft3" translation="0.025 0.295 0" shapeId="39" nodeId="316" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+        <TransformGroup name="flatbedBoardRight1" translation="1.275 1.64 -4.20833" nodeId="317">
+          <Shape name="Board extrusion.015" translation="0.005 0.0465 0" shapeId="35" nodeId="318" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.016" translation="0.005 0.1865 0" shapeId="35" nodeId="319" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.017" translation="0.005 0.3265 0" shapeId="35" nodeId="320" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.018" translation="0.005 0.4665 0" shapeId="35" nodeId="321" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.019" translation="0.005 0.5565 0" shapeId="35" nodeId="322" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board hinge barrel.006" translation="0.00999999 0 -0.956666" shapeId="36" nodeId="323" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board hinge barrel.007" translation="0.00999999 0 0.956667" shapeId="36" nodeId="324" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board latch.006" translation="0.00999999 0.46 -0.956666" shapeId="37" nodeId="325" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board latch.007" translation="0.00999999 0.46 0.956667" shapeId="37" nodeId="326" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Drop side panel.003" translation="-0.025 0.295 0" shapeId="38" nodeId="327" castsShadows="true" receiveShadows="true" materialIds="3" />
+          <Shape name="flatbedColBoardRight1" translation="-0.025 0.295 0" shapeId="39" nodeId="328" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+        <TransformGroup name="flatbedBoardRight2" translation="1.275 1.64 -1.925" nodeId="329">
+          <Shape name="Board extrusion.020" translation="0.005 0.0465 0" shapeId="35" nodeId="330" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.021" translation="0.005 0.1865 0" shapeId="35" nodeId="331" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.022" translation="0.005 0.3265 0" shapeId="35" nodeId="332" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.023" translation="0.005 0.4665 0" shapeId="35" nodeId="333" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.024" translation="0.005 0.5565 0" shapeId="35" nodeId="334" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board hinge barrel.008" translation="0.00999999 0 -0.956667" shapeId="36" nodeId="335" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board hinge barrel.009" translation="0.00999999 0 0.956667" shapeId="36" nodeId="336" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board latch.008" translation="0.00999999 0.46 -0.956667" shapeId="37" nodeId="337" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board latch.009" translation="0.00999999 0.46 0.956667" shapeId="37" nodeId="338" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Drop side panel.004" translation="-0.025 0.295 0" shapeId="38" nodeId="339" castsShadows="true" receiveShadows="true" materialIds="3" />
+          <Shape name="flatbedColBoardRight2" translation="-0.025 0.295 0" shapeId="39" nodeId="340" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+        <TransformGroup name="flatbedBoardRight3" translation="1.275 1.64 0.358333" nodeId="341">
+          <Shape name="Board extrusion.025" translation="0.005 0.0465 0" shapeId="35" nodeId="342" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.026" translation="0.005 0.1865 0" shapeId="35" nodeId="343" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.027" translation="0.005 0.3265 0" shapeId="35" nodeId="344" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.028" translation="0.005 0.4665 0" shapeId="35" nodeId="345" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board extrusion.029" translation="0.005 0.5565 0" shapeId="35" nodeId="346" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board hinge barrel.010" translation="0.00999999 0 -0.956667" shapeId="36" nodeId="347" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board hinge barrel.011" translation="0.00999999 0 0.956667" shapeId="36" nodeId="348" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board latch.010" translation="0.00999999 0.46 -0.956667" shapeId="37" nodeId="349" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Board latch.011" translation="0.00999999 0.46 0.956667" shapeId="37" nodeId="350" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="Drop side panel.005" translation="-0.025 0.295 0" shapeId="38" nodeId="351" castsShadows="true" receiveShadows="true" materialIds="3" />
+          <Shape name="flatbedColBoardRight3" translation="-0.025 0.295 0" shapeId="39" nodeId="352" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+        <Shape name="flatbedColPostLeft1" translation="-1.235 1.9225 -5.35" shapeId="40" nodeId="353" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        <Shape name="flatbedColPostLeft2" translation="-1.235 1.9225 -3.06667" shapeId="40" nodeId="354" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        <Shape name="flatbedColPostLeft3" translation="-1.235 1.9225 -0.783333" shapeId="40" nodeId="355" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        <Shape name="flatbedColPostLeft4" translation="-1.235 1.9225 1.5" shapeId="40" nodeId="356" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        <Shape name="flatbedColPostRight1" translation="1.235 1.9225 -5.35" shapeId="40" nodeId="357" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        <Shape name="flatbedColPostRight2" translation="1.235 1.9225 -3.06667" shapeId="40" nodeId="358" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        <Shape name="flatbedColPostRight3" translation="1.235 1.9225 -0.783333" shapeId="40" nodeId="359" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        <Shape name="flatbedColPostRight4" translation="1.235 1.9225 1.5" shapeId="40" nodeId="360" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        <TransformGroup name="flatbedTailgate" translation="0 1.625 -5.37" nodeId="361">
+          <Shape name="Tailgate diamond pattern" translation="0 -1.625 5.37" shapeId="41" nodeId="362" castsShadows="true" receiveShadows="true" materialIds="11" />
+          <Shape name="Tailgate hinge barrel" translation="-0.8 0.018 -0.0250001" rotation="0 -0 -90" shapeId="42" nodeId="363" castsShadows="true" receiveShadows="true" materialIds="12" />
+          <Shape name="Tailgate hinge barrel.001" translation="0.8 0.018 -0.0250001" rotation="0 -0 -90" shapeId="42" nodeId="364" castsShadows="true" receiveShadows="true" materialIds="12" />
+          <Shape name="Tailgate latch lever" translation="-1.12 0.24 -0.0335002" shapeId="43" nodeId="365" castsShadows="true" receiveShadows="true" materialIds="12" />
+          <Shape name="Tailgate latch lever.001" translation="1.12 0.24 -0.0335002" shapeId="43" nodeId="366" castsShadows="true" receiveShadows="true" materialIds="12" />
+          <Shape name="Tailgate latch mounting" translation="-1.12 0.24 -0.02" shapeId="44" nodeId="367" castsShadows="true" receiveShadows="true" materialIds="13" />
+          <Shape name="Tailgate latch mounting.001" translation="1.12 0.24 -0.02" shapeId="44" nodeId="368" castsShadows="true" receiveShadows="true" materialIds="13" />
+          <Shape name="Tailgate stainless panel" translation="0 0.15 -0.000500202" shapeId="45" nodeId="369" castsShadows="true" receiveShadows="true" materialIds="12" />
+          <Shape name="Tailgate upper folded lip" translation="0 0.2925 -0.000500202" shapeId="46" nodeId="370" castsShadows="true" receiveShadows="true" materialIds="12" />
+          <Shape name="flatbedColTailgate" translation="0 0.15 -0.000500202" shapeId="47" nodeId="371" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+      </TransformGroup>
+      <TransformGroup name="OPTION_STAKES" nodeId="372" visibility="false">
+        <TransformGroup name="flatbedStakeLeft1" translation="-1.23 1.62 -5.1" nodeId="373">
+          <Shape name="Stake sliding shoe" translation="0 0.02 0" shapeId="48" nodeId="374" castsShadows="true" receiveShadows="true" materialIds="3" />
+          <Shape name="Stake steel upright" translation="0 0.6 0" shapeId="49" nodeId="375" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="flatbedColStakeLeft1" translation="0 0.6025 0" shapeId="50" nodeId="376" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+        <TransformGroup name="flatbedStakeLeft2" translation="-1.23 1.62 -3.83" nodeId="377">
+          <Shape name="Stake sliding shoe.001" translation="0 0.02 0" shapeId="48" nodeId="378" castsShadows="true" receiveShadows="true" materialIds="3" />
+          <Shape name="Stake steel upright.001" translation="0 0.6 0" shapeId="49" nodeId="379" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="flatbedColStakeLeft2" translation="0 0.6025 0" shapeId="50" nodeId="380" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+        <TransformGroup name="flatbedStakeLeft3" translation="-1.23 1.62 -2.56" nodeId="381">
+          <Shape name="Stake sliding shoe.002" translation="0 0.02 0" shapeId="48" nodeId="382" castsShadows="true" receiveShadows="true" materialIds="3" />
+          <Shape name="Stake steel upright.002" translation="0 0.6 0" shapeId="49" nodeId="383" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="flatbedColStakeLeft3" translation="0 0.6025 0" shapeId="50" nodeId="384" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+        <TransformGroup name="flatbedStakeLeft4" translation="-1.23 1.62 -1.29" nodeId="385">
+          <Shape name="Stake sliding shoe.003" translation="0 0.02 0" shapeId="48" nodeId="386" castsShadows="true" receiveShadows="true" materialIds="3" />
+          <Shape name="Stake steel upright.003" translation="0 0.6 0" shapeId="49" nodeId="387" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="flatbedColStakeLeft4" translation="0 0.6025 0" shapeId="50" nodeId="388" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+        <TransformGroup name="flatbedStakeLeft5" translation="-1.23 1.62 -0.02" nodeId="389">
+          <Shape name="Stake sliding shoe.004" translation="0 0.02 0" shapeId="48" nodeId="390" castsShadows="true" receiveShadows="true" materialIds="3" />
+          <Shape name="Stake steel upright.004" translation="0 0.6 0" shapeId="49" nodeId="391" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="flatbedColStakeLeft5" translation="0 0.6025 0" shapeId="50" nodeId="392" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+        <TransformGroup name="flatbedStakeLeft6" translation="-1.23 1.62 1.25" nodeId="393">
+          <Shape name="Stake sliding shoe.005" translation="0 0.02 0" shapeId="48" nodeId="394" castsShadows="true" receiveShadows="true" materialIds="3" />
+          <Shape name="Stake steel upright.005" translation="0 0.6 0" shapeId="49" nodeId="395" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="flatbedColStakeLeft6" translation="0 0.6025 0" shapeId="50" nodeId="396" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+        <TransformGroup name="flatbedStakeRight1" translation="1.23 1.62 -5.1" nodeId="397">
+          <Shape name="Stake sliding shoe.006" translation="0 0.02 0" shapeId="48" nodeId="398" castsShadows="true" receiveShadows="true" materialIds="3" />
+          <Shape name="Stake steel upright.006" translation="0 0.6 0" shapeId="49" nodeId="399" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="flatbedColStakeRight1" translation="0 0.6025 0" shapeId="50" nodeId="400" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+        <TransformGroup name="flatbedStakeRight2" translation="1.23 1.62 -3.83" nodeId="401">
+          <Shape name="Stake sliding shoe.007" translation="0 0.02 0" shapeId="48" nodeId="402" castsShadows="true" receiveShadows="true" materialIds="3" />
+          <Shape name="Stake steel upright.007" translation="0 0.6 0" shapeId="49" nodeId="403" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="flatbedColStakeRight2" translation="0 0.6025 0" shapeId="50" nodeId="404" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+        <TransformGroup name="flatbedStakeRight3" translation="1.23 1.62 -2.56" nodeId="405">
+          <Shape name="Stake sliding shoe.008" translation="0 0.02 0" shapeId="48" nodeId="406" castsShadows="true" receiveShadows="true" materialIds="3" />
+          <Shape name="Stake steel upright.008" translation="0 0.6 0" shapeId="49" nodeId="407" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="flatbedColStakeRight3" translation="0 0.6025 0" shapeId="50" nodeId="408" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+        <TransformGroup name="flatbedStakeRight4" translation="1.23 1.62 -1.29" nodeId="409">
+          <Shape name="Stake sliding shoe.009" translation="0 0.02 0" shapeId="48" nodeId="410" castsShadows="true" receiveShadows="true" materialIds="3" />
+          <Shape name="Stake steel upright.009" translation="0 0.6 0" shapeId="49" nodeId="411" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="flatbedColStakeRight4" translation="0 0.6025 0" shapeId="50" nodeId="412" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+        <TransformGroup name="flatbedStakeRight5" translation="1.23 1.62 -0.02" nodeId="413">
+          <Shape name="Stake sliding shoe.010" translation="0 0.02 0" shapeId="48" nodeId="414" castsShadows="true" receiveShadows="true" materialIds="3" />
+          <Shape name="Stake steel upright.010" translation="0 0.6 0" shapeId="49" nodeId="415" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="flatbedColStakeRight5" translation="0 0.6025 0" shapeId="50" nodeId="416" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+        <TransformGroup name="flatbedStakeRight6" translation="1.23 1.62 1.25" nodeId="417">
+          <Shape name="Stake sliding shoe.011" translation="0 0.02 0" shapeId="48" nodeId="418" castsShadows="true" receiveShadows="true" materialIds="3" />
+          <Shape name="Stake steel upright.011" translation="0 0.6 0" shapeId="49" nodeId="419" castsShadows="true" receiveShadows="true" materialIds="2" />
+          <Shape name="flatbedColStakeRight6" translation="0 0.6025 0" shapeId="50" nodeId="420" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+        </TransformGroup>
+      </TransformGroup>
+      <Shape name="flatbedBeltTrigger" translation="0 2.8875 -1.925" shapeId="51" nodeId="421" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" kinematic="true" compound="true" trigger="true" collisionFilterGroup="0x20000000" collisionFilterMask="0x100000" />
+      <TransformGroup name="flatbedBelts" nodeId="422">
+        <TransformGroup name="flatbedBeltStart01" translation="1.23 1.64 1.2" rotation="-0 -90 0" nodeId="423">
+          <TransformGroup name="flatbedBeltEnd01" translation="-2.38419e-07 0 2.46" rotation="0 -6.83019e-06 0" nodeId="424" />
+        </TransformGroup>
+        <TransformGroup name="flatbedBeltStart02" translation="1.23 1.64 0.425" rotation="-0 -90 0" nodeId="425">
+          <TransformGroup name="flatbedBeltEnd02" translation="-1.78814e-07 0 2.46" rotation="0 -6.83019e-06 0" nodeId="426" />
+        </TransformGroup>
+        <TransformGroup name="flatbedBeltStart03" translation="1.23 1.64 -0.35" rotation="-0 -90 0" nodeId="427">
+          <TransformGroup name="flatbedBeltEnd03" translation="-1.78814e-07 0 2.46" rotation="0 -6.83019e-06 0" nodeId="428" />
+        </TransformGroup>
+        <TransformGroup name="flatbedBeltStart04" translation="1.23 1.64 -1.125" rotation="-0 -90 0" nodeId="429">
+          <TransformGroup name="flatbedBeltEnd04" translation="-2.38419e-07 0 2.46" rotation="0 -6.83019e-06 0" nodeId="430" />
+        </TransformGroup>
+        <TransformGroup name="flatbedBeltStart05" translation="1.23 1.64 -1.9" rotation="-0 -90 0" nodeId="431">
+          <TransformGroup name="flatbedBeltEnd05" translation="-2.38419e-07 0 2.46" rotation="0 -6.83019e-06 0" nodeId="432" />
+        </TransformGroup>
+        <TransformGroup name="flatbedBeltStart06" translation="1.23 1.64 -2.675" rotation="-0 -90 0" nodeId="433">
+          <TransformGroup name="flatbedBeltEnd06" translation="2.38419e-07 0 2.46" rotation="0 -6.83019e-06 0" nodeId="434" />
+        </TransformGroup>
+        <TransformGroup name="flatbedBeltStart07" translation="1.23 1.64 -3.45" rotation="-0 -90 0" nodeId="435">
+          <TransformGroup name="flatbedBeltEnd07" translation="2.38419e-07 0 2.46" rotation="0 -6.83019e-06 0" nodeId="436" />
+        </TransformGroup>
+        <TransformGroup name="flatbedBeltStart08" translation="1.23 1.64 -4.225" rotation="-0 -90 0" nodeId="437">
+          <TransformGroup name="flatbedBeltEnd08" translation="0 0 2.46" rotation="0 -6.83019e-06 0" nodeId="438" />
+        </TransformGroup>
+        <TransformGroup name="flatbedBeltStart09" translation="1.23 1.64 -5" rotation="-0 -90 0" nodeId="439">
+          <TransformGroup name="flatbedBeltEnd09" translation="0 0 2.46" rotation="0 -6.83019e-06 0" nodeId="440" />
+        </TransformGroup>
+      </TransformGroup>
+      <Shape name="flatbedColFloor" translation="0 1.5625 -1.925" shapeId="52" nodeId="441" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+      <Shape name="flatbedColHeadboard" translation="0 2.6815 1.52" shapeId="53" nodeId="442" castsShadows="true" receiveShadows="true" materialIds="10" nonRenderable="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" />
+    </TransformGroup>
+  </Scene>
+
+</i3D>

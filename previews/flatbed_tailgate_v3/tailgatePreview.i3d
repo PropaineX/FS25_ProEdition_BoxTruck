@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<i3D xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="tailgatePreview" version="1.6" xsi:noNamespaceSchemaLocation="http://i3d.giants.ch/schema/i3d-1.6.xsd">
+  <Asset>
+    <Export program="i3dConverter" version="1.0" />
+  </Asset>
+
+  <Files>
+  </Files>
+
+
+  <Materials>
+    <Material name="Polished raised diamond tread" materialId="1" diffuseColor="0.941177 0.960784 0.980392 1" emissiveColor="0 0 0 1" specularColor="0.65 0.65 0.65">
+    </Material>
+    <Material name="Tailgate latch steel" materialId="3" diffuseColor="0.129412 0.14902 0.168627 1" emissiveColor="0 0 0 1" specularColor="0.501961 1 0">
+    </Material>
+    <Material name="Tailgate stainless steel" materialId="2" diffuseColor="0.721569 0.74902 0.780392 1" emissiveColor="0 0 0 1" specularColor="0.65 0.65 0.65">
+    </Material>
+  </Materials>
+
+
+  <Shapes externalShapesFile="tailgatePreview.i3d.shapes">
+  </Shapes>
+
+  <Scene>
+    <TransformGroup name="Tailgate_30cm_proposal" nodeId="14">
+      <Shape name="Tailgate diamond pattern" shapeId="1" nodeId="15" castsShadows="true" receiveShadows="true" materialIds="1" />
+      <Shape name="Tailgate hinge barrel" translation="-0.8 1.643 -5.395" rotation="0 -0 -90" shapeId="2" nodeId="16" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Tailgate hinge barrel.001" translation="0.8 1.643 -5.395" rotation="0 -0 -90" shapeId="2" nodeId="17" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Tailgate latch lever" translation="-1.12 1.865 -5.4035" shapeId="3" nodeId="18" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Tailgate latch lever.001" translation="1.12 1.865 -5.4035" shapeId="3" nodeId="19" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Tailgate latch mounting" translation="-1.12 1.865 -5.39" shapeId="4" nodeId="20" castsShadows="true" receiveShadows="true" materialIds="3" />
+      <Shape name="Tailgate latch mounting.001" translation="1.12 1.865 -5.39" shapeId="4" nodeId="21" castsShadows="true" receiveShadows="true" materialIds="3" />
+      <Shape name="Tailgate stainless panel" translation="0 1.775 -5.3705" shapeId="5" nodeId="22" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Tailgate upper folded lip" translation="0 1.9175 -5.3705" shapeId="6" nodeId="23" castsShadows="true" receiveShadows="true" materialIds="2" />
+    </TransformGroup>
+  </Scene>
+
+</i3D>

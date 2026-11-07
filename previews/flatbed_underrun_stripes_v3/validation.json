@@ -1,0 +1,12 @@
+{
+  "proposal_only": true,
+  "bands": 2,
+  "band_width_m": 1.16,
+  "end_margin_m": 0,
+  "center_gap_m": 0,
+  "direction": "up and outward from bottom center",
+  "tube_diameter_m": 0.13,
+  "stripe_width_m": 0.065,
+  "retroreflection": "UNTESTED; visual mockup materials only",
+  "runtime_changes": false
+}

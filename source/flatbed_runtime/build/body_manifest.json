@@ -1,0 +1,203 @@
+{
+  "collisions": [
+    [
+      "flatbedColFloor",
+      "always"
+    ],
+    [
+      "flatbedColHeadboard",
+      "always"
+    ],
+    [
+      "flatbedColBoardLeft1",
+      "boards"
+    ],
+    [
+      "flatbedColBoardLeft2",
+      "boards"
+    ],
+    [
+      "flatbedColBoardLeft3",
+      "boards"
+    ],
+    [
+      "flatbedColPostLeft1",
+      "boards"
+    ],
+    [
+      "flatbedColPostLeft2",
+      "boards"
+    ],
+    [
+      "flatbedColPostLeft3",
+      "boards"
+    ],
+    [
+      "flatbedColPostLeft4",
+      "boards"
+    ],
+    [
+      "flatbedColStakeLeft1",
+      "stakes"
+    ],
+    [
+      "flatbedColStakeLeft2",
+      "stakes"
+    ],
+    [
+      "flatbedColStakeLeft3",
+      "stakes"
+    ],
+    [
+      "flatbedColStakeLeft4",
+      "stakes"
+    ],
+    [
+      "flatbedColStakeLeft5",
+      "stakes"
+    ],
+    [
+      "flatbedColStakeLeft6",
+      "stakes"
+    ],
+    [
+      "flatbedColBoardRight1",
+      "boards"
+    ],
+    [
+      "flatbedColBoardRight2",
+      "boards"
+    ],
+    [
+      "flatbedColBoardRight3",
+      "boards"
+    ],
+    [
+      "flatbedColPostRight1",
+      "boards"
+    ],
+    [
+      "flatbedColPostRight2",
+      "boards"
+    ],
+    [
+      "flatbedColPostRight3",
+      "boards"
+    ],
+    [
+      "flatbedColPostRight4",
+      "boards"
+    ],
+    [
+      "flatbedColStakeRight1",
+      "stakes"
+    ],
+    [
+      "flatbedColStakeRight2",
+      "stakes"
+    ],
+    [
+      "flatbedColStakeRight3",
+      "stakes"
+    ],
+    [
+      "flatbedColStakeRight4",
+      "stakes"
+    ],
+    [
+      "flatbedColStakeRight5",
+      "stakes"
+    ],
+    [
+      "flatbedColStakeRight6",
+      "stakes"
+    ],
+    [
+      "flatbedColTailgate",
+      "boards"
+    ]
+  ],
+  "lamps": {
+    "Amber side marker": {
+      "kind": "amber",
+      "side": "Left",
+      "material": "flatbedLamp_Amber_side_marker",
+      "marker": true
+    },
+    "Amber side marker.001": {
+      "kind": "amber",
+      "side": "Left",
+      "material": "flatbedLamp_Amber_side_marker.001",
+      "marker": true
+    },
+    "Amber side marker.002": {
+      "kind": "amber",
+      "side": "Left",
+      "material": "flatbedLamp_Amber_side_marker.002",
+      "marker": true
+    },
+    "Amber side marker.003": {
+      "kind": "amber",
+      "side": "Left",
+      "material": "flatbedLamp_Amber_side_marker.003",
+      "marker": true
+    },
+    "Amber side marker.004": {
+      "kind": "amber",
+      "side": "Right",
+      "material": "flatbedLamp_Amber_side_marker.004",
+      "marker": true
+    },
+    "Amber side marker.005": {
+      "kind": "amber",
+      "side": "Right",
+      "material": "flatbedLamp_Amber_side_marker.005",
+      "marker": true
+    },
+    "Amber side marker.006": {
+      "kind": "amber",
+      "side": "Right",
+      "material": "flatbedLamp_Amber_side_marker.006",
+      "marker": true
+    },
+    "Amber side marker.007": {
+      "kind": "amber",
+      "side": "Right",
+      "material": "flatbedLamp_Amber_side_marker.007",
+      "marker": true
+    },
+    "flatbedReverseLens": {
+      "kind": "reverse",
+      "side": "Left",
+      "material": "flatbedLamp_flatbedReverseLens",
+      "marker": false
+    },
+    "Rear lamp amber": {
+      "kind": "amber",
+      "side": "Left",
+      "material": "flatbedLamp_Rear_lamp_amber",
+      "marker": false
+    },
+    "Rear lamp amber.001": {
+      "kind": "amber",
+      "side": "Right",
+      "material": "flatbedLamp_Rear_lamp_amber.001",
+      "marker": false
+    },
+    "Rear lamp red": {
+      "kind": "red",
+      "side": "Left",
+      "material": "flatbedLamp_Rear_lamp_red",
+      "marker": false
+    },
+    "Rear lamp red.001": {
+      "kind": "red",
+      "side": "Right",
+      "material": "flatbedLamp_Rear_lamp_red.001",
+      "marker": false
+    }
+  },
+  "body_root": "flatbedBody",
+  "floor": 1.625,
+  "tailgate_height": 0.3
+}

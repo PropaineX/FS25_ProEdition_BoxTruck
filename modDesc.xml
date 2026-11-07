@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="115">
     <author>PropaineX</author>
-    <version>1.3.1.0</version>
+    <version>1.5.1.0</version>
     <title>
         <en>Box Truck Pro Edition</en>
         <de>Kofferaufbau-LKW Pro Edition</de>
@@ -49,8 +49,13 @@ Höchstgeschwindigkeit: 90 km/h]]></de>
     <iconFilename>icon_BoxTruck.dds</iconFilename>
     <multiplayer supported="true" />
 
+    <extraSourceFiles>
+        <sourceFile filename="scripts/ProEditionStoreCategory.lua" />
+    </extraSourceFiles>
+
     <specializations>
         <specialization name="boxTruckBody" className="BoxTruckBody" filename="scripts/BoxTruckBody.lua" />
+        <specialization name="flatbedBody" className="FlatbedBody" filename="scripts/FlatbedBody.lua" />
     </specializations>
 
     <vehicleTypes>
@@ -58,13 +63,32 @@ Höchstgeschwindigkeit: 90 km/h]]></de>
             <specialization name="tensionBelts" />
             <specialization name="boxTruckBody" />
         </type>
+        <type name="flatbedPro" parent="tractor" className="Vehicle" filename="$dataS/scripts/vehicles/Vehicle.lua">
+            <specialization name="tensionBelts" />
+            <specialization name="foldable" />
+            <specialization name="flatbedBody" />
+        </type>
     </vehicleTypes>
 
     <storeItems>
         <storeItem xmlFilename="boxTruck.xml" />
+        <storeItem xmlFilename="flatbedTruck.xml" />
     </storeItems>
 
+    <!-- own shop section (heading) with one tile for the Pro Edition trucks -->
+    <storeCategories>
+        <storeType name="PROPAINEX" title="PropaineX Pro Edition" insertAfter="DRIVABLES"/>
+        <storeCategory type="PROPAINEX" name="PROEDITIONTRUCKS" title="Pro Edition Trucks" image="store_boxTruck.dds"/>
+    </storeCategories>
+
     <l10n>
+        <text name="configuration_flatbedSides"><en>Body sides</en><de>Aufbau</de></text>
+        <text name="configuration_flatbedBoards"><en>Side walls</en><de>Bordwände</de></text>
+        <text name="configuration_flatbedStakes"><en>Sliding stakes</en><de>Verschiebbare Rungen</de></text>
+        <text name="action_flatbedLowerBoards"><en>Lower side walls</en><de>Bordwände abklappen</de></text>
+        <text name="action_flatbedRaiseBoards"><en>Raise side walls</en><de>Bordwände hochklappen</de></text>
+        <text name="action_flatbedGatherStakes"><en>Gather stakes</en><de>Rungen zusammenschieben</de></text>
+        <text name="action_flatbedSpreadStakes"><en>Spread stakes</en><de>Rungen auseinanderziehen</de></text>
         <text name="action_boxTruckOpenRearDoors"><en>Open rear doors</en><de>Hecktüren öffnen</de></text>
         <text name="action_boxTruckCloseRearDoors"><en>Close rear doors</en><de>Hecktüren schließen</de></text>
         <text name="action_boxTruckOpenCurtainLeft"><en>Open left curtain</en><de>Linke Plane öffnen</de></text>

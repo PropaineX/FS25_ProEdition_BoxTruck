@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<vehicle>
+  <!--Integration fragment: use native Foldable + AnimatedVehicle. Paths are resolved against our body asset during integration.-->
+  <foldable>
+    <foldingConfigurations>
+      <foldingConfiguration>
+        <foldingParts posDirectionText="$l10n_action_flatbedGatherStakes" negDirectionText="$l10n_action_flatbedSpreadStakes" turnOnFoldMaxLimit="1" turnOnFoldMinLimit="0.9" startAnimTime="0" foldInputButton="IMPLEMENT_EXTRA2">
+          <foldingPart animationName="additionalForks" speedScale="1" />
+        </foldingParts>
+      </foldingConfiguration>
+    </foldingConfigurations>
+  </foldable>
+  <animations>
+    <animation name="additionalForks">
+      <part node="flatbedStakeLeft1" startTime="0" endTime="0.7" startTrans="-1.23 1.62 -5.1" endTrans="-1.23 1.62 -3.97" />
+      <part node="flatbedStakeLeft3" startTime="0" endTime="0.7" startTrans="-1.23 1.62 -2.56" endTrans="-1.23 1.62 -1.43" />
+      <part node="flatbedStakeLeft5" startTime="0" endTime="0.7" startTrans="-1.23 1.62 -0.02" endTrans="-1.23 1.62 1.11" />
+      <part node="flatbedStakeRight1" startTime="0" endTime="0.7" startTrans="1.23 1.62 -5.1" endTrans="1.23 1.62 -3.97" />
+      <part node="flatbedStakeRight3" startTime="0" endTime="0.7" startTrans="1.23 1.62 -2.56" endTrans="1.23 1.62 -1.43" />
+      <part node="flatbedStakeRight5" startTime="0" endTime="0.7" startTrans="1.23 1.62 -0.02" endTrans="1.23 1.62 1.11" />
+      <sound template="hingeMedium" startTime="0.01" direction="1" volumeScale="4" pitchScale="0.6" linkNode="flatbedStakeLeft3" />
+      <sound template="clackVar6" startTime="0.6" direction="1" volumeScale="5" pitchScale="0.5" linkNode="flatbedStakeLeft3" />
+      <sound template="hingeMedium" startTime="0.69" direction="-1" volumeScale="4" pitchScale="0.6" linkNode="flatbedStakeLeft3" />
+      <sound template="clackVar6" startTime="0.1" direction="-1" volumeScale="5" pitchScale="0.5" linkNode="flatbedStakeLeft3" />
+    </animation>
+  </animations>
+</vehicle>

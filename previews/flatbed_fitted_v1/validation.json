@@ -1,0 +1,14 @@
+{
+  "verification": "XML structure and screenshot files; poses visually inspected in GIANTS Editor",
+  "preview_only": true,
+  "board_hinges": 6,
+  "stakes": 12,
+  "deck_m": [
+    2.55,
+    6.85
+  ],
+  "deck_top_root_m": 1.62,
+  "headboard_top_root_m": 3.738,
+  "gameplay": "UNTESTED",
+  "runtime_files_changed": false
+}

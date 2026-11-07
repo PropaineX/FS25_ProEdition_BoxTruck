@@ -1,0 +1,37 @@
+{
+  "count": 20,
+  "layout": [
+    2,
+    5,
+    2
+  ],
+  "plate_center_game": [
+    0,
+    0.985,
+    -5.405
+  ],
+  "plate_frame_m": [
+    0.53,
+    0.13
+  ],
+  "original_plate_center_game": [
+    0.925,
+    0.909,
+    -4.113
+  ],
+  "measured_load_bounds_root": [
+    -0.8847,
+    0.8761,
+    1.625,
+    3.6845,
+    -5.1281,
+    1.2848
+  ],
+  "alternative_layer_pitch": 1.085,
+  "alternative_height_root": 3.7895,
+  "alternative_height_above_ground": 3.4895,
+  "calculated_shed_gap_at_lowest_measured_roof": 0.1705,
+  "verified": "actual assets and poses in GIANTS Editor; PNGs verified",
+  "gameplay": "UNTESTED",
+  "runtime_changes": false
+}

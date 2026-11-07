@@ -2,7 +2,30 @@
 
 Farming Simulator 25 box truck for hauling pallets, by PropaineX.
 
-## Current release: 1.3.0.4
+## Working source: 1.4.0.0 — Flatbed Truck Pro Edition
+
+The flatbed is integrated as a separate shop vehicle beside the Box Truck, under
+**PropaineX Pro Edition > Pro Edition Trucks**. This source build is **untested
+in game**, and has not been packaged or uploaded.
+
+- Same Volvo FH16 8x4 Tag cab, engine and color options; Aero Parts defaults to None.
+- Shop choice: side walls or sliding stakes. **X** folds the side boards outward/down or pairs the alternating stakes on both sides using the native Fliegl-style 0.7-second setup.
+- Side-wall version only: 30 cm diamond-pattern stainless tailgate, controlled independently by **Left Alt + T**.
+- Nine tension belts, body collisions, rear light controls, centered rear plate mount and the approved striped round underrun tube.
+- Optional Universal Autoload retains its own shop menu and **Shift + R** controls. Its fallback area is added only when no saved config exists: 2.38 m clear width between the stakes, 6.70 m length, floor at root y1.625, height2.20 m.
+- Tailgate save/network state is implemented; native Foldable handles the side animation state. Existing Box Truck runtime files are preserved.
+
+Source, reference, localization, belt-anchor, tailgate network/save and existing
+Box Truck regression checks pass. GIANTS Editor loaded the saved asset and
+resolved all 363 flatbed mappings and 13 lamp color channels. Purchase, driving,
+real loading/collisions, nighttime lighting and live multiplayer remain untested.
+No special milk-pallet spacing override is applied.
+
+Runtime files: `flatbedTruck.xml`, `flatbedTruck.i3d` and `scripts/FlatbedBody.lua`.
+Build/check instructions: `source/flatbed_runtime/README.md`; player notes:
+`PATCH_NOTES.md`.
+
+## Earlier documented release: 1.3.0.4
 
 October 27, 2026: the curtain, banner, bottom reinforcement band, straps and buckles now move together continuously between shut and the selected gathered shape. All three shapes on both sides use the same reversible transition, with artwork visible throughout. Random selection, networking, saves and loading controls are preserved.
 

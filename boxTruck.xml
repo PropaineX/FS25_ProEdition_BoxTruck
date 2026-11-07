@@ -16,7 +16,7 @@
         <lifetime>600</lifetime>
         <rotation>0</rotation>
         <brand>VOLVO</brand>
-        <category>trucks</category>
+        <category>PROEDITIONTRUCKS</category>
         <shopTranslationOffset>0 -0.306 0</shopTranslationOffset>
         <shopRotationOffset>0.005 0 0</shopRotationOffset>
     </storeData>

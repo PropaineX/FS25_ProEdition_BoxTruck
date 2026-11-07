@@ -1,0 +1,226 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<i3D xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="flatbedPreview" version="1.6" xsi:noNamespaceSchemaLocation="http://i3d.giants.ch/schema/i3d-1.6.xsd">
+  <Asset>
+    <Export program="i3dConverter" version="1.0" />
+  </Asset>
+
+  <Files>
+  </Files>
+
+
+  <Materials>
+    <Material name="Amber markers" materialId="1" diffuseColor="0.94902 0.278431 0.0156863 1" emissiveColor="0 0 0 1" specularColor="0.54902 1 0.2">
+    </Material>
+    <Material name="Flatbed aluminum" materialId="3" diffuseColor="0.6 0.65098 0.701961 1" emissiveColor="0 0 0 1" specularColor="0.54902 1 0.701961">
+    </Material>
+    <Material name="Flatbed dark steel" materialId="2" diffuseColor="0.054902 0.0666667 0.0745098 1" emissiveColor="0 0 0 1" specularColor="0.54902 1 0.65098">
+    </Material>
+    <Material name="Flatbed load floor" materialId="4" diffuseColor="0.231373 0.160784 0.101961 1" emissiveColor="0 0 0 1" specularColor="0.14902 1 0">
+    </Material>
+    <Material name="Headboard paint" materialId="5" diffuseColor="0.780392 0.811765 0.831373 1" emissiveColor="0 0 0 1" specularColor="0.54902 1 0.301961">
+    </Material>
+    <Material name="Rear red lenses" materialId="6" diffuseColor="0.54902 0.0117647 0.0196078 1" emissiveColor="0 0 0 1" specularColor="0.54902 1 0.14902">
+    </Material>
+  </Materials>
+
+
+  <Shapes externalShapesFile="flatbedPreview.i3d.shapes">
+  </Shapes>
+
+  <Scene>
+    <TransformGroup name="Flatbed_FIXED" nodeId="159">
+      <Shape name="Amber side marker" translation="-1.28 1.51 -4.8" shapeId="1" nodeId="160" castsShadows="true" receiveShadows="true" materialIds="1" />
+      <Shape name="Amber side marker.001" translation="-1.28 1.51 -3" shapeId="1" nodeId="161" castsShadows="true" receiveShadows="true" materialIds="1" />
+      <Shape name="Amber side marker.002" translation="-1.28 1.51 -1.2" shapeId="1" nodeId="162" castsShadows="true" receiveShadows="true" materialIds="1" />
+      <Shape name="Amber side marker.003" translation="-1.28 1.51 0.65" shapeId="1" nodeId="163" castsShadows="true" receiveShadows="true" materialIds="1" />
+      <Shape name="Amber side marker.004" translation="1.28 1.51 -4.8" shapeId="1" nodeId="164" castsShadows="true" receiveShadows="true" materialIds="1" />
+      <Shape name="Amber side marker.005" translation="1.28 1.51 -3" shapeId="1" nodeId="165" castsShadows="true" receiveShadows="true" materialIds="1" />
+      <Shape name="Amber side marker.006" translation="1.28 1.51 -1.2" shapeId="1" nodeId="166" castsShadows="true" receiveShadows="true" materialIds="1" />
+      <Shape name="Amber side marker.007" translation="1.28 1.51 0.65" shapeId="1" nodeId="167" castsShadows="true" receiveShadows="true" materialIds="1" />
+      <Shape name="Deck crossmember" translation="0 1.43 -5.1" shapeId="2" nodeId="168" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Deck crossmember.001" translation="0 1.43 -4.52" shapeId="2" nodeId="169" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Deck crossmember.002" translation="0 1.43 -3.94" shapeId="2" nodeId="170" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Deck crossmember.003" translation="0 1.43 -3.36" shapeId="2" nodeId="171" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Deck crossmember.004" translation="0 1.43 -2.78" shapeId="2" nodeId="172" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Deck crossmember.005" translation="0 1.43 -2.2" shapeId="2" nodeId="173" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Deck crossmember.006" translation="0 1.43 -1.62" shapeId="2" nodeId="174" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Deck crossmember.007" translation="0 1.43 -1.04" shapeId="2" nodeId="175" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Deck crossmember.008" translation="0 1.43 -0.46" shapeId="2" nodeId="176" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Deck crossmember.009" translation="0 1.43 0.12" shapeId="2" nodeId="177" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Deck crossmember.010" translation="0 1.43 0.7" shapeId="2" nodeId="178" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Deck crossmember.011" translation="0 1.43 1.28" shapeId="2" nodeId="179" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Deck edge aluminum rail" translation="-1.24 1.575 -1.925" shapeId="3" nodeId="180" castsShadows="true" receiveShadows="true" materialIds="3" />
+      <Shape name="Deck edge aluminum rail.001" translation="1.24 1.575 -1.925" shapeId="3" nodeId="181" castsShadows="true" receiveShadows="true" materialIds="3" />
+      <Shape name="Deck plank 00" translation="-1.13233 1.62 -1.925" shapeId="4" nodeId="182" castsShadows="true" receiveShadows="true" materialIds="4" />
+      <Shape name="Deck plank 01" translation="-0.971 1.62 -1.925" shapeId="4" nodeId="183" castsShadows="true" receiveShadows="true" materialIds="4" />
+      <Shape name="Deck plank 02" translation="-0.809667 1.62 -1.925" shapeId="4" nodeId="184" castsShadows="true" receiveShadows="true" materialIds="4" />
+      <Shape name="Deck plank 03" translation="-0.648333 1.62 -1.925" shapeId="4" nodeId="185" castsShadows="true" receiveShadows="true" materialIds="4" />
+      <Shape name="Deck plank 04" translation="-0.487 1.62 -1.925" shapeId="4" nodeId="186" castsShadows="true" receiveShadows="true" materialIds="4" />
+      <Shape name="Deck plank 05" translation="-0.325667 1.62 -1.925" shapeId="4" nodeId="187" castsShadows="true" receiveShadows="true" materialIds="4" />
+      <Shape name="Deck plank 06" translation="-0.164333 1.62 -1.925" shapeId="4" nodeId="188" castsShadows="true" receiveShadows="true" materialIds="4" />
+      <Shape name="Deck plank 07" translation="-0.003 1.62 -1.925" shapeId="4" nodeId="189" castsShadows="true" receiveShadows="true" materialIds="4" />
+      <Shape name="Deck plank 08" translation="0.158333 1.62 -1.925" shapeId="4" nodeId="190" castsShadows="true" receiveShadows="true" materialIds="4" />
+      <Shape name="Deck plank 09" translation="0.319667 1.62 -1.925" shapeId="4" nodeId="191" castsShadows="true" receiveShadows="true" materialIds="4" />
+      <Shape name="Deck plank 10" translation="0.481 1.62 -1.925" shapeId="4" nodeId="192" castsShadows="true" receiveShadows="true" materialIds="4" />
+      <Shape name="Deck plank 11" translation="0.642333 1.62 -1.925" shapeId="4" nodeId="193" castsShadows="true" receiveShadows="true" materialIds="4" />
+      <Shape name="Deck plank 12" translation="0.803667 1.62 -1.925" shapeId="4" nodeId="194" castsShadows="true" receiveShadows="true" materialIds="4" />
+      <Shape name="Deck plank 13" translation="0.965 1.62 -1.925" shapeId="4" nodeId="195" castsShadows="true" receiveShadows="true" materialIds="4" />
+      <Shape name="Deck plank 14" translation="1.12633 1.62 -1.925" shapeId="4" nodeId="196" castsShadows="true" receiveShadows="true" materialIds="4" />
+      <Shape name="Headboard horizontal rail" translation="0 2.4575 1.515" shapeId="5" nodeId="197" castsShadows="true" receiveShadows="true" materialIds="3" />
+      <Shape name="Headboard horizontal rail.001" translation="0 2.7775 1.515" shapeId="5" nodeId="198" castsShadows="true" receiveShadows="true" materialIds="3" />
+      <Shape name="Headboard horizontal rail.002" translation="0 3.0975 1.515" shapeId="5" nodeId="199" castsShadows="true" receiveShadows="true" materialIds="3" />
+      <Shape name="Headboard horizontal rail.003" translation="0 3.4175 1.515" shapeId="5" nodeId="200" castsShadows="true" receiveShadows="true" materialIds="3" />
+      <Shape name="Headboard lower protection" translation="0 2.005 1.515" shapeId="6" nodeId="201" castsShadows="true" receiveShadows="true" materialIds="5" />
+      <Shape name="Headboard top" translation="0 3.694 1.52" shapeId="7" nodeId="202" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Headboard upright" translation="-1.24 2.679 1.52" shapeId="8" nodeId="203" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Headboard upright.001" translation="1.24 2.679 1.52" shapeId="8" nodeId="204" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Headboard vertical bar" translation="-0.6 3.01 1.515" shapeId="9" nodeId="205" castsShadows="true" receiveShadows="true" materialIds="3" />
+      <Shape name="Headboard vertical bar.001" translation="0 3.01 1.515" shapeId="9" nodeId="206" castsShadows="true" receiveShadows="true" materialIds="3" />
+      <Shape name="Headboard vertical bar.002" translation="0.6 3.01 1.515" shapeId="9" nodeId="207" castsShadows="true" receiveShadows="true" materialIds="3" />
+      <Shape name="Rear lamp amber" translation="-0.6975 0.985 -5.385" shapeId="10" nodeId="208" castsShadows="true" receiveShadows="true" materialIds="1" />
+      <Shape name="Rear lamp amber.001" translation="1.0025 0.985 -5.385" shapeId="10" nodeId="209" castsShadows="true" receiveShadows="true" materialIds="1" />
+      <Shape name="Rear lamp red" translation="-0.94 0.985 -5.385" shapeId="11" nodeId="210" castsShadows="true" receiveShadows="true" materialIds="6" />
+      <Shape name="Rear lamp red.001" translation="0.76 0.985 -5.385" shapeId="11" nodeId="211" castsShadows="true" receiveShadows="true" materialIds="6" />
+      <Shape name="Rear light bar" translation="0 0.985 -5.305" shapeId="12" nodeId="212" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Rear underrun beam" translation="0 0.615 -5.255" shapeId="13" nodeId="213" castsShadows="true" receiveShadows="true" materialIds="3" />
+      <Shape name="Rear underrun bracket" translation="-0.85 1.065 -5.19" shapeId="14" nodeId="214" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Rear underrun bracket.001" translation="0.85 1.065 -5.19" shapeId="14" nodeId="215" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Structural deck" translation="0 1.56 -1.925" shapeId="15" nodeId="216" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Subframe rail" translation="-0.42 1.34 -1.86" shapeId="16" nodeId="217" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Subframe rail.001" translation="0.42 1.34 -1.86" shapeId="16" nodeId="218" castsShadows="true" receiveShadows="true" materialIds="2" />
+    </TransformGroup>
+    <TransformGroup name="OPTION_BOARDS" nodeId="219">
+      <Shape name="Board fixed post" translation="-1.235 1.92 -5.35" shapeId="17" nodeId="220" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Board fixed post.001" translation="-1.235 1.92 -3.06667" shapeId="17" nodeId="221" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Board fixed post.002" translation="-1.235 1.92 -0.783333" shapeId="17" nodeId="222" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Board fixed post.003" translation="-1.235 1.92 1.5" shapeId="17" nodeId="223" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Board fixed post.004" translation="1.235 1.92 -5.35" shapeId="17" nodeId="224" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Board fixed post.005" translation="1.235 1.92 -3.06667" shapeId="17" nodeId="225" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Board fixed post.006" translation="1.235 1.92 -0.783333" shapeId="17" nodeId="226" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <Shape name="Board fixed post.007" translation="1.235 1.92 1.5" shapeId="17" nodeId="227" castsShadows="true" receiveShadows="true" materialIds="2" />
+      <TransformGroup name="Board hinge -1 0" translation="-1.275 1.64 -4.20833" nodeId="228">
+        <Shape name="Board extrusion" translation="-0.005 0.0465 0" shapeId="18" nodeId="229" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.001" translation="-0.005 0.1865 0" shapeId="18" nodeId="230" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.002" translation="-0.005 0.3265 0" shapeId="18" nodeId="231" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.003" translation="-0.005 0.4665 0" shapeId="18" nodeId="232" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.004" translation="-0.005 0.5565 0" shapeId="18" nodeId="233" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board hinge barrel" translation="-0.00999999 0 -0.956666" shapeId="19" nodeId="234" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board hinge barrel.001" translation="-0.00999999 0 0.956667" shapeId="19" nodeId="235" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board latch" translation="-0.00999999 0.46 -0.956666" shapeId="20" nodeId="236" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board latch.001" translation="-0.00999999 0.46 0.956667" shapeId="20" nodeId="237" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Drop side panel" translation="0.025 0.295 0" shapeId="21" nodeId="238" castsShadows="true" receiveShadows="true" materialIds="3" />
+      </TransformGroup>
+      <TransformGroup name="Board hinge -1 1" translation="-1.275 1.64 -1.925" nodeId="239">
+        <Shape name="Board extrusion.005" translation="-0.005 0.0465 0" shapeId="18" nodeId="240" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.006" translation="-0.005 0.1865 0" shapeId="18" nodeId="241" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.007" translation="-0.005 0.3265 0" shapeId="18" nodeId="242" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.008" translation="-0.005 0.4665 0" shapeId="18" nodeId="243" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.009" translation="-0.005 0.5565 0" shapeId="18" nodeId="244" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board hinge barrel.002" translation="-0.00999999 0 -0.956667" shapeId="19" nodeId="245" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board hinge barrel.003" translation="-0.00999999 0 0.956667" shapeId="19" nodeId="246" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board latch.002" translation="-0.00999999 0.46 -0.956667" shapeId="20" nodeId="247" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board latch.003" translation="-0.00999999 0.46 0.956667" shapeId="20" nodeId="248" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Drop side panel.001" translation="0.025 0.295 0" shapeId="21" nodeId="249" castsShadows="true" receiveShadows="true" materialIds="3" />
+      </TransformGroup>
+      <TransformGroup name="Board hinge -1 2" translation="-1.275 1.64 0.358333" nodeId="250">
+        <Shape name="Board extrusion.010" translation="-0.005 0.0465 0" shapeId="18" nodeId="251" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.011" translation="-0.005 0.1865 0" shapeId="18" nodeId="252" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.012" translation="-0.005 0.3265 0" shapeId="18" nodeId="253" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.013" translation="-0.005 0.4665 0" shapeId="18" nodeId="254" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.014" translation="-0.005 0.5565 0" shapeId="18" nodeId="255" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board hinge barrel.004" translation="-0.00999999 0 -0.956667" shapeId="19" nodeId="256" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board hinge barrel.005" translation="-0.00999999 0 0.956667" shapeId="19" nodeId="257" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board latch.004" translation="-0.00999999 0.46 -0.956667" shapeId="20" nodeId="258" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board latch.005" translation="-0.00999999 0.46 0.956667" shapeId="20" nodeId="259" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Drop side panel.002" translation="0.025 0.295 0" shapeId="21" nodeId="260" castsShadows="true" receiveShadows="true" materialIds="3" />
+      </TransformGroup>
+      <TransformGroup name="Board hinge 1 0" translation="1.275 1.64 -4.20833" nodeId="261">
+        <Shape name="Board extrusion.015" translation="0.005 0.0465 0" shapeId="18" nodeId="262" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.016" translation="0.005 0.1865 0" shapeId="18" nodeId="263" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.017" translation="0.005 0.3265 0" shapeId="18" nodeId="264" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.018" translation="0.005 0.4665 0" shapeId="18" nodeId="265" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.019" translation="0.005 0.5565 0" shapeId="18" nodeId="266" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board hinge barrel.006" translation="0.00999999 0 -0.956666" shapeId="19" nodeId="267" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board hinge barrel.007" translation="0.00999999 0 0.956667" shapeId="19" nodeId="268" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board latch.006" translation="0.00999999 0.46 -0.956666" shapeId="20" nodeId="269" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board latch.007" translation="0.00999999 0.46 0.956667" shapeId="20" nodeId="270" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Drop side panel.003" translation="-0.025 0.295 0" shapeId="21" nodeId="271" castsShadows="true" receiveShadows="true" materialIds="3" />
+      </TransformGroup>
+      <TransformGroup name="Board hinge 1 1" translation="1.275 1.64 -1.925" nodeId="272">
+        <Shape name="Board extrusion.020" translation="0.005 0.0465 0" shapeId="18" nodeId="273" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.021" translation="0.005 0.1865 0" shapeId="18" nodeId="274" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.022" translation="0.005 0.3265 0" shapeId="18" nodeId="275" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.023" translation="0.005 0.4665 0" shapeId="18" nodeId="276" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.024" translation="0.005 0.5565 0" shapeId="18" nodeId="277" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board hinge barrel.008" translation="0.00999999 0 -0.956667" shapeId="19" nodeId="278" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board hinge barrel.009" translation="0.00999999 0 0.956667" shapeId="19" nodeId="279" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board latch.008" translation="0.00999999 0.46 -0.956667" shapeId="20" nodeId="280" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board latch.009" translation="0.00999999 0.46 0.956667" shapeId="20" nodeId="281" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Drop side panel.004" translation="-0.025 0.295 0" shapeId="21" nodeId="282" castsShadows="true" receiveShadows="true" materialIds="3" />
+      </TransformGroup>
+      <TransformGroup name="Board hinge 1 2" translation="1.275 1.64 0.358333" nodeId="283">
+        <Shape name="Board extrusion.025" translation="0.005 0.0465 0" shapeId="18" nodeId="284" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.026" translation="0.005 0.1865 0" shapeId="18" nodeId="285" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.027" translation="0.005 0.3265 0" shapeId="18" nodeId="286" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.028" translation="0.005 0.4665 0" shapeId="18" nodeId="287" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board extrusion.029" translation="0.005 0.5565 0" shapeId="18" nodeId="288" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board hinge barrel.010" translation="0.00999999 0 -0.956667" shapeId="19" nodeId="289" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board hinge barrel.011" translation="0.00999999 0 0.956667" shapeId="19" nodeId="290" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board latch.010" translation="0.00999999 0.46 -0.956667" shapeId="20" nodeId="291" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Board latch.011" translation="0.00999999 0.46 0.956667" shapeId="20" nodeId="292" castsShadows="true" receiveShadows="true" materialIds="2" />
+        <Shape name="Drop side panel.005" translation="-0.025 0.295 0" shapeId="21" nodeId="293" castsShadows="true" receiveShadows="true" materialIds="3" />
+      </TransformGroup>
+    </TransformGroup>
+    <TransformGroup name="OPTION_STAKES" nodeId="294">
+      <TransformGroup name="Stake -1 1" translation="-1.23 1.62 -5.1" nodeId="295">
+        <Shape name="Stake sliding shoe" translation="0 0.02 0" shapeId="22" nodeId="296" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Stake steel upright" translation="0 0.6 0" shapeId="23" nodeId="297" castsShadows="true" receiveShadows="true" materialIds="2" />
+      </TransformGroup>
+      <TransformGroup name="Stake -1 2" translation="-1.23 1.62 -3.83" nodeId="298">
+        <Shape name="Stake sliding shoe.001" translation="0 0.02 0" shapeId="22" nodeId="299" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Stake steel upright.001" translation="0 0.6 0" shapeId="23" nodeId="300" castsShadows="true" receiveShadows="true" materialIds="2" />
+      </TransformGroup>
+      <TransformGroup name="Stake -1 3" translation="-1.23 1.62 -2.56" nodeId="301">
+        <Shape name="Stake sliding shoe.002" translation="0 0.02 0" shapeId="22" nodeId="302" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Stake steel upright.002" translation="0 0.6 0" shapeId="23" nodeId="303" castsShadows="true" receiveShadows="true" materialIds="2" />
+      </TransformGroup>
+      <TransformGroup name="Stake -1 4" translation="-1.23 1.62 -1.29" nodeId="304">
+        <Shape name="Stake sliding shoe.003" translation="0 0.02 0" shapeId="22" nodeId="305" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Stake steel upright.003" translation="0 0.6 0" shapeId="23" nodeId="306" castsShadows="true" receiveShadows="true" materialIds="2" />
+      </TransformGroup>
+      <TransformGroup name="Stake -1 5" translation="-1.23 1.62 -0.02" nodeId="307">
+        <Shape name="Stake sliding shoe.004" translation="0 0.02 0" shapeId="22" nodeId="308" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Stake steel upright.004" translation="0 0.6 0" shapeId="23" nodeId="309" castsShadows="true" receiveShadows="true" materialIds="2" />
+      </TransformGroup>
+      <TransformGroup name="Stake -1 6" translation="-1.23 1.62 1.25" nodeId="310">
+        <Shape name="Stake sliding shoe.005" translation="0 0.02 0" shapeId="22" nodeId="311" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Stake steel upright.005" translation="0 0.6 0" shapeId="23" nodeId="312" castsShadows="true" receiveShadows="true" materialIds="2" />
+      </TransformGroup>
+      <TransformGroup name="Stake 1 1" translation="1.23 1.62 -5.1" nodeId="313">
+        <Shape name="Stake sliding shoe.006" translation="0 0.02 0" shapeId="22" nodeId="314" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Stake steel upright.006" translation="0 0.6 0" shapeId="23" nodeId="315" castsShadows="true" receiveShadows="true" materialIds="2" />
+      </TransformGroup>
+      <TransformGroup name="Stake 1 2" translation="1.23 1.62 -3.83" nodeId="316">
+        <Shape name="Stake sliding shoe.007" translation="0 0.02 0" shapeId="22" nodeId="317" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Stake steel upright.007" translation="0 0.6 0" shapeId="23" nodeId="318" castsShadows="true" receiveShadows="true" materialIds="2" />
+      </TransformGroup>
+      <TransformGroup name="Stake 1 3" translation="1.23 1.62 -2.56" nodeId="319">
+        <Shape name="Stake sliding shoe.008" translation="0 0.02 0" shapeId="22" nodeId="320" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Stake steel upright.008" translation="0 0.6 0" shapeId="23" nodeId="321" castsShadows="true" receiveShadows="true" materialIds="2" />
+      </TransformGroup>
+      <TransformGroup name="Stake 1 4" translation="1.23 1.62 -1.29" nodeId="322">
+        <Shape name="Stake sliding shoe.009" translation="0 0.02 0" shapeId="22" nodeId="323" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Stake steel upright.009" translation="0 0.6 0" shapeId="23" nodeId="324" castsShadows="true" receiveShadows="true" materialIds="2" />
+      </TransformGroup>
+      <TransformGroup name="Stake 1 5" translation="1.23 1.62 -0.02" nodeId="325">
+        <Shape name="Stake sliding shoe.010" translation="0 0.02 0" shapeId="22" nodeId="326" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Stake steel upright.010" translation="0 0.6 0" shapeId="23" nodeId="327" castsShadows="true" receiveShadows="true" materialIds="2" />
+      </TransformGroup>
+      <TransformGroup name="Stake 1 6" translation="1.23 1.62 1.25" nodeId="328">
+        <Shape name="Stake sliding shoe.011" translation="0 0.02 0" shapeId="22" nodeId="329" castsShadows="true" receiveShadows="true" materialIds="3" />
+        <Shape name="Stake steel upright.011" translation="0 0.6 0" shapeId="23" nodeId="330" castsShadows="true" receiveShadows="true" materialIds="2" />
+      </TransformGroup>
+    </TransformGroup>
+  </Scene>
+
+</i3D>

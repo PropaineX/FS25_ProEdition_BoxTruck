@@ -1,0 +1,86 @@
+{
+  "flatbedStakeLeft1": {
+    "body_node": "Stake -1 1",
+    "body_local_path": "2>0",
+    "start": [
+      -1.23,
+      1.62,
+      -5.1
+    ],
+    "end": [
+      -1.23,
+      1.62,
+      -3.97
+    ]
+  },
+  "flatbedStakeLeft3": {
+    "body_node": "Stake -1 3",
+    "body_local_path": "2>2",
+    "start": [
+      -1.23,
+      1.62,
+      -2.56
+    ],
+    "end": [
+      -1.23,
+      1.62,
+      -1.43
+    ]
+  },
+  "flatbedStakeLeft5": {
+    "body_node": "Stake -1 5",
+    "body_local_path": "2>4",
+    "start": [
+      -1.23,
+      1.62,
+      -0.02
+    ],
+    "end": [
+      -1.23,
+      1.62,
+      1.11
+    ]
+  },
+  "flatbedStakeRight1": {
+    "body_node": "Stake 1 1",
+    "body_local_path": "2>6",
+    "start": [
+      1.23,
+      1.62,
+      -5.1
+    ],
+    "end": [
+      1.23,
+      1.62,
+      -3.97
+    ]
+  },
+  "flatbedStakeRight3": {
+    "body_node": "Stake 1 3",
+    "body_local_path": "2>8",
+    "start": [
+      1.23,
+      1.62,
+      -2.56
+    ],
+    "end": [
+      1.23,
+      1.62,
+      -1.43
+    ]
+  },
+  "flatbedStakeRight5": {
+    "body_node": "Stake 1 5",
+    "body_local_path": "2>10",
+    "start": [
+      1.23,
+      1.62,
+      -0.02
+    ],
+    "end": [
+      1.23,
+      1.62,
+      1.11
+    ]
+  }
+}

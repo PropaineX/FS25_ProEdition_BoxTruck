@@ -1,0 +1,11 @@
+{
+  "tube_length_m": 2.32,
+  "tube_diameter_m": 0.13,
+  "center_game_m": [
+    0,
+    0.615,
+    -5.255
+  ],
+  "other_objects_preserved": 176,
+  "runtime_changed": false
+}
